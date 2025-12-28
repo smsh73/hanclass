@@ -12,7 +12,7 @@ export default function HomePage() {
 
   useEffect(() => {
     // 세션에서 이름 불러오기
-    const savedName = sessionStorage.getItem('userName');
+    const savedName = typeof window !== 'undefined' ? sessionStorage.getItem('userName') : null;
     if (savedName) {
       setUserName(savedName);
       setShowNameInput(false);
@@ -23,9 +23,11 @@ export default function HomePage() {
       setLastActivity(new Date());
     };
 
-    window.addEventListener('mousedown', updateActivity);
-    window.addEventListener('keypress', updateActivity);
-    window.addEventListener('scroll', updateActivity);
+    if (typeof window !== 'undefined') {
+      window.addEventListener('mousedown', updateActivity);
+      window.addEventListener('keypress', updateActivity);
+      window.addEventListener('scroll', updateActivity);
+    }
 
     // 타임아웃 체크 (30분)
     const checkTimeout = setInterval(() => {
@@ -38,9 +40,11 @@ export default function HomePage() {
     }, 60000); // 1분마다 체크
 
     return () => {
-      window.removeEventListener('mousedown', updateActivity);
-      window.removeEventListener('keypress', updateActivity);
-      window.removeEventListener('scroll', updateActivity);
+      if (typeof window !== 'undefined') {
+        window.removeEventListener('mousedown', updateActivity);
+        window.removeEventListener('keypress', updateActivity);
+        window.removeEventListener('scroll', updateActivity);
+      }
       clearInterval(checkTimeout);
     };
   }, [userName, lastActivity]);
@@ -58,21 +62,27 @@ export default function HomePage() {
 
       const data = await response.json();
       if (data.success) {
-        sessionStorage.setItem('userName', userName);
-        sessionStorage.setItem('sessionId', data.sessionId);
+        if (typeof window !== 'undefined') {
+          sessionStorage.setItem('userName', userName);
+          sessionStorage.setItem('sessionId', data.sessionId);
+        }
         setShowNameInput(false);
       }
     } catch (error) {
       console.error('Failed to create session:', error);
       // 에러가 있어도 로컬 세션은 저장
-      sessionStorage.setItem('userName', userName);
+      if (typeof window !== 'undefined') {
+        sessionStorage.setItem('userName', userName);
+      }
       setShowNameInput(false);
     }
   };
 
   const handleLogout = () => {
-    sessionStorage.removeItem('userName');
-    sessionStorage.removeItem('sessionId');
+    if (typeof window !== 'undefined') {
+      sessionStorage.removeItem('userName');
+      sessionStorage.removeItem('sessionId');
+    }
     setUserName('');
     setShowNameInput(true);
     router.push('/');

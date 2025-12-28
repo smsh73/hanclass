@@ -34,7 +34,7 @@ RUN echo "=== 파일 구조 확인 ===" && \
     find . -name "*.ts" -o -name "*.tsx" | head -20
 
 # 빌드 실행 (자세한 로그 출력)
-RUN npm run build || (echo "=== 빌드 실패 ===" && cat .next/trace 2>/dev/null || true && exit 1)
+RUN npm run build 2>&1 | tee build.log || (echo "=== 빌드 실패 ===" && echo "=== 빌드 로그 ===" && cat build.log && echo "=== .next 디렉토리 확인 ===" && ls -la .next/ 2>/dev/null || echo ".next 디렉토리 없음" && exit 1)
 
 # Production image, copy all the files and run next
 FROM base AS runner
