@@ -2,13 +2,14 @@
  * Web Speech API type definitions
  */
 
-interface SpeechRecognition extends EventTarget {
-  lang: string;
-  continuous: boolean;
-  interimResults: boolean;
-  maxAlternatives: number;
-  serviceURI: string;
-  grammars: SpeechGrammarList;
+declare global {
+  interface SpeechRecognition extends EventTarget {
+    lang: string;
+    continuous: boolean;
+    interimResults: boolean;
+    maxAlternatives: number;
+    serviceURI?: string;
+    grammars?: SpeechGrammarList;
   start(): void;
   stop(): void;
   abort(): void;
@@ -68,12 +69,16 @@ interface SpeechGrammar {
   weight: number;
 }
 
-interface Window {
-  SpeechRecognition: {
-    new (): SpeechRecognition;
-  };
-  webkitSpeechRecognition: {
-    new (): SpeechRecognition;
-  };
+    interface Window {
+      SpeechRecognition: {
+        new (): SpeechRecognition;
+      };
+      webkitSpeechRecognition: {
+        new (): SpeechRecognition;
+      };
+    }
+  }
 }
+
+export {};
 
