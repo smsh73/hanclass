@@ -10,7 +10,7 @@ export interface VoiceRecognitionOptions {
 }
 
 export class VoiceRecognition {
-  private recognition: SpeechRecognition | null = null;
+  private recognition: any = null;
   private isListening: boolean = false;
   private silenceTimeout: NodeJS.Timeout | null = null;
   private lastSpeechTime: number = 0;
