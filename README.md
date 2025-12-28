@@ -1,85 +1,54 @@
-# 한국어학당 AI 인터랙티브 학습 서비스
+# 한글학당 (HANCLASS)
 
-말레이시아인을 위한 한국어 학습 플랫폼입니다.
+말레이시아인을 위한 AI 기반 한국어 학습 플랫폼
+
+## 기능
+
+- **레벨 테스트**: 초급/중급/고급 레벨 평가
+- **주제별 자유 대화**: AI와 음성으로 한국어 대화 연습
+- **단어 맞추기 게임**: 음성 인식 기반 단어 학습 게임
+- **커리큘럼 관리**: PDF/Word 교안 업로드로 자동 커리큘럼 생성
 
 ## 기술 스택
 
-- **프론트엔드**: Next.js 14, React, TypeScript, Tailwind CSS
-- **백엔드**: Node.js, Express, TypeScript
-- **데이터베이스**: PostgreSQL
-- **음성 인식**: Web Speech API + OpenAI Whisper
-- **음성 합성**: Google Text-to-Speech
-- **AI API**: OpenAI, Claude, Gemini (Fallback 지원)
+- **Frontend**: Next.js 14, React, TypeScript, Tailwind CSS
+- **Backend**: Node.js, Express, TypeScript
+- **Database**: PostgreSQL
+- **AI**: OpenAI, Claude, Gemini (Fallback 지원)
+- **Deployment**: Azure App Service, Azure Container Registry
 
-## 시작하기
+## 배포 상태
 
-### 사전 요구사항
+- ✅ 백엔드: https://hanclass-backend.azurewebsites.net
+- ⚠️ 프론트엔드: 배포 진행 중
 
-- Node.js 18+
-- PostgreSQL 15+
-- Docker (선택사항)
+## 로컬 개발
 
-### 설치
-
-1. 의존성 설치:
-```bash
-npm install
-cd frontend && npm install
-cd ../backend && npm install
-```
-
-2. 데이터베이스 설정:
-```bash
-# Docker를 사용하는 경우
-docker-compose up -d
-
-# 또는 직접 PostgreSQL 설정
-```
-
-3. 환경 변수 설정:
-```bash
-# Backend
-cp backend/.env.example backend/.env
-# 환경 변수 수정
-
-# Frontend
-cp frontend/.env.example frontend/.env.local
-```
-
-4. 데이터베이스 마이그레이션:
+### 백엔드
 ```bash
 cd backend
-npm run migrate
+npm install
+npm run dev
 ```
 
-5. 개발 서버 실행:
+### 프론트엔드
 ```bash
-# Backend
-npm run dev:backend
-
-# Frontend (새 터미널)
-npm run dev:frontend
+cd frontend
+npm install
+npm run dev
 ```
 
-## 프로젝트 구조
+## 환경 변수
 
-```
-hanclass/
-├── frontend/          # Next.js 프론트엔드
-├── backend/           # Node.js 백엔드
-├── database/          # 데이터베이스 마이그레이션
-└── docker-compose.yml # 로컬 개발용 Docker 설정
-```
+### 백엔드
+- `DB_HOST`, `DB_NAME`, `DB_USER`, `DB_PASSWORD`
+- `JWT_SECRET`
+- `ENCRYPTION_KEY`
+- `FRONTEND_URL`
 
-## 주요 기능
+### 프론트엔드
+- `NEXT_PUBLIC_API_URL`
 
-- 레벨 테스트
-- 주제별 AI 자유 인터랙티브 대화 학습
-- 단어 맞추기 게임
-- 교안 업로드 및 커리큘럼 생성
-- 관리자 페이지
+## 라이선스
 
-## 배포
-
-Azure App Service 및 Azure Container Registry를 사용하여 배포합니다.
-
+MIT
