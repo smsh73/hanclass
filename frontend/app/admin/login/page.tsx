@@ -25,7 +25,9 @@ export default function AdminLoginPage() {
       const data = await response.json();
 
       if (data.success && data.token) {
-        localStorage.setItem('adminToken', data.token);
+        if (typeof window !== 'undefined') {
+          localStorage.setItem('adminToken', data.token);
+        }
         router.push('/admin');
       } else {
         setError('로그인에 실패했습니다. 사용자명과 비밀번호를 확인해주세요.');

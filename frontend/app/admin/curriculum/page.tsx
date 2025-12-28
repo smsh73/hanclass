@@ -11,7 +11,7 @@ export default function CurriculumPage() {
   const [uploadProgress, setUploadProgress] = useState<string>('');
 
   useEffect(() => {
-    const token = localStorage.getItem('adminToken');
+    const token = typeof window !== 'undefined' ? localStorage.getItem('adminToken') : null;
     if (!token) {
       router.push('/admin/login');
     }
@@ -36,7 +36,7 @@ export default function CurriculumPage() {
         formData.append('files', file);
       });
 
-      const token = localStorage.getItem('adminToken');
+      const token = typeof window !== 'undefined' ? localStorage.getItem('adminToken') : null;
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/curriculum/upload`, {
         method: 'POST',
         headers: {

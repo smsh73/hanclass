@@ -4,7 +4,7 @@ export async function apiRequest(
   endpoint: string,
   options: RequestInit = {}
 ) {
-  const token = localStorage.getItem('adminToken');
+  const token = typeof window !== 'undefined' ? localStorage.getItem('adminToken') : null;
   
   const headers: Record<string, string> = {
     'Content-Type': 'application/json',

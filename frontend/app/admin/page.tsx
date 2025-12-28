@@ -10,7 +10,7 @@ export default function AdminPage() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const token = localStorage.getItem('adminToken');
+    const token = typeof window !== 'undefined' ? localStorage.getItem('adminToken') : null;
     if (!token) {
       router.push('/admin/login');
     } else {
@@ -20,7 +20,9 @@ export default function AdminPage() {
   }, [router]);
 
   const handleLogout = () => {
-    localStorage.removeItem('adminToken');
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem('adminToken');
+    }
     router.push('/admin/login');
   };
 

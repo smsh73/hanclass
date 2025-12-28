@@ -30,7 +30,7 @@ export default function APIKeysPage() {
   }, []);
 
   const checkAuth = () => {
-    const token = localStorage.getItem('adminToken');
+    const token = typeof window !== 'undefined' ? localStorage.getItem('adminToken') : null;
     if (!token) {
       router.push('/admin/login');
     }
