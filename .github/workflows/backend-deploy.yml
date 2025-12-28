@@ -37,6 +37,9 @@ jobs:
       - name: Log in to Azure Container Registry
         run: |
           az acr login --name ${{ env.ACR_NAME }}
+          # Docker 빌드 액션을 위해 로그인 정보 설정
+          echo "::add-mask::$(az acr credential show --name ${{ env.ACR_NAME }} --query passwords[0].value -o tsv)"
+          docker login ${{ env.ACR_NAME }}.azurecr.io -u $(az acr credential show --name ${{ env.ACR_NAME }} --query username -o tsv) -p $(az acr credential show --name ${{ env.ACR_NAME }} --query passwords[0].value -o tsv)
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
