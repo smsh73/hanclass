@@ -1,0 +1,18 @@
+{
+  "name": "hanclass",
+  "version": "1.0.0",
+  "description": "한국어학당 AI 인터랙티브 학습 서비스",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "scripts": {
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev:backend": "cd backend && npm run dev",
+    "build:frontend": "cd frontend && npm run build",
+    "build:backend": "cd backend && npm run build",
+    "start:backend": "cd backend && npm start"
+  }
+}
+

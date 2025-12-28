@@ -1,0 +1,85 @@
+'use client';
+
+import { useEffect, useRef, useState } from 'react';
+import { VoiceRecognition } from '@/lib/voice';
+
+interface VoiceRecorderProps {
+  onTranscript: (text: string, isFinal: boolean) => void;
+  onSilence?: () => void;
+  isEnabled: boolean;
+  isAISpeaking: boolean;
+}
+
+export default function VoiceRecorder({
+  onTranscript,
+  onSilence,
+  isEnabled,
+  isAISpeaking,
+}: VoiceRecorderProps) {
+  const [isListening, setIsListening] = useState(false);
+  const recognitionRef = useRef<VoiceRecognition | null>(null);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    const recognition = new VoiceRecognition({
+      lang: 'ko-KR',
+      continuous: true,
+      interimResults: true,
+    });
+
+    recognition.onResult((text, isFinal) => {
+      if (!isAISpeaking) {
+        onTranscript(text, isFinal);
+      }
+    });
+
+    recognition.onSilence(() => {
+      if (!isAISpeaking && onSilence) {
+        onSilence();
+      }
+    });
+
+    recognitionRef.current = recognition;
+
+    return () => {
+      recognition.destroy();
+    };
+  }, [onTranscript, onSilence, isAISpeaking]);
+
+  useEffect(() => {
+    if (!recognitionRef.current) {
+      return;
+    }
+
+    if (isEnabled && !isAISpeaking) {
+      recognitionRef.current.start();
+      setIsListening(true);
+    } else {
+      recognitionRef.current.stop();
+      setIsListening(false);
+    }
+  }, [isEnabled, isAISpeaking]);
+
+  return (
+    <div className="flex items-center gap-2">
+      <div
+        className={`w-3 h-3 rounded-full ${
+          isListening && !isAISpeaking
+            ? 'bg-red-500 animate-pulse'
+            : 'bg-gray-400'
+        }`}
+      />
+      <span className="text-sm text-gray-600">
+        {isAISpeaking
+          ? 'AI가 말하는 중입니다...'
+          : isListening
+          ? '듣는 중...'
+          : '대기 중'}
+      </span>
+    </div>
+  );
+}
+
