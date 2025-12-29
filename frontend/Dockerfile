@@ -61,7 +61,14 @@ RUN adduser --system --uid 1001 nextjs
 # Copy necessary files from builder
 # public 디렉토리는 선택적 (없어도 빌드 진행)
 RUN mkdir -p ./public
-COPY --from=builder /app/public* ./public/ 2>&1 || echo "Public directory not found, creating empty directory"
+# public 디렉토리 복사 시도 (없으면 빈 디렉토리 유지)
+RUN --mount=from=builder,source=/app/public,target=/tmp/public \
+    if [ -d "/tmp/public" ] && [ "$(ls -A /tmp/public 2>/dev/null)" ]; then \
+      cp -r /tmp/public/* ./public/ && \
+      echo "✓ Public directory copied"; \
+    else \
+      echo "⚠ Public directory not found, using empty directory"; \
+    fi
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
 # 먼저 일반 빌드 파일 복사 (항상 필요)
