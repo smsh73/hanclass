@@ -69,6 +69,14 @@ declare global {
     weight: number;
   }
 
+  interface SpeechSynthesisErrorEvent extends Event {
+    error: string;
+    charIndex: number;
+    charLength: number;
+    elapsedTime: number;
+    name: string;
+  }
+
   interface Window {
     SpeechRecognition: {
       new (): SpeechRecognition;

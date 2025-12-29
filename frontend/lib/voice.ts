@@ -10,7 +10,7 @@ export interface VoiceRecognitionOptions {
 }
 
 export class VoiceRecognition {
-  private recognition: any = null;
+  private recognition: SpeechRecognition | null = null;
   private isListening: boolean = false;
   private silenceTimeout: NodeJS.Timeout | null = null;
   private lastSpeechTime: number = 0;
@@ -38,28 +38,28 @@ export class VoiceRecognition {
     this.recognition.interimResults = options.interimResults ?? true;
     this.recognition.maxAlternatives = options.maxAlternatives ?? 1;
 
-    this.recognition.onresult = (event) => {
-      const results = event.results;
-      const lastResult = results[results.length - 1];
-      const transcript = lastResult[0]?.transcript || '';
+          this.recognition.onresult = (event: SpeechRecognitionEvent) => {
+            const results = event.results;
+            const lastResult = results[results.length - 1];
+            const transcript = lastResult[0]?.transcript || '';
 
-      this.lastSpeechTime = Date.now();
+            this.lastSpeechTime = Date.now();
 
-      if (this.onResultCallback) {
-        this.onResultCallback(transcript, lastResult.isFinal);
-      }
+            if (this.onResultCallback) {
+              this.onResultCallback(transcript, lastResult.isFinal);
+            }
 
-      // Reset silence timeout
-      this.resetSilenceTimeout();
-    };
+            // Reset silence timeout
+            this.resetSilenceTimeout();
+          };
 
-    this.recognition.onerror = (event) => {
-      console.error('Speech recognition error:', event.error);
-      if (event.error === 'no-speech') {
-        // No speech detected, trigger silence callback after timeout
-        this.resetSilenceTimeout();
-      }
-    };
+          this.recognition.onerror = (event: SpeechRecognitionErrorEvent) => {
+            console.error('Speech recognition error:', event.error);
+            if (event.error === 'no-speech') {
+              // No speech detected, trigger silence callback after timeout
+              this.resetSilenceTimeout();
+            }
+          };
 
     this.recognition.onend = () => {
       if (this.isListening) {
