@@ -1,0 +1,11 @@
+<step title="Incoming Request" date="2025-12-28T04:47:49.596" instance="978831" url="/api/deployments/latest" method="GET" type="request" pid="833,1,18" Accept="*/*" Host="hanclass-frontend.scm.azurewebsites.net" User-Agent="AZURECLI/2.81.0 (HOMEBREW)" Accept-Encoding="gzip, deflate" Authorization="Bea..." x-ms-client-request-id="54e98518-e3a8-11f0-8722-3296fc4ad343" X-ARR-LOG-ID="54e98518-e3a8-11f0-8722-3296fc4ad343" CLIENT-IP="118.131.67.58:62917" X-SITE-DEPLOYMENT-ID="hanclass-frontend" WAS-DEFAULT-HOSTNAME="hanclass-frontend.scm.azurewebsites.net" X-Forwarded-Proto="https" X-AppService-Proto="https" X-Forwarded-TlsVersion="1.3" X-WAWS-Unencoded-URL="/api/deployments/latest" X-Client-IP="118.131.67.58" X-Client-Port="62917" >
+  <step title="Cleanup Xml Logs" date="2025-12-28T04:47:49.621" >
+    <step title="Cleanup Infos" date="2025-12-28T04:47:49.666" totalFiles="249" totalCleanup="89" /><!-- duration: 11ms -->
+  </step><!-- duration: 66ms -->
+  <step title="DeploymentService.GetResult" date="2025-12-28T04:47:49.760" >
+    <step title="DeploymentService.GetLatestDeployment" date="2025-12-28T04:47:49.771" >
+      <step title="DeploymentManager.GetResults" date="2025-12-28T04:47:49.782" /><!-- duration: 1215ms -->
+    </step><!-- duration: 1241ms -->
+  </step><!-- duration: 1263ms -->
+  <step title="Outgoing response" date="2025-12-28T04:47:51.049" type="response" statusCode="202" statusText="Accepted" /><!-- duration: 12ms -->
+</step><!-- duration: 1474ms -->

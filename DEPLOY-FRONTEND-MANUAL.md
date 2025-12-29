@@ -1,49 +1,98 @@
 # 프론트엔드 수동 배포 가이드
 
-## 현재 문제
-App Service의 자동 빌드가 실패하여 수동 배포가 필요합니다.
+## 현재 상황
+- GitHub 저장소: https://github.com/smsh73/hanclass
+- 코드 푸시: 완료
+- Azure 자동 배포: GitHub 연동 필요 (권한 부여 필요)
 
-## 해결 방법 1: Azure Portal 배포 센터 사용 (가장 확실)
+## 해결 방법
 
-1. https://portal.azure.com 접속
-2. `hanclass-frontend` Web App 선택
+### 방법 1: Azure Portal에서 GitHub 연동 (권장)
+
+1. **Azure Portal 접속**: https://portal.azure.com
+2. **hanclass-frontend** Web App 선택
 3. **배포 센터** 메뉴 클릭
-4. **로컬 Git** 또는 **ZIP 배포** 선택
-5. `frontend-final2.zip` 파일 업로드
-6. 배포 완료 대기
+4. **소스** 섹션:
+   - **GitHub** 선택
+   - **권한 부여** 클릭 → GitHub 로그인 및 권한 승인
+5. 설정:
+   - **조직**: `smsh73`
+   - **저장소**: `hanclass`
+   - **브랜치**: `main`
+   - **빌드 공급자**: **App Service build service**
+6. **저장** 클릭
+7. **동기화** 버튼 클릭하여 즉시 배포 시작
 
-## 해결 방법 2: 로컬에서 빌드 후 배포
+### 방법 2: Local Git 배포
+
+```bash
+# Azure Local Git URL 가져오기
+az webapp deployment source config-local-git \
+  --resource-group hanclass-rg \
+  --name hanclass-frontend
+
+# Local Git remote 추가 (출력된 URL 사용)
+git remote add azure <출력된-URL>
+
+# 프론트엔드 디렉토리로 이동하여 배포
+cd frontend
+git subtree push --prefix frontend azure main
+```
+
+### 방법 3: ZIP 배포
 
 ```bash
 cd frontend
-npm install
+npm install --legacy-peer-deps
 npm run build
 
-# 빌드된 파일 포함하여 ZIP 생성
-cd ..
-zip -r frontend-built.zip frontend/.next frontend/package.json frontend/public frontend/app frontend/components frontend/lib frontend/*.js frontend/*.json frontend/*.ts frontend/*.tsx frontend/startup.sh -x "*.log"
+# .next 디렉토리와 필요한 파일들을 ZIP으로 압축
+zip -r ../frontend-deploy.zip . \
+  -x "node_modules/*" \
+  -x ".git/*" \
+  -x "*.log"
+
+# Azure에 배포
+az webapp deployment source config-zip \
+  --resource-group hanclass-rg \
+  --name hanclass-frontend \
+  --src ../frontend-deploy.zip
 ```
 
-그런 다음 Azure Portal 배포 센터에서 `frontend-built.zip` 업로드
+## 수정된 startup.sh 주요 변경사항
 
-## 해결 방법 3: GitHub Actions 설정 (장기적 해결책)
+1. **기존 node_modules 정리**: 권한 문제 해결
+2. **npm cache 정리**: 깨끗한 설치 보장
+3. **에러 처리 개선**: 실패 시 재시도 로직
+4. **next 명령어 검증**: 설치 확인
 
-1. GitHub 저장소 생성
-2. 코드 푸시
-3. Azure Portal에서 배포 센터 > GitHub 연동
-4. 자동 빌드 및 배포 설정
+## 배포 확인
 
-## 현재 설정 확인
+배포 완료 후:
+```bash
+curl -I https://hanclass-frontend.azurewebsites.net
+```
 
-환경 변수는 이미 설정되어 있습니다:
-- `SCM_DO_BUILD_DURING_DEPLOYMENT` = `false`
-- `NEXT_PUBLIC_API_URL` = `https://hanclass-backend.azurewebsites.net`
-- `NODE_ENV` = `production`
-- `PORT` = `8080`
+정상 응답: `HTTP/2 200`
+오류 응답: `HTTP/2 503` (Application Error)
 
-Startup Command: `sh /home/site/wwwroot/startup.sh`
+## 문제 해결
 
-## 다음 단계
+### 503 에러가 계속 발생하는 경우
 
-가장 확실한 방법은 **Azure Portal의 배포 센터에서 ZIP 파일을 직접 업로드**하는 것입니다.
+1. **로그 확인**:
+   ```bash
+   az webapp log tail --resource-group hanclass-rg --name hanclass-frontend
+   ```
 
+2. **환경 변수 확인**:
+   ```bash
+   az webapp config appsettings list \
+     --resource-group hanclass-rg \
+     --name hanclass-frontend
+   ```
+
+3. **필수 환경 변수**:
+   - `NEXT_PUBLIC_API_URL=https://hanclass-backend.azurewebsites.net`
+   - `NODE_ENV=production`
+   - `PORT=8080`

@@ -1,0 +1,100 @@
+2025-12-27T09:09:38  Fetching changes.
+2025-12-27T09:09:38    Starting  LocalZipHandler
+2025-12-27T09:09:38    Cleaning up temp folders from previous zip deployments and extracting pushed zip file /tmp/zipdeploy/7784e6db-122e-45fe-ac0d-f3b80dabb69d.zip (0.03 MB) to /tmp/zipdeploy/extracted
+2025-12-27T09:09:44  Updating submodules.
+2025-12-27T09:09:44  Preparing deployment for commit id '3f924cfb-b'.
+2025-12-27T09:09:45  PreDeployment: context.CleanOutputPath False
+2025-12-27T09:09:46  PreDeployment: context.OutputPath /home/site/wwwroot
+2025-12-27T09:09:46  Repository path is /tmp/zipdeploy/extracted
+2025-12-27T09:09:46  Running oryx build...
+2025-12-27T09:09:46    Command: oryx build /tmp/zipdeploy/extracted -o /home/site/wwwroot --platform nodejs --platform-version 20 -p virtualenv_name= --log-file /tmp/build-debug.log  -i /tmp/8de4527adb17ef3 -p compress_node_modules=tar-gz | tee /tmp/oryx-build.log
+2025-12-27T09:09:58    Operation performed by Microsoft Oryx, https://github.com/Microsoft/Oryx
+2025-12-27T09:09:58    You can report issues at https://github.com/Microsoft/Oryx/issues
+2025-12-27T09:09:58    
+2025-12-27T09:09:58    Oryx Version: 0.2.20251022.1+bef98bc7139feefaa74be16de9d835e2c85385d4, Commit: bef98bc7139feefaa74be16de9d835e2c85385d4, ReleaseTagName: 20251022.1
+2025-12-27T09:09:58    
+2025-12-27T09:09:59    Build Operation ID: 5916bf9bea7ad0bd
+2025-12-27T09:09:59    Repository Commit : 3f924cfb-bf26-4c0a-a2c1-d1f916133285
+2025-12-27T09:09:59    OS Type           : bookworm
+2025-12-27T09:09:59    Image Type        : githubactions
+2025-12-27T09:09:59    
+2025-12-27T09:10:00    Primary SDK Storage URL: https://oryx-cdn.microsoft.io
+2025-12-27T09:10:00    Backup SDK Storage URL: 
+2025-12-27T09:10:00    Detecting platforms...
+2025-12-27T09:10:00    External SDK provider is enabled.
+2025-12-27T09:10:05    Requesting metadata for platform nodejs from external SDK provider
+2025-12-27T09:10:14    Requesting metadata for platform nodejs from external SDK provider
+2025-12-27T09:10:18    Successfully requested blob for platform nodejs, blobName defaultVersion.bookworm.txt, available at /var/OryxSdks/nodejs/defaultVersion.bookworm.txt
+2025-12-27T09:10:19    Detected following platforms:
+2025-12-27T09:10:19      nodejs: 20.19.5
+2025-12-27T09:10:19    Requesting metadata for platform nodejs from external SDK provider
+2025-12-27T09:10:29    Successfully requested blob for platform nodejs, blobName nodejs-bookworm-20.19.5.tar.gz, available at /var/OryxSdks/nodejs/nodejs-bookworm-20.19.5.tar.gz
+2025-12-27T09:10:35    Version '20.19.5' of platform 'nodejs' is not installed. Generating script to install it...
+2025-12-27T09:10:38    Detected the following frameworks: Typescript,Next.js
+2025-12-27T09:10:39    
+2025-12-27T09:10:40    Using intermediate directory '/tmp/8de4527adb17ef3'.
+2025-12-27T09:10:40    
+2025-12-27T09:10:40    Copying files to the intermediate directory...
+2025-12-27T09:10:41    Done in 1 sec(s).
+2025-12-27T09:10:41    
+2025-12-27T09:10:42    Source directory     : /tmp/8de4527adb17ef3
+2025-12-27T09:10:42    Destination directory: /home/site/wwwroot
+2025-12-27T09:10:42    
+2025-12-27T09:10:42    
+2025-12-27T09:10:42    Downloading and extracting 'nodejs' version '20.19.5' to '/tmp/oryx/platforms/nodejs/20.19.5'...
+2025-12-27T09:10:42    Detected image debian flavor: bookworm.
+2025-12-27T09:10:42    Skipping download of nodejs version 20.19.5 as it is available in external sdk provider cache...
+2025-12-27T09:10:42    Extracting contents...
+2025-12-27T09:11:09    Successfully extracted nodejs version 20.19.5 from external sdk provider cache...
+2025-12-27T09:11:09    Done in 27 sec(s).
+2025-12-27T09:11:09    
+2025-12-27T09:11:09    Removing existing manifest file
+2025-12-27T09:11:10    Creating directory for command manifest file if it does not exist
+2025-12-27T09:11:10    Creating a manifest file...
+2025-12-27T09:11:10    Node Build Command Manifest file created.
+2025-12-27T09:11:10    
+2025-12-27T09:11:10    Found npm version spec to follow in package.json: '10.x'
+2025-12-27T09:11:10    Updating version of npm installed to meet the above version spec.
+2025-12-27T09:11:34    
+2025-12-27T09:11:34    removed 14 packages, and changed 100 packages in 20s
+2025-12-27T09:11:34    
+2025-12-27T09:11:34    25 packages are looking for funding
+2025-12-27T09:11:34      run `npm fund` for details
+2025-12-27T09:11:35    
+2025-12-27T09:11:35    
+2025-12-27T09:11:35    Using Node version:
+2025-12-27T09:11:35    v20.19.5
+2025-12-27T09:11:35    
+2025-12-27T09:11:35    Using Npm version:
+2025-12-27T09:11:35    10.9.4
+2025-12-27T09:11:35    
+2025-12-27T09:11:35    Running 'npm install'...
+2025-12-27T09:11:35    
+2025-12-27T09:16:00    npm warn deprecated next@14.2.0: This version has a security vulnerability. Please upgrade to a patched version. See https://nextjs.org/blog/security-update-2025-12-11 for more details.
+2025-12-27T09:16:08    
+2025-12-27T09:16:08    added 58 packages, and audited 59 packages in 5m
+2025-12-27T09:16:08    
+2025-12-27T09:16:08    9 packages are looking for funding
+2025-12-27T09:16:08      run `npm fund` for details
+2025-12-27T09:16:09    
+2025-12-27T09:16:10    1 critical severity vulnerability
+2025-12-27T09:16:10    
+2025-12-27T09:16:10    To address all issues, run:
+2025-12-27T09:16:10      npm audit fix --force
+2025-12-27T09:16:10    
+2025-12-27T09:16:11    Run `npm audit` for details.
+2025-12-27T09:16:11    
+2025-12-27T09:16:11    Running 'npm run build'...
+2025-12-27T09:16:11    
+2025-12-27T09:16:20    
+2025-12-27T09:16:20    > hanclass-frontend@1.0.0 build
+2025-12-27T09:16:21    > next build
+2025-12-27T09:16:21    
+2025-12-27T09:16:40    Attention: Next.js now collects completely anonymous telemetry regarding usage.
+2025-12-27T09:16:41    This information is used to shape Next.js' roadmap and prioritize features.
+2025-12-27T09:16:41    You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+2025-12-27T09:16:41    https://nextjs.org/telemetry
+2025-12-27T09:16:41    
+2025-12-27T09:16:42      ▲ Next.js 14.2.0
+2025-12-27T09:16:42    
+2025-12-27T09:16:43       Creating an optimized production build ...

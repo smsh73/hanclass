@@ -1,0 +1,1147 @@
+2025-12-27T09:05:29.3301257Z Container start method called.
+2025-12-27T09:05:29.3312259Z Establishing network.
+2025-12-27T09:05:29.3313571Z Pulling image: appsvc/node:20-lts_20251016.4.tuxprod.
+2025-12-27T09:05:30.9619609Z Image appsvc/node:20-lts_20251016.4.tuxprod is pulled from registry 10.1.0.4:13209
+2025-12-27T09:05:30.9621174Z Container is starting.
+2025-12-27T09:05:30.9623017Z Establishing user namespace if not established already.
+2025-12-27T09:05:30.9624029Z Establishing network if not established already.
+2025-12-27T09:05:30.9706639Z Mounting volumes.
+2025-12-27T09:05:30.9709634Z Nested mountpoint 
+2025-12-27T09:05:31.0450764Z Nested mountpoint volatile/logs
+2025-12-27T09:05:31.1233454Z Nested mountpoint 
+2025-12-27T09:05:31.3358848Z Nested mountpoint 
+2025-12-27T09:05:31.3912907Z Nested mountpoint 
+2025-12-27T09:05:31.9574735Z Creating container.
+2025-12-27T09:05:31.9737540Z Creating pipes for streaming container io.
+2025-12-27T09:05:31.9746473Z Creating stdout named pipe at /podr/container/pipe/1111554ab47d_hanclass-frontend/stdout_b9dd2a14e90b4280be2ff0c0c1535f7a.
+2025-12-27T09:05:31.9866574Z Successfully created stdout named pipe at: /podr/container/pipe/1111554ab47d_hanclass-frontend/stdout_b9dd2a14e90b4280be2ff0c0c1535f7a.
+2025-12-27T09:05:32.0637775Z Opening named pipe /podr/container/pipe/1111554ab47d_hanclass-frontend/stdout_b9dd2a14e90b4280be2ff0c0c1535f7a for reading in non-blocking mode.
+2025-12-27T09:05:32.0718954Z Successfully opened named pipe: /podr/container/pipe/1111554ab47d_hanclass-frontend/stdout_b9dd2a14e90b4280be2ff0c0c1535f7a.
+2025-12-27T09:05:32.1084889Z Successfully removed non-blocking flag from /podr/container/pipe/1111554ab47d_hanclass-frontend/stdout_b9dd2a14e90b4280be2ff0c0c1535f7a.
+2025-12-27T09:05:32.1188649Z Creating stderr named pipe at /podr/container/pipe/1111554ab47d_hanclass-frontend/stderr_404d718dea4a4a89a0a17eff75563404.
+2025-12-27T09:05:32.1284483Z Successfully created stderr named pipe at: /podr/container/pipe/1111554ab47d_hanclass-frontend/stderr_404d718dea4a4a89a0a17eff75563404.
+2025-12-27T09:05:32.1299164Z Opening named pipe /podr/container/pipe/1111554ab47d_hanclass-frontend/stderr_404d718dea4a4a89a0a17eff75563404 for reading in non-blocking mode.
+2025-12-27T09:05:32.1368204Z Successfully opened named pipe: /podr/container/pipe/1111554ab47d_hanclass-frontend/stderr_404d718dea4a4a89a0a17eff75563404.
+2025-12-27T09:05:32.1371984Z Successfully removed non-blocking flag from /podr/container/pipe/1111554ab47d_hanclass-frontend/stderr_404d718dea4a4a89a0a17eff75563404.
+2025-12-27T09:05:32.1374612Z Creating container with image: appsvc/node:20-lts_20251016.4.tuxprod from registry: 10.1.0.4:13209 and fully qualified image name: 10.1.0.4:13209/appsvc/node:20-lts_20251016.4.tuxprod
+2025-12-27T09:05:33.5124799Z Starting container: 1111554ab47d_hanclass-frontend.
+2025-12-27T09:05:33.6715133Z Starting watchers and probes.
+2025-12-27T09:05:33.6810710Z Starting metrics collection.
+2025-12-27T09:05:33.6917665Z Container is running.
+2025-12-27T09:05:33.8339564Z Container start method finished after 4502 ms.
+2025-12-27T09:06:53.2801328Z Container has finished running with exit code: 254.
+2025-12-27T09:06:53.3075243Z Container is terminating. Grace period: 5 seconds.
+2025-12-27T09:06:53.3747232Z Stop and delete container. Retry count = 0
+2025-12-27T09:06:53.3808991Z Stopping container: 1111554ab47d_hanclass-frontend.
+2025-12-27T09:06:53.5554197Z Deleting container: 1111554ab47d_hanclass-frontend. Retry count = 0
+2025-12-27T09:06:54.3906560Z Container spec TerminationMessagePolicy  path 
+2025-12-27T09:06:54.4003721Z Container is terminated. Total time elapsed: 1028 ms.
+2025-12-27T09:06:54.4006077Z Site container: hanclass-frontend terminated during site startup.
+2025-12-27T09:06:54.4473158Z Site startup probe failed after 80.489396 seconds.
+2025-12-27T09:06:54.8554377Z Failed to start site. Revert by stopping site.
+2025-12-27T09:06:54.8726593Z Site: hanclass-frontend stopped.
+2025-12-27T09:07:01.1621920Z Container start method called.
+2025-12-27T09:07:01.1632560Z Establishing network.
+2025-12-27T09:07:01.1819829Z Pulling image: appsvc/node:20-lts_20251016.4.tuxprod.
+2025-12-27T09:07:01.9370645Z Container is starting.
+2025-12-27T09:07:01.9372531Z Establishing user namespace if not established already.
+2025-12-27T09:07:01.9373691Z Establishing network if not established already.
+2025-12-27T09:07:01.9374993Z Mounting volumes.
+2025-12-27T09:07:01.9376523Z Nested mountpoint 
+2025-12-27T09:07:02.0497350Z Nested mountpoint volatile/logs
+2025-12-27T09:07:02.1360589Z Nested mountpoint 
+2025-12-27T09:07:02.3825066Z Nested mountpoint 
+2025-12-27T09:07:02.5491949Z Nested mountpoint 
+2025-12-27T09:07:03.6600975Z Creating container.
+2025-12-27T09:07:03.6603165Z Creating pipes for streaming container io.
+2025-12-27T09:07:03.6604753Z Creating stdout named pipe at /podr/container/pipe/21d2e1c0549d_hanclass-frontend/stdout_7e023b145b334dc3ace2d590e0d860dd.
+2025-12-27T09:07:03.6692427Z Successfully created stdout named pipe at: /podr/container/pipe/21d2e1c0549d_hanclass-frontend/stdout_7e023b145b334dc3ace2d590e0d860dd.
+2025-12-27T09:07:03.6694966Z Opening named pipe /podr/container/pipe/21d2e1c0549d_hanclass-frontend/stdout_7e023b145b334dc3ace2d590e0d860dd for reading in non-blocking mode.
+2025-12-27T09:07:03.6710072Z Successfully opened named pipe: /podr/container/pipe/21d2e1c0549d_hanclass-frontend/stdout_7e023b145b334dc3ace2d590e0d860dd.
+2025-12-27T09:07:03.6714923Z Successfully removed non-blocking flag from /podr/container/pipe/21d2e1c0549d_hanclass-frontend/stdout_7e023b145b334dc3ace2d590e0d860dd.
+2025-12-27T09:07:03.6779811Z Creating stderr named pipe at /podr/container/pipe/21d2e1c0549d_hanclass-frontend/stderr_44228bb5431f47cfbc3f6ba78f012ba7.
+2025-12-27T09:07:03.6810053Z Successfully created stderr named pipe at: /podr/container/pipe/21d2e1c0549d_hanclass-frontend/stderr_44228bb5431f47cfbc3f6ba78f012ba7.
+2025-12-27T09:07:03.7152225Z Opening named pipe /podr/container/pipe/21d2e1c0549d_hanclass-frontend/stderr_44228bb5431f47cfbc3f6ba78f012ba7 for reading in non-blocking mode.
+2025-12-27T09:07:03.7337111Z Successfully opened named pipe: /podr/container/pipe/21d2e1c0549d_hanclass-frontend/stderr_44228bb5431f47cfbc3f6ba78f012ba7.
+2025-12-27T09:07:03.7339820Z Successfully removed non-blocking flag from /podr/container/pipe/21d2e1c0549d_hanclass-frontend/stderr_44228bb5431f47cfbc3f6ba78f012ba7.
+2025-12-27T09:07:03.7355175Z Creating container with image: appsvc/node:20-lts_20251016.4.tuxprod from registry: 10.1.0.4:13209 and fully qualified image name: 10.1.0.4:13209/appsvc/node:20-lts_20251016.4.tuxprod
+2025-12-27T09:07:05.3711716Z Starting container: 21d2e1c0549d_hanclass-frontend.
+2025-12-27T09:07:05.5456379Z Starting watchers and probes.
+2025-12-27T09:07:05.5748135Z Starting metrics collection.
+2025-12-27T09:07:05.5812907Z Container is running.
+2025-12-27T09:07:05.8337040Z Container start method finished after 4670 ms.
+2025-12-27T09:08:32.4222559Z Container has finished running with exit code: 254.
+2025-12-27T09:08:32.4294076Z Container is terminating. Grace period: 5 seconds.
+2025-12-27T09:08:32.4467354Z Stop and delete container. Retry count = 0
+2025-12-27T09:08:32.4482965Z Stopping container: 21d2e1c0549d_hanclass-frontend.
+2025-12-27T09:08:32.6060809Z Deleting container: 21d2e1c0549d_hanclass-frontend. Retry count = 0
+2025-12-27T09:08:33.0557355Z Container spec TerminationMessagePolicy  path 
+2025-12-27T09:08:33.0630905Z Container is terminated. Total time elapsed: 632 ms.
+2025-12-27T09:08:33.0632513Z Site container: hanclass-frontend terminated during site startup.
+2025-12-27T09:08:33.1246955Z Site startup probe failed after 87.2705772 seconds.
+2025-12-27T09:08:33.4295918Z Failed to start site. Revert by stopping site.
+2025-12-27T09:08:33.4864631Z Site: hanclass-frontend stopped.
+2025-12-27T09:08:34.7292896Z Site: hanclass-frontend will be blocked for 1 minutes till 12/27/2025 09:09:34
+2025-12-27T09:08:40.5430213Z Start site prohibitted because the site is being blocked.
+2025-12-27T09:08:45.6838592Z Start site prohibitted because the site is being blocked.
+2025-12-27T09:08:50.8107380Z Start site prohibitted because the site is being blocked.
+2025-12-27T09:08:55.9830881Z Start site prohibitted because the site is being blocked.
+2025-12-27T09:09:00.2866425Z Start site prohibitted because the site is being blocked.
+2025-12-27T09:09:00.5582845Z Start site prohibitted because the site is being blocked.
+2025-12-27T09:09:01.4688073Z Start site prohibitted because the site is being blocked.
+2025-12-27T09:09:06.5625959Z Start site prohibitted because the site is being blocked.
+2025-12-27T09:09:11.7593070Z Start site prohibitted because the site is being blocked.
+2025-12-27T09:09:17.4602741Z Start site prohibitted because the site is being blocked.
+2025-12-27T09:09:22.5711314Z Start site prohibitted because the site is being blocked.
+2025-12-27T09:09:27.6556983Z Start site prohibitted because the site is being blocked.
+2025-12-27T09:09:32.7415451Z Start site prohibitted because the site is being blocked.
+2025-12-27T09:09:34.7339057Z Site: hanclass-frontend is unblocked.
+2025-12-27T09:09:39.9310828Z Container start method called.
+2025-12-27T09:09:39.9317638Z Establishing network.
+2025-12-27T09:09:39.9404789Z Pulling image: appsvc/node:20-lts_20251016.4.tuxprod.
+2025-12-27T09:09:41.0680201Z Container is starting.
+2025-12-27T09:09:41.0729122Z Establishing user namespace if not established already.
+2025-12-27T09:09:41.0825438Z Establishing network if not established already.
+2025-12-27T09:09:41.0844792Z Mounting volumes.
+2025-12-27T09:09:41.1128872Z Nested mountpoint 
+2025-12-27T09:09:41.2195576Z Nested mountpoint volatile/logs
+2025-12-27T09:09:41.2593214Z Nested mountpoint 
+2025-12-27T09:09:41.3530713Z Nested mountpoint 
+2025-12-27T09:09:41.3542307Z Nested mountpoint 
+2025-12-27T09:09:42.2723356Z Creating container.
+2025-12-27T09:09:42.2735497Z Creating pipes for streaming container io.
+2025-12-27T09:09:42.2742909Z Creating stdout named pipe at /podr/container/pipe/5e0ce676eebd_hanclass-frontend/stdout_8cf860f81379441da2f1e7e884441ff6.
+2025-12-27T09:09:42.2815112Z Successfully created stdout named pipe at: /podr/container/pipe/5e0ce676eebd_hanclass-frontend/stdout_8cf860f81379441da2f1e7e884441ff6.
+2025-12-27T09:09:42.2901113Z Opening named pipe /podr/container/pipe/5e0ce676eebd_hanclass-frontend/stdout_8cf860f81379441da2f1e7e884441ff6 for reading in non-blocking mode.
+2025-12-27T09:09:42.2903298Z Successfully opened named pipe: /podr/container/pipe/5e0ce676eebd_hanclass-frontend/stdout_8cf860f81379441da2f1e7e884441ff6.
+2025-12-27T09:09:42.2906462Z Successfully removed non-blocking flag from /podr/container/pipe/5e0ce676eebd_hanclass-frontend/stdout_8cf860f81379441da2f1e7e884441ff6.
+2025-12-27T09:09:42.2921731Z Creating stderr named pipe at /podr/container/pipe/5e0ce676eebd_hanclass-frontend/stderr_d5919195cd584be3bd6fc63360aa654b.
+2025-12-27T09:09:42.2949327Z Successfully created stderr named pipe at: /podr/container/pipe/5e0ce676eebd_hanclass-frontend/stderr_d5919195cd584be3bd6fc63360aa654b.
+2025-12-27T09:09:42.2951409Z Opening named pipe /podr/container/pipe/5e0ce676eebd_hanclass-frontend/stderr_d5919195cd584be3bd6fc63360aa654b for reading in non-blocking mode.
+2025-12-27T09:09:42.3029027Z Successfully opened named pipe: /podr/container/pipe/5e0ce676eebd_hanclass-frontend/stderr_d5919195cd584be3bd6fc63360aa654b.
+2025-12-27T09:09:42.3102822Z Successfully removed non-blocking flag from /podr/container/pipe/5e0ce676eebd_hanclass-frontend/stderr_d5919195cd584be3bd6fc63360aa654b.
+2025-12-27T09:09:42.3105245Z Creating container with image: appsvc/node:20-lts_20251016.4.tuxprod from registry: 10.1.0.4:13209 and fully qualified image name: 10.1.0.4:13209/appsvc/node:20-lts_20251016.4.tuxprod
+2025-12-27T09:09:43.8430055Z Starting container: 5e0ce676eebd_hanclass-frontend.
+2025-12-27T09:09:44.1167974Z Starting watchers and probes.
+2025-12-27T09:09:44.1174774Z Starting metrics collection.
+2025-12-27T09:09:44.1362198Z Container is running.
+2025-12-27T09:09:44.9893762Z Container start method finished after 5057 ms.
+2025-12-27T09:11:01.4238575Z Container has finished running with exit code: 254.
+2025-12-27T09:11:01.4240065Z Container is terminating. Grace period: 5 seconds.
+2025-12-27T09:11:01.4616299Z Stop and delete container. Retry count = 0
+2025-12-27T09:11:01.4637768Z Stopping container: 5e0ce676eebd_hanclass-frontend.
+2025-12-27T09:11:01.9146209Z Deleting container: 5e0ce676eebd_hanclass-frontend. Retry count = 0
+2025-12-27T09:11:03.4632422Z Container spec TerminationMessagePolicy  path 
+2025-12-27T09:11:03.5274606Z Container is terminated. Total time elapsed: 2078 ms.
+2025-12-27T09:11:03.5290388Z Site container: hanclass-frontend terminated during site startup.
+2025-12-27T09:11:03.6057871Z Site startup probe failed after 78.6034934 seconds.
+2025-12-27T09:11:04.0858697Z Failed to start site. Revert by stopping site.
+2025-12-27T09:11:04.1052464Z Site: hanclass-frontend stopped.
+2025-12-27T09:11:05.8461024Z Site: hanclass-frontend will be blocked for 1 minutes till 12/27/2025 09:12:05
+2025-12-27T09:11:12.7435253Z Start site prohibitted because the site is being blocked.
+2025-12-27T09:11:18.0469889Z Start site prohibitted because the site is being blocked.
+2025-12-27T09:11:23.2531076Z Start site prohibitted because the site is being blocked.
+2025-12-27T09:11:28.4324522Z Start site prohibitted because the site is being blocked.
+2025-12-27T09:11:33.7459788Z Start site prohibitted because the site is being blocked.
+2025-12-27T09:11:39.7736884Z Start site prohibitted because the site is being blocked.
+2025-12-27T09:11:46.6571077Z Start site prohibitted because the site is being blocked.
+2025-12-27T09:11:51.8258770Z Start site prohibitted because the site is being blocked.
+2025-12-27T09:11:57.0700940Z Start site prohibitted because the site is being blocked.
+2025-12-27T09:12:02.4515993Z Start site prohibitted because the site is being blocked.
+2025-12-27T09:12:05.8518760Z Site: hanclass-frontend is unblocked.
+2025-12-27T09:12:21.8085634Z Container start method called.
+2025-12-27T09:12:21.8100377Z Establishing network.
+2025-12-27T09:12:21.8165208Z Pulling image: appsvc/node:20-lts_20251016.4.tuxprod.
+2025-12-27T09:12:23.2804239Z Container is starting.
+2025-12-27T09:12:23.2954566Z Establishing user namespace if not established already.
+2025-12-27T09:12:23.2969695Z Establishing network if not established already.
+2025-12-27T09:12:23.3100819Z Mounting volumes.
+2025-12-27T09:12:23.3170968Z Nested mountpoint 
+2025-12-27T09:12:23.4856243Z Nested mountpoint volatile/logs
+2025-12-27T09:12:23.5147152Z Nested mountpoint 
+2025-12-27T09:12:23.6823267Z Nested mountpoint 
+2025-12-27T09:12:23.7501852Z Nested mountpoint 
+2025-12-27T09:12:25.1337183Z Creating container.
+2025-12-27T09:12:25.1351077Z Creating pipes for streaming container io.
+2025-12-27T09:12:25.1511854Z Creating stdout named pipe at /podr/container/pipe/b41d7f677453_hanclass-frontend/stdout_aeaff6dee50f4ec193205c11106397a3.
+2025-12-27T09:12:25.1704501Z Successfully created stdout named pipe at: /podr/container/pipe/b41d7f677453_hanclass-frontend/stdout_aeaff6dee50f4ec193205c11106397a3.
+2025-12-27T09:12:25.1710911Z Opening named pipe /podr/container/pipe/b41d7f677453_hanclass-frontend/stdout_aeaff6dee50f4ec193205c11106397a3 for reading in non-blocking mode.
+2025-12-27T09:12:25.1789901Z Successfully opened named pipe: /podr/container/pipe/b41d7f677453_hanclass-frontend/stdout_aeaff6dee50f4ec193205c11106397a3.
+2025-12-27T09:12:25.1799367Z Successfully removed non-blocking flag from /podr/container/pipe/b41d7f677453_hanclass-frontend/stdout_aeaff6dee50f4ec193205c11106397a3.
+2025-12-27T09:12:25.1800822Z Creating stderr named pipe at /podr/container/pipe/b41d7f677453_hanclass-frontend/stderr_64b3d7c4caa64098ba2bc8ffb92b8c94.
+2025-12-27T09:12:25.1802795Z Successfully created stderr named pipe at: /podr/container/pipe/b41d7f677453_hanclass-frontend/stderr_64b3d7c4caa64098ba2bc8ffb92b8c94.
+2025-12-27T09:12:25.1804921Z Opening named pipe /podr/container/pipe/b41d7f677453_hanclass-frontend/stderr_64b3d7c4caa64098ba2bc8ffb92b8c94 for reading in non-blocking mode.
+2025-12-27T09:12:25.1818242Z Successfully opened named pipe: /podr/container/pipe/b41d7f677453_hanclass-frontend/stderr_64b3d7c4caa64098ba2bc8ffb92b8c94.
+2025-12-27T09:12:25.1888331Z Successfully removed non-blocking flag from /podr/container/pipe/b41d7f677453_hanclass-frontend/stderr_64b3d7c4caa64098ba2bc8ffb92b8c94.
+2025-12-27T09:12:25.1894932Z Creating container with image: appsvc/node:20-lts_20251016.4.tuxprod from registry: 10.1.0.4:13209 and fully qualified image name: 10.1.0.4:13209/appsvc/node:20-lts_20251016.4.tuxprod
+2025-12-27T09:12:29.4077148Z Starting container: b41d7f677453_hanclass-frontend.
+2025-12-27T09:12:29.7445305Z Starting watchers and probes.
+2025-12-27T09:12:29.7556355Z Starting metrics collection.
+2025-12-27T09:12:29.7808831Z Container is running.
+2025-12-27T09:12:30.1096136Z Container start method finished after 8300 ms.
+2025-12-27T09:13:40.3089840Z Container has finished running with exit code: 254.
+2025-12-27T09:13:40.3166853Z Container is terminating. Grace period: 5 seconds.
+2025-12-27T09:13:40.3531626Z Stop and delete container. Retry count = 0
+2025-12-27T09:13:40.3711939Z Stopping container: b41d7f677453_hanclass-frontend.
+2025-12-27T09:13:40.5146191Z Deleting container: b41d7f677453_hanclass-frontend. Retry count = 0
+2025-12-27T09:13:40.9248935Z Container spec TerminationMessagePolicy  path 
+2025-12-27T09:13:40.9520648Z Container is terminated. Total time elapsed: 625 ms.
+2025-12-27T09:13:40.9536963Z Site container: hanclass-frontend terminated during site startup.
+2025-12-27T09:13:41.1449494Z Site startup probe failed after 70.8649966 seconds.
+2025-12-27T09:13:41.5571588Z Failed to start site. Revert by stopping site.
+2025-12-27T09:13:41.5954749Z Site: hanclass-frontend stopped.
+2025-12-27T09:17:52.8363714Z Container start method called.
+2025-12-27T09:17:52.8472556Z Establishing network.
+2025-12-27T09:17:52.8543315Z Pulling image: appsvc/node:20-lts_20251016.4.tuxprod.
+2025-12-27T09:17:53.4660395Z Container is starting.
+2025-12-27T09:17:53.4745395Z Establishing user namespace if not established already.
+2025-12-27T09:17:53.4755739Z Establishing network if not established already.
+2025-12-27T09:17:53.4762051Z Mounting volumes.
+2025-12-27T09:17:53.4927756Z Nested mountpoint 
+2025-12-27T09:17:53.5712058Z Nested mountpoint volatile/logs
+2025-12-27T09:17:53.5986474Z Nested mountpoint 
+2025-12-27T09:17:53.6260127Z Nested mountpoint 
+2025-12-27T09:17:53.7722152Z Nested mountpoint 
+2025-12-27T09:17:54.8431140Z Creating container.
+2025-12-27T09:17:54.8598673Z Creating pipes for streaming container io.
+2025-12-27T09:17:54.8606338Z Creating stdout named pipe at /podr/container/pipe/d8ac10b28ef2_hanclass-frontend/stdout_a29136aae39a4ae9918bfdd95db4b81f.
+2025-12-27T09:17:54.8712503Z Successfully created stdout named pipe at: /podr/container/pipe/d8ac10b28ef2_hanclass-frontend/stdout_a29136aae39a4ae9918bfdd95db4b81f.
+2025-12-27T09:17:54.8775541Z Opening named pipe /podr/container/pipe/d8ac10b28ef2_hanclass-frontend/stdout_a29136aae39a4ae9918bfdd95db4b81f for reading in non-blocking mode.
+2025-12-27T09:17:54.8777392Z Successfully opened named pipe: /podr/container/pipe/d8ac10b28ef2_hanclass-frontend/stdout_a29136aae39a4ae9918bfdd95db4b81f.
+2025-12-27T09:17:54.8778525Z Successfully removed non-blocking flag from /podr/container/pipe/d8ac10b28ef2_hanclass-frontend/stdout_a29136aae39a4ae9918bfdd95db4b81f.
+2025-12-27T09:17:54.8779686Z Creating stderr named pipe at /podr/container/pipe/d8ac10b28ef2_hanclass-frontend/stderr_80c3756dd8104c3180468633a5641c5d.
+2025-12-27T09:17:54.8781526Z Successfully created stderr named pipe at: /podr/container/pipe/d8ac10b28ef2_hanclass-frontend/stderr_80c3756dd8104c3180468633a5641c5d.
+2025-12-27T09:17:54.8782594Z Opening named pipe /podr/container/pipe/d8ac10b28ef2_hanclass-frontend/stderr_80c3756dd8104c3180468633a5641c5d for reading in non-blocking mode.
+2025-12-27T09:17:54.8783749Z Successfully opened named pipe: /podr/container/pipe/d8ac10b28ef2_hanclass-frontend/stderr_80c3756dd8104c3180468633a5641c5d.
+2025-12-27T09:17:54.8784754Z Successfully removed non-blocking flag from /podr/container/pipe/d8ac10b28ef2_hanclass-frontend/stderr_80c3756dd8104c3180468633a5641c5d.
+2025-12-27T09:17:54.8785801Z Creating container with image: appsvc/node:20-lts_20251016.4.tuxprod from registry: 10.1.0.4:13209 and fully qualified image name: 10.1.0.4:13209/appsvc/node:20-lts_20251016.4.tuxprod
+2025-12-27T09:17:55.5882547Z Starting container: d8ac10b28ef2_hanclass-frontend.
+2025-12-27T09:17:55.6971740Z Starting watchers and probes.
+2025-12-27T09:17:55.7106752Z Starting metrics collection.
+2025-12-27T09:17:55.7182814Z Container is running.
+2025-12-27T09:17:56.9610752Z Container start method finished after 4102 ms.
+2025-12-27T09:18:40.4866498Z Container has finished running with exit code: 254.
+2025-12-27T09:18:40.4933048Z Container is terminating. Grace period: 5 seconds.
+2025-12-27T09:18:40.4936899Z Stop and delete container. Retry count = 0
+2025-12-27T09:18:40.4938614Z Stopping container: d8ac10b28ef2_hanclass-frontend.
+2025-12-27T09:18:40.5628409Z Deleting container: d8ac10b28ef2_hanclass-frontend. Retry count = 0
+2025-12-27T09:18:40.8872366Z Container spec TerminationMessagePolicy  path 
+2025-12-27T09:18:40.8949630Z Container is terminated. Total time elapsed: 400 ms.
+2025-12-27T09:18:40.9025513Z Site container: hanclass-frontend terminated during site startup.
+2025-12-27T09:18:40.9508207Z Site startup probe failed after 43.8461219 seconds.
+2025-12-27T09:18:41.3330609Z Failed to start site. Revert by stopping site.
+2025-12-27T09:18:41.3495515Z Site: hanclass-frontend stopped.
+2025-12-27T09:36:26.8578213Z Container start method called.
+2025-12-27T09:36:26.8865886Z Establishing network.
+2025-12-27T09:36:27.0272202Z Pulling image: appsvc/node:20-lts_20251016.4.tuxprod.
+2025-12-27T09:36:29.5771948Z Container is starting.
+2025-12-27T09:36:29.5852372Z Establishing user namespace if not established already.
+2025-12-27T09:36:29.5853935Z Establishing network if not established already.
+2025-12-27T09:36:29.5937976Z Mounting volumes.
+2025-12-27T09:36:29.6325313Z Nested mountpoint 
+2025-12-27T09:36:29.8328061Z Nested mountpoint volatile/logs
+2025-12-27T09:36:29.8450891Z Nested mountpoint 
+2025-12-27T09:36:30.1308436Z Nested mountpoint 
+2025-12-27T09:36:30.2160615Z Nested mountpoint 
+2025-12-27T09:36:33.5772703Z Creating container.
+2025-12-27T09:36:33.5950071Z Creating pipes for streaming container io.
+2025-12-27T09:36:33.6150332Z Creating stdout named pipe at /podr/container/pipe/7a10600e98d7_hanclass-frontend/stdout_34ab498568f249669de595b576354dae.
+2025-12-27T09:36:33.6399064Z Successfully created stdout named pipe at: /podr/container/pipe/7a10600e98d7_hanclass-frontend/stdout_34ab498568f249669de595b576354dae.
+2025-12-27T09:36:33.6402028Z Opening named pipe /podr/container/pipe/7a10600e98d7_hanclass-frontend/stdout_34ab498568f249669de595b576354dae for reading in non-blocking mode.
+2025-12-27T09:36:33.6404525Z Successfully opened named pipe: /podr/container/pipe/7a10600e98d7_hanclass-frontend/stdout_34ab498568f249669de595b576354dae.
+2025-12-27T09:36:33.7091286Z Successfully removed non-blocking flag from /podr/container/pipe/7a10600e98d7_hanclass-frontend/stdout_34ab498568f249669de595b576354dae.
+2025-12-27T09:36:33.7094518Z Creating stderr named pipe at /podr/container/pipe/7a10600e98d7_hanclass-frontend/stderr_3d4252defe94414e97eafddce7a24ca2.
+2025-12-27T09:36:33.7097673Z Successfully created stderr named pipe at: /podr/container/pipe/7a10600e98d7_hanclass-frontend/stderr_3d4252defe94414e97eafddce7a24ca2.
+2025-12-27T09:36:33.7099822Z Opening named pipe /podr/container/pipe/7a10600e98d7_hanclass-frontend/stderr_3d4252defe94414e97eafddce7a24ca2 for reading in non-blocking mode.
+2025-12-27T09:36:33.7103893Z Successfully opened named pipe: /podr/container/pipe/7a10600e98d7_hanclass-frontend/stderr_3d4252defe94414e97eafddce7a24ca2.
+2025-12-27T09:36:33.7112770Z Successfully removed non-blocking flag from /podr/container/pipe/7a10600e98d7_hanclass-frontend/stderr_3d4252defe94414e97eafddce7a24ca2.
+2025-12-27T09:36:33.7275483Z Creating container with image: appsvc/node:20-lts_20251016.4.tuxprod from registry: 10.1.0.6:13209 and fully qualified image name: 10.1.0.6:13209/appsvc/node:20-lts_20251016.4.tuxprod
+2025-12-27T09:36:40.6886215Z Starting container: 7a10600e98d7_hanclass-frontend.
+2025-12-27T09:36:41.1620277Z Starting watchers and probes.
+2025-12-27T09:36:41.1905426Z Starting metrics collection.
+2025-12-27T09:36:41.2108397Z Container is running.
+2025-12-27T09:36:42.0336724Z Container start method finished after 15173 ms.
+2025-12-27T09:39:04.7794800Z Container has finished running with exit code: 254.
+2025-12-27T09:39:04.8010074Z Container is terminating. Grace period: 5 seconds.
+2025-12-27T09:39:05.0458104Z Stop and delete container. Retry count = 0
+2025-12-27T09:39:05.0891564Z Stopping container: 7a10600e98d7_hanclass-frontend.
+2025-12-27T09:39:05.6927722Z Deleting container: 7a10600e98d7_hanclass-frontend. Retry count = 0
+2025-12-27T09:39:07.1580685Z Container spec TerminationMessagePolicy  path 
+2025-12-27T09:39:07.1635675Z Container is terminated. Total time elapsed: 2294 ms.
+2025-12-27T09:39:07.1820062Z Site container: hanclass-frontend terminated during site startup.
+2025-12-27T09:39:07.3023501Z Site startup probe failed after 145.0195213 seconds.
+2025-12-27T09:39:08.1370515Z Failed to start site. Revert by stopping site.
+2025-12-27T09:39:08.1767176Z Site: hanclass-frontend stopped.
+2025-12-27T09:42:43.7477961Z Container start method called.
+2025-12-27T09:42:43.7497045Z Establishing network.
+2025-12-27T09:42:43.7517496Z Pulling image: appsvc/node:20-lts_20251016.4.tuxprod.
+2025-12-27T09:42:44.6486473Z Container is starting.
+2025-12-27T09:42:44.6543181Z Establishing user namespace if not established already.
+2025-12-27T09:42:44.6554948Z Establishing network if not established already.
+2025-12-27T09:42:44.6617506Z Mounting volumes.
+2025-12-27T09:42:44.6758197Z Nested mountpoint 
+2025-12-27T09:42:44.7311919Z Nested mountpoint volatile/logs
+2025-12-27T09:42:44.7607502Z Nested mountpoint 
+2025-12-27T09:42:44.8633760Z Nested mountpoint 
+2025-12-27T09:42:44.9027057Z Nested mountpoint 
+2025-12-27T09:42:45.4858963Z Creating container.
+2025-12-27T09:42:45.4932647Z Creating pipes for streaming container io.
+2025-12-27T09:42:45.4937508Z Creating stdout named pipe at /podr/container/pipe/41ea02942dec_hanclass-frontend/stdout_298dd1adc1b24c76ae5d5b34bbf2412c.
+2025-12-27T09:42:45.5011436Z Successfully created stdout named pipe at: /podr/container/pipe/41ea02942dec_hanclass-frontend/stdout_298dd1adc1b24c76ae5d5b34bbf2412c.
+2025-12-27T09:42:45.5019416Z Opening named pipe /podr/container/pipe/41ea02942dec_hanclass-frontend/stdout_298dd1adc1b24c76ae5d5b34bbf2412c for reading in non-blocking mode.
+2025-12-27T09:42:45.5026426Z Successfully opened named pipe: /podr/container/pipe/41ea02942dec_hanclass-frontend/stdout_298dd1adc1b24c76ae5d5b34bbf2412c.
+2025-12-27T09:42:45.5035289Z Successfully removed non-blocking flag from /podr/container/pipe/41ea02942dec_hanclass-frontend/stdout_298dd1adc1b24c76ae5d5b34bbf2412c.
+2025-12-27T09:42:45.5045739Z Creating stderr named pipe at /podr/container/pipe/41ea02942dec_hanclass-frontend/stderr_111552d17dbd4138ae3fd8219c2d52a2.
+2025-12-27T09:42:45.5055063Z Successfully created stderr named pipe at: /podr/container/pipe/41ea02942dec_hanclass-frontend/stderr_111552d17dbd4138ae3fd8219c2d52a2.
+2025-12-27T09:42:45.5060987Z Opening named pipe /podr/container/pipe/41ea02942dec_hanclass-frontend/stderr_111552d17dbd4138ae3fd8219c2d52a2 for reading in non-blocking mode.
+2025-12-27T09:42:45.5125763Z Successfully opened named pipe: /podr/container/pipe/41ea02942dec_hanclass-frontend/stderr_111552d17dbd4138ae3fd8219c2d52a2.
+2025-12-27T09:42:45.5129183Z Successfully removed non-blocking flag from /podr/container/pipe/41ea02942dec_hanclass-frontend/stderr_111552d17dbd4138ae3fd8219c2d52a2.
+2025-12-27T09:42:45.5165901Z Creating container with image: appsvc/node:20-lts_20251016.4.tuxprod from registry: 10.1.0.6:13209 and fully qualified image name: 10.1.0.6:13209/appsvc/node:20-lts_20251016.4.tuxprod
+2025-12-27T09:42:46.3934714Z Starting container: 41ea02942dec_hanclass-frontend.
+2025-12-27T09:42:46.5347418Z Starting watchers and probes.
+2025-12-27T09:42:46.5451923Z Starting metrics collection.
+2025-12-27T09:42:46.5490532Z Container is running.
+2025-12-27T09:42:47.7221349Z Container start method finished after 3872 ms.
+2025-12-27T09:43:31.6385171Z Container has finished running with exit code: 254.
+2025-12-27T09:43:31.6393367Z Container is terminating. Grace period: 5 seconds.
+2025-12-27T09:43:31.6598145Z Stop and delete container. Retry count = 0
+2025-12-27T09:43:31.6604251Z Stopping container: 41ea02942dec_hanclass-frontend.
+2025-12-27T09:43:31.7660044Z Deleting container: 41ea02942dec_hanclass-frontend. Retry count = 0
+2025-12-27T09:43:32.0890463Z Container spec TerminationMessagePolicy  path 
+2025-12-27T09:43:32.1073503Z Container is terminated. Total time elapsed: 464 ms.
+2025-12-27T09:43:32.1161701Z Site container: hanclass-frontend terminated during site startup.
+2025-12-27T09:43:32.1627312Z Site startup probe failed after 44.370691 seconds.
+2025-12-27T09:43:32.3843691Z Failed to start site. Revert by stopping site.
+2025-12-27T09:43:32.4003201Z Site: hanclass-frontend stopped.
+2025-12-27T10:30:21.4603201Z Container start method called.
+2025-12-27T10:30:21.4880099Z Establishing network.
+2025-12-27T10:30:21.4882470Z Pulling image: appsvc/node:20-lts_20251016.4.tuxprod.
+2025-12-27T10:30:21.8036809Z Container is starting.
+2025-12-27T10:30:21.8051662Z Establishing user namespace if not established already.
+2025-12-27T10:30:21.8130657Z Establishing network if not established already.
+2025-12-27T10:30:21.8133721Z Mounting volumes.
+2025-12-27T10:30:21.8150417Z Nested mountpoint 
+2025-12-27T10:30:21.8636828Z Nested mountpoint volatile/logs
+2025-12-27T10:30:21.8922169Z Nested mountpoint 
+2025-12-27T10:30:22.0829142Z Nested mountpoint 
+2025-12-27T10:30:22.1302625Z Nested mountpoint 
+2025-12-27T10:30:22.4858904Z Creating container.
+2025-12-27T10:30:22.4927944Z Creating pipes for streaming container io.
+2025-12-27T10:30:22.4945458Z Creating stdout named pipe at /podr/container/pipe/10e0facbb9f4_hanclass-frontend/stdout_07f89ee6368e4f3caffd9ad73c1cd46f.
+2025-12-27T10:30:22.5024080Z Successfully created stdout named pipe at: /podr/container/pipe/10e0facbb9f4_hanclass-frontend/stdout_07f89ee6368e4f3caffd9ad73c1cd46f.
+2025-12-27T10:30:22.5100134Z Opening named pipe /podr/container/pipe/10e0facbb9f4_hanclass-frontend/stdout_07f89ee6368e4f3caffd9ad73c1cd46f for reading in non-blocking mode.
+2025-12-27T10:30:22.5102216Z Successfully opened named pipe: /podr/container/pipe/10e0facbb9f4_hanclass-frontend/stdout_07f89ee6368e4f3caffd9ad73c1cd46f.
+2025-12-27T10:30:22.5104890Z Successfully removed non-blocking flag from /podr/container/pipe/10e0facbb9f4_hanclass-frontend/stdout_07f89ee6368e4f3caffd9ad73c1cd46f.
+2025-12-27T10:30:22.5106195Z Creating stderr named pipe at /podr/container/pipe/10e0facbb9f4_hanclass-frontend/stderr_2fe0749c46704bed8b626e43595f5f7a.
+2025-12-27T10:30:22.5197234Z Successfully created stderr named pipe at: /podr/container/pipe/10e0facbb9f4_hanclass-frontend/stderr_2fe0749c46704bed8b626e43595f5f7a.
+2025-12-27T10:30:22.5276446Z Opening named pipe /podr/container/pipe/10e0facbb9f4_hanclass-frontend/stderr_2fe0749c46704bed8b626e43595f5f7a for reading in non-blocking mode.
+2025-12-27T10:30:22.5348308Z Successfully opened named pipe: /podr/container/pipe/10e0facbb9f4_hanclass-frontend/stderr_2fe0749c46704bed8b626e43595f5f7a.
+2025-12-27T10:30:22.5370162Z Successfully removed non-blocking flag from /podr/container/pipe/10e0facbb9f4_hanclass-frontend/stderr_2fe0749c46704bed8b626e43595f5f7a.
+2025-12-27T10:30:22.5425491Z Creating container with image: appsvc/node:20-lts_20251016.4.tuxprod from registry: 10.1.0.4:13209 and fully qualified image name: 10.1.0.4:13209/appsvc/node:20-lts_20251016.4.tuxprod
+2025-12-27T10:30:23.2612572Z Starting container: 10e0facbb9f4_hanclass-frontend.
+2025-12-27T10:30:23.3904478Z Starting watchers and probes.
+2025-12-27T10:30:23.3969195Z Starting metrics collection.
+2025-12-27T10:30:23.3970702Z Container is running.
+2025-12-27T10:30:23.5995308Z Container start method finished after 2081 ms.
+2025-12-27T10:30:57.9027351Z Container has finished running with exit code: 2.
+2025-12-27T10:30:57.9034539Z Container is terminating. Grace period: 5 seconds.
+2025-12-27T10:30:57.9116890Z Stop and delete container. Retry count = 0
+2025-12-27T10:30:57.9133219Z Stopping container: 10e0facbb9f4_hanclass-frontend.
+2025-12-27T10:30:58.0386128Z Deleting container: 10e0facbb9f4_hanclass-frontend. Retry count = 0
+2025-12-27T10:30:58.3559959Z Container spec TerminationMessagePolicy  path 
+2025-12-27T10:30:58.3577573Z Container is terminated. Total time elapsed: 452 ms.
+2025-12-27T10:30:58.3647417Z Site container: hanclass-frontend terminated during site startup.
+2025-12-27T10:30:58.3866283Z Site startup probe failed after 34.6976069 seconds.
+2025-12-27T10:30:58.6464957Z Failed to start site. Revert by stopping site.
+2025-12-27T10:30:58.6535873Z Site: hanclass-frontend stopped.
+2025-12-27T10:34:11.7600553Z Container start method called.
+2025-12-27T10:34:11.7782925Z Establishing network.
+2025-12-27T10:34:11.7793753Z Pulling image: appsvc/node:20-lts_20251016.4.tuxprod.
+2025-12-27T10:34:12.4193834Z Container is starting.
+2025-12-27T10:34:12.4203888Z Establishing user namespace if not established already.
+2025-12-27T10:34:12.4273206Z Establishing network if not established already.
+2025-12-27T10:34:12.4304127Z Mounting volumes.
+2025-12-27T10:34:12.4470093Z Nested mountpoint 
+2025-12-27T10:34:12.4852869Z Nested mountpoint volatile/logs
+2025-12-27T10:34:12.9829149Z Nested mountpoint 
+2025-12-27T10:34:13.0204150Z Nested mountpoint 
+2025-12-27T10:34:13.1058958Z Nested mountpoint 
+2025-12-27T10:34:14.0268651Z Creating container.
+2025-12-27T10:34:14.0810193Z Creating pipes for streaming container io.
+2025-12-27T10:34:14.0812566Z Creating stdout named pipe at /podr/container/pipe/6e54475c16b1_hanclass-frontend/stdout_95667b14f71c49e6a0ca08fd276fa5b2.
+2025-12-27T10:34:14.0983938Z Successfully created stdout named pipe at: /podr/container/pipe/6e54475c16b1_hanclass-frontend/stdout_95667b14f71c49e6a0ca08fd276fa5b2.
+2025-12-27T10:34:14.1054583Z Opening named pipe /podr/container/pipe/6e54475c16b1_hanclass-frontend/stdout_95667b14f71c49e6a0ca08fd276fa5b2 for reading in non-blocking mode.
+2025-12-27T10:34:14.1069435Z Successfully opened named pipe: /podr/container/pipe/6e54475c16b1_hanclass-frontend/stdout_95667b14f71c49e6a0ca08fd276fa5b2.
+2025-12-27T10:34:14.1130248Z Successfully removed non-blocking flag from /podr/container/pipe/6e54475c16b1_hanclass-frontend/stdout_95667b14f71c49e6a0ca08fd276fa5b2.
+2025-12-27T10:34:14.1312493Z Creating stderr named pipe at /podr/container/pipe/6e54475c16b1_hanclass-frontend/stderr_f20f1311a4dd47eaaf377636afed22ab.
+2025-12-27T10:34:14.1498233Z Successfully created stderr named pipe at: /podr/container/pipe/6e54475c16b1_hanclass-frontend/stderr_f20f1311a4dd47eaaf377636afed22ab.
+2025-12-27T10:34:14.1518912Z Opening named pipe /podr/container/pipe/6e54475c16b1_hanclass-frontend/stderr_f20f1311a4dd47eaaf377636afed22ab for reading in non-blocking mode.
+2025-12-27T10:34:14.1698316Z Successfully opened named pipe: /podr/container/pipe/6e54475c16b1_hanclass-frontend/stderr_f20f1311a4dd47eaaf377636afed22ab.
+2025-12-27T10:34:14.1890085Z Successfully removed non-blocking flag from /podr/container/pipe/6e54475c16b1_hanclass-frontend/stderr_f20f1311a4dd47eaaf377636afed22ab.
+2025-12-27T10:34:14.1899077Z Creating container with image: appsvc/node:20-lts_20251016.4.tuxprod from registry: 10.1.0.6:13209 and fully qualified image name: 10.1.0.6:13209/appsvc/node:20-lts_20251016.4.tuxprod
+2025-12-27T10:34:14.8819327Z Starting container: 6e54475c16b1_hanclass-frontend.
+2025-12-27T10:34:14.9679436Z Starting watchers and probes.
+2025-12-27T10:34:14.9690239Z Starting metrics collection.
+2025-12-27T10:34:14.9763003Z Container is running.
+2025-12-27T10:34:15.1225049Z Container start method finished after 3361 ms.
+2025-12-27T10:34:57.6284274Z Container has finished running with exit code: 2.
+2025-12-27T10:34:57.6290151Z Container is terminating. Grace period: 5 seconds.
+2025-12-27T10:34:57.6302517Z Stop and delete container. Retry count = 0
+2025-12-27T10:34:57.6305245Z Stopping container: 6e54475c16b1_hanclass-frontend.
+2025-12-27T10:34:57.7137801Z Deleting container: 6e54475c16b1_hanclass-frontend. Retry count = 0
+2025-12-27T10:34:57.9854088Z Container spec TerminationMessagePolicy  path 
+2025-12-27T10:34:57.9936227Z Container is terminated. Total time elapsed: 357 ms.
+2025-12-27T10:34:57.9942054Z Site container: hanclass-frontend terminated during site startup.
+2025-12-27T10:34:58.0040048Z Site startup probe failed after 42.7504547 seconds.
+2025-12-27T10:34:58.2347318Z Failed to start site. Revert by stopping site.
+2025-12-27T10:34:58.2445302Z Site: hanclass-frontend stopped.
+2025-12-27T10:35:04.4548204Z Container start method called.
+2025-12-27T10:35:04.5467338Z Establishing network.
+2025-12-27T10:35:04.5474443Z Pulling image: appsvc/node:20-lts_20251016.4.tuxprod.
+2025-12-27T10:35:05.0564162Z Container is starting.
+2025-12-27T10:35:05.0567662Z Establishing user namespace if not established already.
+2025-12-27T10:35:05.0569869Z Establishing network if not established already.
+2025-12-27T10:35:05.0834961Z Mounting volumes.
+2025-12-27T10:35:05.0840459Z Nested mountpoint 
+2025-12-27T10:35:05.1765773Z Nested mountpoint volatile/logs
+2025-12-27T10:35:05.1950782Z Nested mountpoint 
+2025-12-27T10:35:05.2351005Z Nested mountpoint 
+2025-12-27T10:35:05.2622246Z Nested mountpoint 
+2025-12-27T10:35:05.7259024Z Creating container.
+2025-12-27T10:35:05.7285552Z Creating pipes for streaming container io.
+2025-12-27T10:35:05.7296457Z Creating stdout named pipe at /podr/container/pipe/e9483f1ec41c_hanclass-frontend/stdout_e1cb22b1c5854262ae34198c753fdad0.
+2025-12-27T10:35:05.7374234Z Successfully created stdout named pipe at: /podr/container/pipe/e9483f1ec41c_hanclass-frontend/stdout_e1cb22b1c5854262ae34198c753fdad0.
+2025-12-27T10:35:05.7375710Z Opening named pipe /podr/container/pipe/e9483f1ec41c_hanclass-frontend/stdout_e1cb22b1c5854262ae34198c753fdad0 for reading in non-blocking mode.
+2025-12-27T10:35:05.7385064Z Successfully opened named pipe: /podr/container/pipe/e9483f1ec41c_hanclass-frontend/stdout_e1cb22b1c5854262ae34198c753fdad0.
+2025-12-27T10:35:05.7386734Z Successfully removed non-blocking flag from /podr/container/pipe/e9483f1ec41c_hanclass-frontend/stdout_e1cb22b1c5854262ae34198c753fdad0.
+2025-12-27T10:35:05.7453154Z Creating stderr named pipe at /podr/container/pipe/e9483f1ec41c_hanclass-frontend/stderr_bcf850d289f34ccfa80e6fcb71511dc0.
+2025-12-27T10:35:05.7455066Z Successfully created stderr named pipe at: /podr/container/pipe/e9483f1ec41c_hanclass-frontend/stderr_bcf850d289f34ccfa80e6fcb71511dc0.
+2025-12-27T10:35:05.7456226Z Opening named pipe /podr/container/pipe/e9483f1ec41c_hanclass-frontend/stderr_bcf850d289f34ccfa80e6fcb71511dc0 for reading in non-blocking mode.
+2025-12-27T10:35:05.7459404Z Successfully opened named pipe: /podr/container/pipe/e9483f1ec41c_hanclass-frontend/stderr_bcf850d289f34ccfa80e6fcb71511dc0.
+2025-12-27T10:35:05.7461723Z Successfully removed non-blocking flag from /podr/container/pipe/e9483f1ec41c_hanclass-frontend/stderr_bcf850d289f34ccfa80e6fcb71511dc0.
+2025-12-27T10:35:05.7470187Z Creating container with image: appsvc/node:20-lts_20251016.4.tuxprod from registry: 10.1.0.6:13209 and fully qualified image name: 10.1.0.6:13209/appsvc/node:20-lts_20251016.4.tuxprod
+2025-12-27T10:35:06.4980330Z Starting container: e9483f1ec41c_hanclass-frontend.
+2025-12-27T10:35:06.6016982Z Starting watchers and probes.
+2025-12-27T10:35:06.6019846Z Starting metrics collection.
+2025-12-27T10:35:06.6021390Z Container is running.
+2025-12-27T10:35:06.8364699Z Container start method finished after 2291 ms.
+2025-12-27T10:35:47.2024688Z Container has finished running with exit code: 2.
+2025-12-27T10:35:47.2033177Z Container is terminating. Grace period: 5 seconds.
+2025-12-27T10:35:47.5527511Z Stop and delete container. Retry count = 0
+2025-12-27T10:35:47.5544440Z Stopping container: e9483f1ec41c_hanclass-frontend.
+2025-12-27T10:35:47.6275685Z Deleting container: e9483f1ec41c_hanclass-frontend. Retry count = 0
+2025-12-27T10:35:48.3759890Z Container spec TerminationMessagePolicy  path 
+2025-12-27T10:35:48.3890686Z Container is terminated. Total time elapsed: 884 ms.
+2025-12-27T10:35:48.3956851Z Site container: hanclass-frontend terminated during site startup.
+2025-12-27T10:35:48.4711032Z Site startup probe failed after 41.6329934 seconds.
+2025-12-27T10:35:48.7291484Z Failed to start site. Revert by stopping site.
+2025-12-27T10:35:48.7368482Z Site: hanclass-frontend stopped.
+2025-12-27T10:36:39.0008238Z Container start method called.
+2025-12-27T10:36:39.0097732Z Establishing network.
+2025-12-27T10:36:39.0206482Z Pulling image: appsvc/node:20-lts_20251016.4.tuxprod.
+2025-12-27T10:36:39.7850391Z Container is starting.
+2025-12-27T10:36:39.7939014Z Establishing user namespace if not established already.
+2025-12-27T10:36:39.8044744Z Establishing network if not established already.
+2025-12-27T10:36:39.8128113Z Mounting volumes.
+2025-12-27T10:36:39.8400637Z Nested mountpoint 
+2025-12-27T10:36:39.9000428Z Nested mountpoint volatile/logs
+2025-12-27T10:36:40.0132857Z Nested mountpoint 
+2025-12-27T10:36:40.0224303Z Nested mountpoint 
+2025-12-27T10:36:40.0509339Z Nested mountpoint 
+2025-12-27T10:36:41.4977007Z Creating container.
+2025-12-27T10:36:41.5942948Z Creating pipes for streaming container io.
+2025-12-27T10:36:41.6297334Z Creating stdout named pipe at /podr/container/pipe/acfae9d8d6af_hanclass-frontend/stdout_6ec1b7241c87443694a68eb1e596ac7c.
+2025-12-27T10:36:41.6301253Z Successfully created stdout named pipe at: /podr/container/pipe/acfae9d8d6af_hanclass-frontend/stdout_6ec1b7241c87443694a68eb1e596ac7c.
+2025-12-27T10:36:41.6303093Z Opening named pipe /podr/container/pipe/acfae9d8d6af_hanclass-frontend/stdout_6ec1b7241c87443694a68eb1e596ac7c for reading in non-blocking mode.
+2025-12-27T10:36:41.6304222Z Successfully opened named pipe: /podr/container/pipe/acfae9d8d6af_hanclass-frontend/stdout_6ec1b7241c87443694a68eb1e596ac7c.
+2025-12-27T10:36:41.6305127Z Successfully removed non-blocking flag from /podr/container/pipe/acfae9d8d6af_hanclass-frontend/stdout_6ec1b7241c87443694a68eb1e596ac7c.
+2025-12-27T10:36:41.6306254Z Creating stderr named pipe at /podr/container/pipe/acfae9d8d6af_hanclass-frontend/stderr_034be03119884aca9f60d78c4c160718.
+2025-12-27T10:36:41.6307559Z Successfully created stderr named pipe at: /podr/container/pipe/acfae9d8d6af_hanclass-frontend/stderr_034be03119884aca9f60d78c4c160718.
+2025-12-27T10:36:41.6430961Z Opening named pipe /podr/container/pipe/acfae9d8d6af_hanclass-frontend/stderr_034be03119884aca9f60d78c4c160718 for reading in non-blocking mode.
+2025-12-27T10:36:41.6433946Z Successfully opened named pipe: /podr/container/pipe/acfae9d8d6af_hanclass-frontend/stderr_034be03119884aca9f60d78c4c160718.
+2025-12-27T10:36:41.6436247Z Successfully removed non-blocking flag from /podr/container/pipe/acfae9d8d6af_hanclass-frontend/stderr_034be03119884aca9f60d78c4c160718.
+2025-12-27T10:36:41.6439247Z Creating container with image: appsvc/node:20-lts_20251016.4.tuxprod from registry: 10.1.0.6:13209 and fully qualified image name: 10.1.0.6:13209/appsvc/node:20-lts_20251016.4.tuxprod
+2025-12-27T10:36:42.7911377Z Starting container: acfae9d8d6af_hanclass-frontend.
+2025-12-27T10:36:42.8833622Z Starting watchers and probes.
+2025-12-27T10:36:42.9019908Z Starting metrics collection.
+2025-12-27T10:36:42.9025570Z Container is running.
+2025-12-27T10:36:43.1719153Z Container start method finished after 4168 ms.
+2025-12-27T10:40:33.6000212Z Site startup probe failed after 230.3618333 seconds.
+2025-12-27T10:40:34.4497842Z Failed to start site. Revert by stopping site.
+2025-12-27T10:40:34.5495074Z Container is terminating. Grace period: 5 seconds.
+2025-12-27T10:40:34.7957152Z Stop and delete container. Retry count = 0
+2025-12-27T10:40:34.8082179Z Stopping container: acfae9d8d6af_hanclass-frontend.
+2025-12-27T10:40:39.8885759Z Deleting container: acfae9d8d6af_hanclass-frontend. Retry count = 0
+2025-12-27T10:40:41.2421641Z Container spec TerminationMessagePolicy  path 
+2025-12-27T10:40:41.2427000Z Container is terminated. Total time elapsed: 6692 ms.
+2025-12-27T10:40:41.2478085Z Site container: hanclass-frontend terminated during site startup.
+2025-12-27T10:40:41.2502392Z Site: hanclass-frontend stopped.
+2025-12-27T10:46:53.6142828Z Container start method called.
+2025-12-27T10:46:53.6335227Z Establishing network.
+2025-12-27T10:46:53.7018464Z Pulling image: appsvc/node:20-lts_20251016.4.tuxprod.
+2025-12-27T10:46:54.0155707Z Container is starting.
+2025-12-27T10:46:54.0208535Z Establishing user namespace if not established already.
+2025-12-27T10:46:54.0226900Z Establishing network if not established already.
+2025-12-27T10:46:54.0240538Z Mounting volumes.
+2025-12-27T10:46:54.0328668Z Nested mountpoint 
+2025-12-27T10:46:54.1197276Z Nested mountpoint volatile/logs
+2025-12-27T10:46:54.1559940Z Nested mountpoint 
+2025-12-27T10:46:54.3004824Z Nested mountpoint 
+2025-12-27T10:46:54.4046786Z Nested mountpoint 
+2025-12-27T10:46:54.6804921Z Creating container.
+2025-12-27T10:46:54.6818424Z Creating pipes for streaming container io.
+2025-12-27T10:46:54.6893747Z Creating stdout named pipe at /podr/container/pipe/6d504d0b7c0b_hanclass-frontend/stdout_7616208e2c5a49bb8df90df0a43ba36e.
+2025-12-27T10:46:54.6925460Z Successfully created stdout named pipe at: /podr/container/pipe/6d504d0b7c0b_hanclass-frontend/stdout_7616208e2c5a49bb8df90df0a43ba36e.
+2025-12-27T10:46:54.6985019Z Opening named pipe /podr/container/pipe/6d504d0b7c0b_hanclass-frontend/stdout_7616208e2c5a49bb8df90df0a43ba36e for reading in non-blocking mode.
+2025-12-27T10:46:54.6986236Z Successfully opened named pipe: /podr/container/pipe/6d504d0b7c0b_hanclass-frontend/stdout_7616208e2c5a49bb8df90df0a43ba36e.
+2025-12-27T10:46:54.6987097Z Successfully removed non-blocking flag from /podr/container/pipe/6d504d0b7c0b_hanclass-frontend/stdout_7616208e2c5a49bb8df90df0a43ba36e.
+2025-12-27T10:46:54.7004722Z Creating stderr named pipe at /podr/container/pipe/6d504d0b7c0b_hanclass-frontend/stderr_b8cc68c8251b4d55b2c473eaeba00994.
+2025-12-27T10:46:54.7007452Z Successfully created stderr named pipe at: /podr/container/pipe/6d504d0b7c0b_hanclass-frontend/stderr_b8cc68c8251b4d55b2c473eaeba00994.
+2025-12-27T10:46:54.7008591Z Opening named pipe /podr/container/pipe/6d504d0b7c0b_hanclass-frontend/stderr_b8cc68c8251b4d55b2c473eaeba00994 for reading in non-blocking mode.
+2025-12-27T10:46:54.7009999Z Successfully opened named pipe: /podr/container/pipe/6d504d0b7c0b_hanclass-frontend/stderr_b8cc68c8251b4d55b2c473eaeba00994.
+2025-12-27T10:46:54.7010820Z Successfully removed non-blocking flag from /podr/container/pipe/6d504d0b7c0b_hanclass-frontend/stderr_b8cc68c8251b4d55b2c473eaeba00994.
+2025-12-27T10:46:54.7011891Z Creating container with image: appsvc/node:20-lts_20251016.4.tuxprod from registry: 10.1.0.6:13209 and fully qualified image name: 10.1.0.6:13209/appsvc/node:20-lts_20251016.4.tuxprod
+2025-12-27T10:46:55.3277523Z Starting container: 6d504d0b7c0b_hanclass-frontend.
+2025-12-27T10:46:55.4119172Z Starting watchers and probes.
+2025-12-27T10:46:55.4205031Z Starting metrics collection.
+2025-12-27T10:46:55.4277651Z Container is running.
+2025-12-27T10:46:55.5902247Z Container start method finished after 1966 ms.
+2025-12-27T10:50:46.8455030Z Site startup probe failed after 231.2181466 seconds.
+2025-12-27T10:50:47.9269788Z Failed to start site. Revert by stopping site.
+2025-12-27T10:50:48.0223187Z Container is terminating. Grace period: 5 seconds.
+2025-12-27T10:50:48.8646903Z Stop and delete container. Retry count = 0
+2025-12-27T10:50:48.8649935Z Stopping container: 6d504d0b7c0b_hanclass-frontend.
+2025-12-27T10:50:53.8848436Z Deleting container: 6d504d0b7c0b_hanclass-frontend. Retry count = 0
+2025-12-27T10:50:55.1516911Z Container spec TerminationMessagePolicy  path 
+2025-12-27T10:50:55.1592914Z Container is terminated. Total time elapsed: 7134 ms.
+2025-12-27T10:50:55.1660416Z Site container: hanclass-frontend terminated during site startup.
+2025-12-27T10:50:55.1765972Z Site: hanclass-frontend stopped.
+2025-12-27T10:52:07.9539928Z Container start method called.
+2025-12-27T10:52:07.9815002Z Establishing network.
+2025-12-27T10:52:08.2072641Z Pulling image: appsvc/node:20-lts_20251016.4.tuxprod.
+2025-12-27T10:52:09.0297542Z Container is starting.
+2025-12-27T10:52:09.0301010Z Establishing user namespace if not established already.
+2025-12-27T10:52:09.0302309Z Establishing network if not established already.
+2025-12-27T10:52:09.0304430Z Mounting volumes.
+2025-12-27T10:52:09.0661358Z Nested mountpoint 
+2025-12-27T10:52:09.1996307Z Nested mountpoint volatile/logs
+2025-12-27T10:52:09.2274709Z Nested mountpoint 
+2025-12-27T10:52:09.2282818Z Nested mountpoint 
+2025-12-27T10:52:09.4183414Z Nested mountpoint 
+2025-12-27T10:52:10.5082143Z Creating container.
+2025-12-27T10:52:10.5966965Z Creating pipes for streaming container io.
+2025-12-27T10:52:10.6133491Z Creating stdout named pipe at /podr/container/pipe/3f1ffa6153af_hanclass-frontend/stdout_8cdfd05e05dd428cb0d8d596766c720a.
+2025-12-27T10:52:10.6244770Z Successfully created stdout named pipe at: /podr/container/pipe/3f1ffa6153af_hanclass-frontend/stdout_8cdfd05e05dd428cb0d8d596766c720a.
+2025-12-27T10:52:10.6329059Z Opening named pipe /podr/container/pipe/3f1ffa6153af_hanclass-frontend/stdout_8cdfd05e05dd428cb0d8d596766c720a for reading in non-blocking mode.
+2025-12-27T10:52:10.6413282Z Successfully opened named pipe: /podr/container/pipe/3f1ffa6153af_hanclass-frontend/stdout_8cdfd05e05dd428cb0d8d596766c720a.
+2025-12-27T10:52:10.6715384Z Successfully removed non-blocking flag from /podr/container/pipe/3f1ffa6153af_hanclass-frontend/stdout_8cdfd05e05dd428cb0d8d596766c720a.
+2025-12-27T10:52:10.6721131Z Creating stderr named pipe at /podr/container/pipe/3f1ffa6153af_hanclass-frontend/stderr_83654023d8b84733b7e34174426e1355.
+2025-12-27T10:52:10.6786011Z Successfully created stderr named pipe at: /podr/container/pipe/3f1ffa6153af_hanclass-frontend/stderr_83654023d8b84733b7e34174426e1355.
+2025-12-27T10:52:10.6791374Z Opening named pipe /podr/container/pipe/3f1ffa6153af_hanclass-frontend/stderr_83654023d8b84733b7e34174426e1355 for reading in non-blocking mode.
+2025-12-27T10:52:10.6874270Z Successfully opened named pipe: /podr/container/pipe/3f1ffa6153af_hanclass-frontend/stderr_83654023d8b84733b7e34174426e1355.
+2025-12-27T10:52:10.6885531Z Successfully removed non-blocking flag from /podr/container/pipe/3f1ffa6153af_hanclass-frontend/stderr_83654023d8b84733b7e34174426e1355.
+2025-12-27T10:52:10.7063671Z Creating container with image: appsvc/node:20-lts_20251016.4.tuxprod from registry: 10.1.0.6:13209 and fully qualified image name: 10.1.0.6:13209/appsvc/node:20-lts_20251016.4.tuxprod
+2025-12-27T10:52:13.0528120Z Starting container: 3f1ffa6153af_hanclass-frontend.
+2025-12-27T10:52:13.3166405Z Starting watchers and probes.
+2025-12-27T10:52:13.3250659Z Starting metrics collection.
+2025-12-27T10:52:13.3252699Z Container is running.
+2025-12-27T10:52:13.8094479Z Container start method finished after 5855 ms.
+2025-12-27T10:55:28.9922676Z Container has finished running with exit code: 127.
+2025-12-27T10:55:29.0021861Z Container is terminating. Grace period: 5 seconds.
+2025-12-27T10:55:29.0498320Z Stop and delete container. Retry count = 0
+2025-12-27T10:55:29.0521009Z Stopping container: 3f1ffa6153af_hanclass-frontend.
+2025-12-27T10:55:29.1833098Z Deleting container: 3f1ffa6153af_hanclass-frontend. Retry count = 0
+2025-12-27T10:55:31.2900115Z Container spec TerminationMessagePolicy  path 
+2025-12-27T10:55:31.3017062Z Container is terminated. Total time elapsed: 2298 ms.
+2025-12-27T10:55:31.3041593Z Site container: hanclass-frontend terminated during site startup.
+2025-12-27T10:55:32.8272368Z Site startup probe failed after 198.84732 seconds.
+2025-12-27T10:55:33.7759938Z Failed to start site. Revert by stopping site.
+2025-12-27T10:55:33.8050794Z Site: hanclass-frontend stopped.
+2025-12-27T10:58:07.3582506Z Container start method called.
+2025-12-27T10:58:07.4980768Z Establishing network.
+2025-12-27T10:58:07.5224362Z Pulling image: appsvc/node:20-lts_20251016.4.tuxprod.
+2025-12-27T10:58:08.5505334Z Container is starting.
+2025-12-27T10:58:08.5510723Z Establishing user namespace if not established already.
+2025-12-27T10:58:08.5511582Z Establishing network if not established already.
+2025-12-27T10:58:08.5512613Z Mounting volumes.
+2025-12-27T10:58:08.5513845Z Nested mountpoint 
+2025-12-27T10:58:08.5815940Z Nested mountpoint volatile/logs
+2025-12-27T10:58:08.6365683Z Nested mountpoint 
+2025-12-27T10:58:08.6774831Z Nested mountpoint 
+2025-12-27T10:58:08.7149516Z Nested mountpoint 
+2025-12-27T10:58:09.8236779Z Creating container.
+2025-12-27T10:58:09.8616666Z Creating pipes for streaming container io.
+2025-12-27T10:58:09.8618115Z Creating stdout named pipe at /podr/container/pipe/adb559facf95_hanclass-frontend/stdout_7a022b5d14e840ff9f9dbb8297eec96b.
+2025-12-27T10:58:09.8621332Z Successfully created stdout named pipe at: /podr/container/pipe/adb559facf95_hanclass-frontend/stdout_7a022b5d14e840ff9f9dbb8297eec96b.
+2025-12-27T10:58:09.8622339Z Opening named pipe /podr/container/pipe/adb559facf95_hanclass-frontend/stdout_7a022b5d14e840ff9f9dbb8297eec96b for reading in non-blocking mode.
+2025-12-27T10:58:09.8623532Z Successfully opened named pipe: /podr/container/pipe/adb559facf95_hanclass-frontend/stdout_7a022b5d14e840ff9f9dbb8297eec96b.
+2025-12-27T10:58:09.8624632Z Successfully removed non-blocking flag from /podr/container/pipe/adb559facf95_hanclass-frontend/stdout_7a022b5d14e840ff9f9dbb8297eec96b.
+2025-12-27T10:58:09.8814871Z Creating stderr named pipe at /podr/container/pipe/adb559facf95_hanclass-frontend/stderr_a3cb0da99ab94fbcb0019ceca34b3344.
+2025-12-27T10:58:09.8993973Z Successfully created stderr named pipe at: /podr/container/pipe/adb559facf95_hanclass-frontend/stderr_a3cb0da99ab94fbcb0019ceca34b3344.
+2025-12-27T10:58:09.8996807Z Opening named pipe /podr/container/pipe/adb559facf95_hanclass-frontend/stderr_a3cb0da99ab94fbcb0019ceca34b3344 for reading in non-blocking mode.
+2025-12-27T10:58:09.8998170Z Successfully opened named pipe: /podr/container/pipe/adb559facf95_hanclass-frontend/stderr_a3cb0da99ab94fbcb0019ceca34b3344.
+2025-12-27T10:58:09.8999063Z Successfully removed non-blocking flag from /podr/container/pipe/adb559facf95_hanclass-frontend/stderr_a3cb0da99ab94fbcb0019ceca34b3344.
+2025-12-27T10:58:09.9000335Z Creating container with image: appsvc/node:20-lts_20251016.4.tuxprod from registry: 10.1.0.6:13209 and fully qualified image name: 10.1.0.6:13209/appsvc/node:20-lts_20251016.4.tuxprod
+2025-12-27T10:58:10.5171448Z Starting container: adb559facf95_hanclass-frontend.
+2025-12-27T10:58:10.6107973Z Starting watchers and probes.
+2025-12-27T10:58:10.6110996Z Starting metrics collection.
+2025-12-27T10:58:10.6114762Z Container is running.
+2025-12-27T10:58:10.8686245Z Container start method finished after 3364 ms.
+2025-12-27T11:01:27.4179186Z Container has finished running with exit code: 127.
+2025-12-27T11:01:27.4280887Z Container is terminating. Grace period: 5 seconds.
+2025-12-27T11:01:27.4550832Z Stop and delete container. Retry count = 0
+2025-12-27T11:01:27.4563028Z Stopping container: adb559facf95_hanclass-frontend.
+2025-12-27T11:01:27.5992000Z Deleting container: adb559facf95_hanclass-frontend. Retry count = 0
+2025-12-27T11:01:28.3061755Z Container spec TerminationMessagePolicy  path 
+2025-12-27T11:01:28.3361383Z Container is terminated. Total time elapsed: 899 ms.
+2025-12-27T11:01:28.3375728Z Site container: hanclass-frontend terminated during site startup.
+2025-12-27T11:01:29.0810195Z Site startup probe failed after 198.1547527 seconds.
+2025-12-27T11:01:29.3472729Z Failed to start site. Revert by stopping site.
+2025-12-27T11:01:29.3507083Z Site: hanclass-frontend stopped.
+2025-12-27T11:11:04.5635157Z Container start method called.
+2025-12-27T11:11:04.6017007Z Establishing network.
+2025-12-27T11:11:04.6183655Z Pulling image: appsvc/node:20-lts_20251016.4.tuxprod.
+2025-12-27T11:11:05.0817064Z Container is starting.
+2025-12-27T11:11:05.0916477Z Establishing user namespace if not established already.
+2025-12-27T11:11:05.0997479Z Establishing network if not established already.
+2025-12-27T11:11:05.1006697Z Mounting volumes.
+2025-12-27T11:11:05.1015883Z Nested mountpoint 
+2025-12-27T11:11:05.1481273Z Nested mountpoint volatile/logs
+2025-12-27T11:11:05.2427563Z Nested mountpoint 
+2025-12-27T11:11:05.3833631Z Nested mountpoint 
+2025-12-27T11:11:05.4334512Z Nested mountpoint 
+2025-12-27T11:11:06.1099025Z Creating container.
+2025-12-27T11:11:06.1209334Z Creating pipes for streaming container io.
+2025-12-27T11:11:06.1210973Z Creating stdout named pipe at /podr/container/pipe/f23d865e2f24_hanclass-frontend/stdout_58df14b7b59540e5be08951aa1d8f0b4.
+2025-12-27T11:11:06.1284197Z Successfully created stdout named pipe at: /podr/container/pipe/f23d865e2f24_hanclass-frontend/stdout_58df14b7b59540e5be08951aa1d8f0b4.
+2025-12-27T11:11:06.1285440Z Opening named pipe /podr/container/pipe/f23d865e2f24_hanclass-frontend/stdout_58df14b7b59540e5be08951aa1d8f0b4 for reading in non-blocking mode.
+2025-12-27T11:11:06.1286954Z Successfully opened named pipe: /podr/container/pipe/f23d865e2f24_hanclass-frontend/stdout_58df14b7b59540e5be08951aa1d8f0b4.
+2025-12-27T11:11:06.1287971Z Successfully removed non-blocking flag from /podr/container/pipe/f23d865e2f24_hanclass-frontend/stdout_58df14b7b59540e5be08951aa1d8f0b4.
+2025-12-27T11:11:06.1289111Z Creating stderr named pipe at /podr/container/pipe/f23d865e2f24_hanclass-frontend/stderr_636503e1a34c4e80914ad12d0745c771.
+2025-12-27T11:11:06.1291184Z Successfully created stderr named pipe at: /podr/container/pipe/f23d865e2f24_hanclass-frontend/stderr_636503e1a34c4e80914ad12d0745c771.
+2025-12-27T11:11:06.1292266Z Opening named pipe /podr/container/pipe/f23d865e2f24_hanclass-frontend/stderr_636503e1a34c4e80914ad12d0745c771 for reading in non-blocking mode.
+2025-12-27T11:11:06.1293454Z Successfully opened named pipe: /podr/container/pipe/f23d865e2f24_hanclass-frontend/stderr_636503e1a34c4e80914ad12d0745c771.
+2025-12-27T11:11:06.1294756Z Successfully removed non-blocking flag from /podr/container/pipe/f23d865e2f24_hanclass-frontend/stderr_636503e1a34c4e80914ad12d0745c771.
+2025-12-27T11:11:06.1295987Z Creating container with image: appsvc/node:20-lts_20251016.4.tuxprod from registry: 10.1.0.6:13209 and fully qualified image name: 10.1.0.6:13209/appsvc/node:20-lts_20251016.4.tuxprod
+2025-12-27T11:11:07.0618915Z Starting container: f23d865e2f24_hanclass-frontend.
+2025-12-27T11:11:07.2142149Z Starting watchers and probes.
+2025-12-27T11:11:07.2235235Z Starting metrics collection.
+2025-12-27T11:11:07.2323790Z Container is running.
+2025-12-27T11:11:07.6179663Z Container start method finished after 3050 ms.
+2025-12-27T11:14:15.7902235Z Container has finished running with exit code: 127.
+2025-12-27T11:14:15.7904902Z Container is terminating. Grace period: 5 seconds.
+2025-12-27T11:14:15.9258682Z Stop and delete container. Retry count = 0
+2025-12-27T11:14:15.9271953Z Stopping container: f23d865e2f24_hanclass-frontend.
+2025-12-27T11:14:16.3433425Z Deleting container: f23d865e2f24_hanclass-frontend. Retry count = 0
+2025-12-27T11:14:16.7606934Z Container get mounts received unexpected exception.
+2025-12-27T11:14:16.8267352Z Container get processes received unexpected exception.
+2025-12-27T11:14:16.8380609Z Container get mounts received unexpected exception.
+2025-12-27T11:14:16.9412941Z Container get processes received unexpected exception.
+2025-12-27T11:14:17.4982709Z Container spec TerminationMessagePolicy  path 
+2025-12-27T11:14:17.5064089Z Container is terminated. Total time elapsed: 1705 ms.
+2025-12-27T11:14:17.5095848Z Site container: hanclass-frontend terminated during site startup.
+2025-12-27T11:14:19.0921698Z Site startup probe failed after 191.377181 seconds.
+2025-12-27T11:14:19.5732124Z Failed to start site. Revert by stopping site.
+2025-12-27T11:14:19.5998728Z Site: hanclass-frontend stopped.
+2025-12-27T11:16:10.6320826Z Container start method called.
+2025-12-27T11:16:10.6322621Z Establishing network.
+2025-12-27T11:16:10.6324296Z Pulling image: appsvc/node:20-lts_20251016.4.tuxprod.
+2025-12-27T11:16:11.2782040Z Container is starting.
+2025-12-27T11:16:11.2795669Z Establishing user namespace if not established already.
+2025-12-27T11:16:11.2797379Z Establishing network if not established already.
+2025-12-27T11:16:11.2799284Z Mounting volumes.
+2025-12-27T11:16:11.2858333Z Nested mountpoint 
+2025-12-27T11:16:11.3132908Z Nested mountpoint volatile/logs
+2025-12-27T11:16:11.3606549Z Nested mountpoint 
+2025-12-27T11:16:11.3897740Z Nested mountpoint 
+2025-12-27T11:16:11.3984796Z Nested mountpoint 
+2025-12-27T11:16:12.3305351Z Creating container.
+2025-12-27T11:16:12.3318885Z Creating pipes for streaming container io.
+2025-12-27T11:16:12.3327103Z Creating stdout named pipe at /podr/container/pipe/f1eb1e15188c_hanclass-frontend/stdout_5dc2ac053268414cb81011360ae8c9dd.
+2025-12-27T11:16:12.3396996Z Successfully created stdout named pipe at: /podr/container/pipe/f1eb1e15188c_hanclass-frontend/stdout_5dc2ac053268414cb81011360ae8c9dd.
+2025-12-27T11:16:12.4165853Z Opening named pipe /podr/container/pipe/f1eb1e15188c_hanclass-frontend/stdout_5dc2ac053268414cb81011360ae8c9dd for reading in non-blocking mode.
+2025-12-27T11:16:12.4173472Z Successfully opened named pipe: /podr/container/pipe/f1eb1e15188c_hanclass-frontend/stdout_5dc2ac053268414cb81011360ae8c9dd.
+2025-12-27T11:16:12.4175594Z Successfully removed non-blocking flag from /podr/container/pipe/f1eb1e15188c_hanclass-frontend/stdout_5dc2ac053268414cb81011360ae8c9dd.
+2025-12-27T11:16:12.4177668Z Creating stderr named pipe at /podr/container/pipe/f1eb1e15188c_hanclass-frontend/stderr_27e918e8a7c749df8602bbf87cb2050b.
+2025-12-27T11:16:12.4180537Z Successfully created stderr named pipe at: /podr/container/pipe/f1eb1e15188c_hanclass-frontend/stderr_27e918e8a7c749df8602bbf87cb2050b.
+2025-12-27T11:16:12.4273124Z Opening named pipe /podr/container/pipe/f1eb1e15188c_hanclass-frontend/stderr_27e918e8a7c749df8602bbf87cb2050b for reading in non-blocking mode.
+2025-12-27T11:16:12.4275784Z Successfully opened named pipe: /podr/container/pipe/f1eb1e15188c_hanclass-frontend/stderr_27e918e8a7c749df8602bbf87cb2050b.
+2025-12-27T11:16:12.4364463Z Successfully removed non-blocking flag from /podr/container/pipe/f1eb1e15188c_hanclass-frontend/stderr_27e918e8a7c749df8602bbf87cb2050b.
+2025-12-27T11:16:12.4372875Z Creating container with image: appsvc/node:20-lts_20251016.4.tuxprod from registry: 10.1.0.4:13209 and fully qualified image name: 10.1.0.4:13209/appsvc/node:20-lts_20251016.4.tuxprod
+2025-12-27T11:16:14.3781218Z Starting container: f1eb1e15188c_hanclass-frontend.
+2025-12-27T11:16:14.5148106Z Starting watchers and probes.
+2025-12-27T11:16:14.5336036Z Starting metrics collection.
+2025-12-27T11:16:14.5343094Z Container is running.
+2025-12-27T11:16:14.7832666Z Container start method finished after 4150 ms.
+2025-12-27T11:17:03.9191433Z Container has finished running with exit code: 127.
+2025-12-27T11:17:03.9208455Z Container is terminating. Grace period: 5 seconds.
+2025-12-27T11:17:03.9376513Z Stop and delete container. Retry count = 0
+2025-12-27T11:17:03.9384415Z Stopping container: f1eb1e15188c_hanclass-frontend.
+2025-12-27T11:17:04.1599152Z Deleting container: f1eb1e15188c_hanclass-frontend. Retry count = 0
+2025-12-27T11:17:04.6239387Z Container spec TerminationMessagePolicy  path 
+2025-12-27T11:17:04.6326896Z Container is terminated. Total time elapsed: 701 ms.
+2025-12-27T11:17:04.6352123Z Site container: hanclass-frontend terminated during site startup.
+2025-12-27T11:17:04.9462535Z Site startup probe failed after 50.0096109 seconds.
+2025-12-27T11:17:05.4562697Z Failed to start site. Revert by stopping site.
+2025-12-27T11:17:05.4662636Z Site: hanclass-frontend stopped.
+2025-12-27T11:25:06.9699534Z Container start method called.
+2025-12-27T11:25:06.9776358Z Establishing network.
+2025-12-27T11:25:06.9802426Z Pulling image: appsvc/node:20-lts_20251016.4.tuxprod.
+2025-12-27T11:25:07.3632344Z Container is starting.
+2025-12-27T11:25:07.3637343Z Establishing user namespace if not established already.
+2025-12-27T11:25:07.3638592Z Establishing network if not established already.
+2025-12-27T11:25:07.3639865Z Mounting volumes.
+2025-12-27T11:25:07.3643197Z Nested mountpoint 
+2025-12-27T11:25:07.3894625Z Nested mountpoint volatile/logs
+2025-12-27T11:25:07.4278570Z Nested mountpoint 
+2025-12-27T11:25:07.4456830Z Nested mountpoint 
+2025-12-27T11:25:07.5004109Z Nested mountpoint 
+2025-12-27T11:25:08.2753701Z Creating container.
+2025-12-27T11:25:08.2769997Z Creating pipes for streaming container io.
+2025-12-27T11:25:08.2777851Z Creating stdout named pipe at /podr/container/pipe/277c8a1a7e4c_hanclass-frontend/stdout_e8749784b33d43fe9c14d1b377e519ce.
+2025-12-27T11:25:08.2861010Z Successfully created stdout named pipe at: /podr/container/pipe/277c8a1a7e4c_hanclass-frontend/stdout_e8749784b33d43fe9c14d1b377e519ce.
+2025-12-27T11:25:08.2955360Z Opening named pipe /podr/container/pipe/277c8a1a7e4c_hanclass-frontend/stdout_e8749784b33d43fe9c14d1b377e519ce for reading in non-blocking mode.
+2025-12-27T11:25:08.3058922Z Successfully opened named pipe: /podr/container/pipe/277c8a1a7e4c_hanclass-frontend/stdout_e8749784b33d43fe9c14d1b377e519ce.
+2025-12-27T11:25:08.3166695Z Successfully removed non-blocking flag from /podr/container/pipe/277c8a1a7e4c_hanclass-frontend/stdout_e8749784b33d43fe9c14d1b377e519ce.
+2025-12-27T11:25:08.3244454Z Creating stderr named pipe at /podr/container/pipe/277c8a1a7e4c_hanclass-frontend/stderr_41bf197e95654852822c77fa830fb2fb.
+2025-12-27T11:25:08.3330610Z Successfully created stderr named pipe at: /podr/container/pipe/277c8a1a7e4c_hanclass-frontend/stderr_41bf197e95654852822c77fa830fb2fb.
+2025-12-27T11:25:08.3528825Z Opening named pipe /podr/container/pipe/277c8a1a7e4c_hanclass-frontend/stderr_41bf197e95654852822c77fa830fb2fb for reading in non-blocking mode.
+2025-12-27T11:25:08.3606916Z Successfully opened named pipe: /podr/container/pipe/277c8a1a7e4c_hanclass-frontend/stderr_41bf197e95654852822c77fa830fb2fb.
+2025-12-27T11:25:08.3617749Z Successfully removed non-blocking flag from /podr/container/pipe/277c8a1a7e4c_hanclass-frontend/stderr_41bf197e95654852822c77fa830fb2fb.
+2025-12-27T11:25:08.3632669Z Creating container with image: appsvc/node:20-lts_20251016.4.tuxprod from registry: 10.1.0.4:13209 and fully qualified image name: 10.1.0.4:13209/appsvc/node:20-lts_20251016.4.tuxprod
+2025-12-27T11:25:08.9613467Z Starting container: 277c8a1a7e4c_hanclass-frontend.
+2025-12-27T11:25:09.0732015Z Starting watchers and probes.
+2025-12-27T11:25:09.0734670Z Starting metrics collection.
+2025-12-27T11:25:09.0763069Z Container is running.
+2025-12-27T11:25:09.3448954Z Container start method finished after 2366 ms.
+2025-12-27T11:25:52.0885020Z Container has finished running with exit code: 127.
+2025-12-27T11:25:52.0886469Z Container is terminating. Grace period: 5 seconds.
+2025-12-27T11:25:52.0970293Z Stop and delete container. Retry count = 0
+2025-12-27T11:25:52.0977680Z Stopping container: 277c8a1a7e4c_hanclass-frontend.
+2025-12-27T11:25:52.1615155Z Deleting container: 277c8a1a7e4c_hanclass-frontend. Retry count = 0
+2025-12-27T11:25:52.5554698Z Container spec TerminationMessagePolicy  path 
+2025-12-27T11:25:52.5559257Z Container is terminated. Total time elapsed: 460 ms.
+2025-12-27T11:25:52.5560670Z Site container: hanclass-frontend terminated during site startup.
+2025-12-27T11:25:53.1147535Z Site startup probe failed after 43.7515018 seconds.
+2025-12-27T11:25:53.8390964Z Failed to start site. Revert by stopping site.
+2025-12-27T11:25:53.8640059Z Site: hanclass-frontend stopped.
+2025-12-27T11:25:54.6455205Z Site: hanclass-frontend will be blocked for 1 minutes till 12/27/2025 11:26:54
+2025-12-27T11:25:55.8666715Z Start site prohibitted because the site is being blocked.
+2025-12-27T11:26:54.6370540Z Site: hanclass-frontend is unblocked.
+2025-12-27T11:30:11.3267563Z Container start method called.
+2025-12-27T11:30:11.3283032Z Establishing network.
+2025-12-27T11:30:11.3301781Z Pulling image: appsvc/node:20-lts_20251016.4.tuxprod.
+2025-12-27T11:30:11.7533190Z Container is starting.
+2025-12-27T11:30:11.7606198Z Establishing user namespace if not established already.
+2025-12-27T11:30:11.7710625Z Establishing network if not established already.
+2025-12-27T11:30:11.7722873Z Mounting volumes.
+2025-12-27T11:30:11.7826186Z Nested mountpoint 
+2025-12-27T11:30:11.8473974Z Nested mountpoint volatile/logs
+2025-12-27T11:30:11.9230666Z Nested mountpoint 
+2025-12-27T11:30:11.9331428Z Nested mountpoint 
+2025-12-27T11:30:12.1421866Z Nested mountpoint 
+2025-12-27T11:30:12.8024720Z Creating container.
+2025-12-27T11:30:12.8111474Z Creating pipes for streaming container io.
+2025-12-27T11:30:12.8193154Z Creating stdout named pipe at /podr/container/pipe/6bd3eee34416_hanclass-frontend/stdout_15b6856bc03843d4b04fc51dc528a9bb.
+2025-12-27T11:30:12.8570958Z Successfully created stdout named pipe at: /podr/container/pipe/6bd3eee34416_hanclass-frontend/stdout_15b6856bc03843d4b04fc51dc528a9bb.
+2025-12-27T11:30:12.8646407Z Opening named pipe /podr/container/pipe/6bd3eee34416_hanclass-frontend/stdout_15b6856bc03843d4b04fc51dc528a9bb for reading in non-blocking mode.
+2025-12-27T11:30:12.8648922Z Successfully opened named pipe: /podr/container/pipe/6bd3eee34416_hanclass-frontend/stdout_15b6856bc03843d4b04fc51dc528a9bb.
+2025-12-27T11:30:12.8657071Z Successfully removed non-blocking flag from /podr/container/pipe/6bd3eee34416_hanclass-frontend/stdout_15b6856bc03843d4b04fc51dc528a9bb.
+2025-12-27T11:30:12.8677052Z Creating stderr named pipe at /podr/container/pipe/6bd3eee34416_hanclass-frontend/stderr_d74bee61098b43b4a87ff27beabe5155.
+2025-12-27T11:30:12.8924468Z Successfully created stderr named pipe at: /podr/container/pipe/6bd3eee34416_hanclass-frontend/stderr_d74bee61098b43b4a87ff27beabe5155.
+2025-12-27T11:30:12.8926196Z Opening named pipe /podr/container/pipe/6bd3eee34416_hanclass-frontend/stderr_d74bee61098b43b4a87ff27beabe5155 for reading in non-blocking mode.
+2025-12-27T11:30:12.8927804Z Successfully opened named pipe: /podr/container/pipe/6bd3eee34416_hanclass-frontend/stderr_d74bee61098b43b4a87ff27beabe5155.
+2025-12-27T11:30:12.8928843Z Successfully removed non-blocking flag from /podr/container/pipe/6bd3eee34416_hanclass-frontend/stderr_d74bee61098b43b4a87ff27beabe5155.
+2025-12-27T11:30:12.8929944Z Creating container with image: appsvc/node:20-lts_20251016.4.tuxprod from registry: 10.1.0.4:13209 and fully qualified image name: 10.1.0.4:13209/appsvc/node:20-lts_20251016.4.tuxprod
+2025-12-27T11:30:13.6957630Z Starting container: 6bd3eee34416_hanclass-frontend.
+2025-12-27T11:30:13.7785073Z Starting watchers and probes.
+2025-12-27T11:30:13.7912817Z Starting metrics collection.
+2025-12-27T11:30:13.8071213Z Container is running.
+2025-12-27T11:30:13.9702785Z Container start method finished after 2641 ms.
+2025-12-27T11:31:02.2919515Z Container has finished running with exit code: 127.
+2025-12-27T11:31:02.2924797Z Container is terminating. Grace period: 5 seconds.
+2025-12-27T11:31:02.2934228Z Stop and delete container. Retry count = 0
+2025-12-27T11:31:02.3187440Z Stopping container: 6bd3eee34416_hanclass-frontend.
+2025-12-27T11:31:02.4261641Z Deleting container: 6bd3eee34416_hanclass-frontend. Retry count = 0
+2025-12-27T11:31:02.6913798Z Container spec TerminationMessagePolicy  path 
+2025-12-27T11:31:02.7090431Z Container is terminated. Total time elapsed: 415 ms.
+2025-12-27T11:31:02.7114526Z Site container: hanclass-frontend terminated during site startup.
+2025-12-27T11:31:03.0082778Z Site startup probe failed after 48.8874608 seconds.
+2025-12-27T11:31:03.9202822Z Failed to start site. Revert by stopping site.
+2025-12-27T11:31:03.9490233Z Site: hanclass-frontend stopped.
+2025-12-27T11:57:55.4511316Z Container start method called.
+2025-12-27T11:57:55.4522689Z Establishing network.
+2025-12-27T11:57:55.4524162Z Pulling image: appsvc/node:20-lts_20251016.4.tuxprod.
+2025-12-27T11:57:56.0429276Z Container is starting.
+2025-12-27T11:57:56.0432163Z Establishing user namespace if not established already.
+2025-12-27T11:57:56.0433260Z Establishing network if not established already.
+2025-12-27T11:57:56.0434371Z Mounting volumes.
+2025-12-27T11:57:56.0435838Z Nested mountpoint 
+2025-12-27T11:57:56.1451437Z Nested mountpoint volatile/logs
+2025-12-27T11:57:56.1698341Z Nested mountpoint 
+2025-12-27T11:57:56.2615193Z Nested mountpoint 
+2025-12-27T11:57:56.2622247Z Nested mountpoint 
+2025-12-27T11:57:56.8443115Z Creating container.
+2025-12-27T11:57:56.8521859Z Creating pipes for streaming container io.
+2025-12-27T11:57:56.8534647Z Creating stdout named pipe at /podr/container/pipe/318d65a5a860_hanclass-frontend/stdout_12cabc992c0a43b982a52d0ad8a6d04a.
+2025-12-27T11:57:56.8612264Z Successfully created stdout named pipe at: /podr/container/pipe/318d65a5a860_hanclass-frontend/stdout_12cabc992c0a43b982a52d0ad8a6d04a.
+2025-12-27T11:57:56.8620965Z Opening named pipe /podr/container/pipe/318d65a5a860_hanclass-frontend/stdout_12cabc992c0a43b982a52d0ad8a6d04a for reading in non-blocking mode.
+2025-12-27T11:57:56.8705957Z Successfully opened named pipe: /podr/container/pipe/318d65a5a860_hanclass-frontend/stdout_12cabc992c0a43b982a52d0ad8a6d04a.
+2025-12-27T11:57:56.8710658Z Successfully removed non-blocking flag from /podr/container/pipe/318d65a5a860_hanclass-frontend/stdout_12cabc992c0a43b982a52d0ad8a6d04a.
+2025-12-27T11:57:56.8817841Z Creating stderr named pipe at /podr/container/pipe/318d65a5a860_hanclass-frontend/stderr_6bf17f1e5d474dd680e3725036783c60.
+2025-12-27T11:57:56.8824045Z Successfully created stderr named pipe at: /podr/container/pipe/318d65a5a860_hanclass-frontend/stderr_6bf17f1e5d474dd680e3725036783c60.
+2025-12-27T11:57:56.8825926Z Opening named pipe /podr/container/pipe/318d65a5a860_hanclass-frontend/stderr_6bf17f1e5d474dd680e3725036783c60 for reading in non-blocking mode.
+2025-12-27T11:57:56.8830753Z Successfully opened named pipe: /podr/container/pipe/318d65a5a860_hanclass-frontend/stderr_6bf17f1e5d474dd680e3725036783c60.
+2025-12-27T11:57:56.8835610Z Successfully removed non-blocking flag from /podr/container/pipe/318d65a5a860_hanclass-frontend/stderr_6bf17f1e5d474dd680e3725036783c60.
+2025-12-27T11:57:56.8997934Z Creating container with image: appsvc/node:20-lts_20251016.4.tuxprod from registry: 10.1.0.6:13209 and fully qualified image name: 10.1.0.6:13209/appsvc/node:20-lts_20251016.4.tuxprod
+2025-12-27T11:57:57.8138482Z Starting container: 318d65a5a860_hanclass-frontend.
+2025-12-27T11:57:57.9165827Z Starting watchers and probes.
+2025-12-27T11:57:57.9189086Z Starting metrics collection.
+2025-12-27T11:57:57.9253973Z Container is running.
+2025-12-27T11:57:58.1957394Z Container start method finished after 2744 ms.
+2025-12-27T11:58:44.7443016Z Container has finished running with exit code: 127.
+2025-12-27T11:58:44.7453140Z Container is terminating. Grace period: 5 seconds.
+2025-12-27T11:58:44.7524785Z Stop and delete container. Retry count = 0
+2025-12-27T11:58:44.7529812Z Stopping container: 318d65a5a860_hanclass-frontend.
+2025-12-27T11:58:44.8237519Z Deleting container: 318d65a5a860_hanclass-frontend. Retry count = 0
+2025-12-27T11:58:45.2989198Z Container spec TerminationMessagePolicy  path 
+2025-12-27T11:58:45.3118322Z Container is terminated. Total time elapsed: 565 ms.
+2025-12-27T11:58:45.3138725Z Site container: hanclass-frontend terminated during site startup.
+2025-12-27T11:58:46.4238292Z Site startup probe failed after 48.0570865 seconds.
+2025-12-27T11:58:47.0059801Z Failed to start site. Revert by stopping site.
+2025-12-27T11:58:47.0146150Z Site: hanclass-frontend stopped.
+2025-12-27T12:11:05.3094671Z Container start method called.
+2025-12-27T12:11:05.3183835Z Establishing network.
+2025-12-27T12:11:05.3212831Z Pulling image: appsvc/node:20-lts_20251016.4.tuxprod.
+2025-12-27T12:11:06.1953426Z Container is starting.
+2025-12-27T12:11:06.2011827Z Establishing user namespace if not established already.
+2025-12-27T12:11:06.2013123Z Establishing network if not established already.
+2025-12-27T12:11:06.2044191Z Mounting volumes.
+2025-12-27T12:11:06.2162917Z Nested mountpoint 
+2025-12-27T12:11:06.2866761Z Nested mountpoint volatile/logs
+2025-12-27T12:11:06.3070741Z Nested mountpoint 
+2025-12-27T12:11:06.3950693Z Nested mountpoint 
+2025-12-27T12:11:06.4914198Z Nested mountpoint 
+2025-12-27T12:11:06.9473263Z Creating container.
+2025-12-27T12:11:06.9555273Z Creating pipes for streaming container io.
+2025-12-27T12:11:06.9562491Z Creating stdout named pipe at /podr/container/pipe/27c4a319341d_hanclass-frontend/stdout_2718e5f653b44d0db56806a4a18b3e1f.
+2025-12-27T12:11:06.9574802Z Successfully created stdout named pipe at: /podr/container/pipe/27c4a319341d_hanclass-frontend/stdout_2718e5f653b44d0db56806a4a18b3e1f.
+2025-12-27T12:11:06.9576130Z Opening named pipe /podr/container/pipe/27c4a319341d_hanclass-frontend/stdout_2718e5f653b44d0db56806a4a18b3e1f for reading in non-blocking mode.
+2025-12-27T12:11:06.9577399Z Successfully opened named pipe: /podr/container/pipe/27c4a319341d_hanclass-frontend/stdout_2718e5f653b44d0db56806a4a18b3e1f.
+2025-12-27T12:11:06.9593334Z Successfully removed non-blocking flag from /podr/container/pipe/27c4a319341d_hanclass-frontend/stdout_2718e5f653b44d0db56806a4a18b3e1f.
+2025-12-27T12:11:06.9658890Z Creating stderr named pipe at /podr/container/pipe/27c4a319341d_hanclass-frontend/stderr_8c625d1a0d544e85880c50b5b8c7f647.
+2025-12-27T12:11:06.9660902Z Successfully created stderr named pipe at: /podr/container/pipe/27c4a319341d_hanclass-frontend/stderr_8c625d1a0d544e85880c50b5b8c7f647.
+2025-12-27T12:11:06.9662187Z Opening named pipe /podr/container/pipe/27c4a319341d_hanclass-frontend/stderr_8c625d1a0d544e85880c50b5b8c7f647 for reading in non-blocking mode.
+2025-12-27T12:11:06.9663842Z Successfully opened named pipe: /podr/container/pipe/27c4a319341d_hanclass-frontend/stderr_8c625d1a0d544e85880c50b5b8c7f647.
+2025-12-27T12:11:06.9664975Z Successfully removed non-blocking flag from /podr/container/pipe/27c4a319341d_hanclass-frontend/stderr_8c625d1a0d544e85880c50b5b8c7f647.
+2025-12-27T12:11:06.9752355Z Creating container with image: appsvc/node:20-lts_20251016.4.tuxprod from registry: 10.1.0.4:13209 and fully qualified image name: 10.1.0.4:13209/appsvc/node:20-lts_20251016.4.tuxprod
+2025-12-27T12:11:07.9549223Z Starting container: 27c4a319341d_hanclass-frontend.
+2025-12-27T12:11:08.0404654Z Starting watchers and probes.
+2025-12-27T12:11:08.0422466Z Starting metrics collection.
+2025-12-27T12:11:08.0442210Z Container is running.
+2025-12-27T12:11:08.7485347Z Container start method finished after 3438 ms.
+2025-12-27T12:14:06.0994925Z Container has finished running with exit code: 127.
+2025-12-27T12:14:06.1028716Z Container is terminating. Grace period: 5 seconds.
+2025-12-27T12:14:06.1141078Z Stop and delete container. Retry count = 0
+2025-12-27T12:14:06.1171758Z Stopping container: 27c4a319341d_hanclass-frontend.
+2025-12-27T12:14:06.2066052Z Deleting container: 27c4a319341d_hanclass-frontend. Retry count = 0
+2025-12-27T12:14:07.0158661Z Container spec TerminationMessagePolicy  path 
+2025-12-27T12:14:07.0294308Z Container is terminated. Total time elapsed: 921 ms.
+2025-12-27T12:14:07.0311483Z Site container: hanclass-frontend terminated during site startup.
+2025-12-27T12:14:08.5832837Z Site startup probe failed after 179.6729805 seconds.
+2025-12-27T12:14:09.6808450Z Failed to start site. Revert by stopping site.
+2025-12-27T12:14:09.7184724Z Site: hanclass-frontend stopped.
+2025-12-27T13:44:42.6991485Z Container start method called.
+2025-12-27T13:44:42.7008571Z Establishing network.
+2025-12-27T13:44:42.7083935Z Pulling image: appsvc/node:20-lts_20251016.4.tuxprod.
+2025-12-27T13:44:43.3017444Z Container is starting.
+2025-12-27T13:44:43.3019468Z Establishing user namespace if not established already.
+2025-12-27T13:44:43.3020443Z Establishing network if not established already.
+2025-12-27T13:44:43.3112917Z Mounting volumes.
+2025-12-27T13:44:43.3175498Z Nested mountpoint 
+2025-12-27T13:44:43.3803633Z Nested mountpoint volatile/logs
+2025-12-27T13:44:43.4082039Z Nested mountpoint 
+2025-12-27T13:44:43.6371719Z Nested mountpoint 
+2025-12-27T13:44:43.6462619Z Nested mountpoint 
+2025-12-27T13:44:44.2783743Z Creating container.
+2025-12-27T13:44:44.2885896Z Creating pipes for streaming container io.
+2025-12-27T13:44:44.3252774Z Creating stdout named pipe at /podr/container/pipe/8b1aca70829c_hanclass-frontend/stdout_2428380f70e744c8957c1ee0ea4024d7.
+2025-12-27T13:44:44.4175081Z Successfully created stdout named pipe at: /podr/container/pipe/8b1aca70829c_hanclass-frontend/stdout_2428380f70e744c8957c1ee0ea4024d7.
+2025-12-27T13:44:44.4252184Z Opening named pipe /podr/container/pipe/8b1aca70829c_hanclass-frontend/stdout_2428380f70e744c8957c1ee0ea4024d7 for reading in non-blocking mode.
+2025-12-27T13:44:44.4258091Z Successfully opened named pipe: /podr/container/pipe/8b1aca70829c_hanclass-frontend/stdout_2428380f70e744c8957c1ee0ea4024d7.
+2025-12-27T13:44:44.4266605Z Successfully removed non-blocking flag from /podr/container/pipe/8b1aca70829c_hanclass-frontend/stdout_2428380f70e744c8957c1ee0ea4024d7.
+2025-12-27T13:44:44.4340619Z Creating stderr named pipe at /podr/container/pipe/8b1aca70829c_hanclass-frontend/stderr_1e76334c793d4d53ba49ca043e3a22d5.
+2025-12-27T13:44:44.4351295Z Successfully created stderr named pipe at: /podr/container/pipe/8b1aca70829c_hanclass-frontend/stderr_1e76334c793d4d53ba49ca043e3a22d5.
+2025-12-27T13:44:44.4357428Z Opening named pipe /podr/container/pipe/8b1aca70829c_hanclass-frontend/stderr_1e76334c793d4d53ba49ca043e3a22d5 for reading in non-blocking mode.
+2025-12-27T13:44:44.4366855Z Successfully opened named pipe: /podr/container/pipe/8b1aca70829c_hanclass-frontend/stderr_1e76334c793d4d53ba49ca043e3a22d5.
+2025-12-27T13:44:44.4430704Z Successfully removed non-blocking flag from /podr/container/pipe/8b1aca70829c_hanclass-frontend/stderr_1e76334c793d4d53ba49ca043e3a22d5.
+2025-12-27T13:44:44.4435746Z Creating container with image: appsvc/node:20-lts_20251016.4.tuxprod from registry: 10.1.0.6:13209 and fully qualified image name: 10.1.0.6:13209/appsvc/node:20-lts_20251016.4.tuxprod
+2025-12-27T13:44:45.6016161Z Starting container: 8b1aca70829c_hanclass-frontend.
+2025-12-27T13:44:45.7065621Z Starting watchers and probes.
+2025-12-27T13:44:45.7172815Z Starting metrics collection.
+2025-12-27T13:44:45.7190599Z Container is running.
+2025-12-27T13:44:45.9458740Z Container start method finished after 3246 ms.
+2025-12-27T13:47:39.6273765Z Container has finished running with exit code: 127.
+2025-12-27T13:47:39.6346266Z Container is terminating. Grace period: 5 seconds.
+2025-12-27T13:47:39.6611069Z Stop and delete container. Retry count = 0
+2025-12-27T13:47:39.6626304Z Stopping container: 8b1aca70829c_hanclass-frontend.
+2025-12-27T13:47:39.7774726Z Deleting container: 8b1aca70829c_hanclass-frontend. Retry count = 0
+2025-12-27T13:47:40.4612021Z Container spec TerminationMessagePolicy  path 
+2025-12-27T13:47:40.4824822Z Container is terminated. Total time elapsed: 825 ms.
+2025-12-27T13:47:40.4872406Z Site container: hanclass-frontend terminated during site startup.
+2025-12-27T13:47:41.4786211Z Site startup probe failed after 175.3546151 seconds.
+2025-12-27T13:47:42.0143724Z Failed to start site. Revert by stopping site.
+2025-12-27T13:47:42.0624671Z Site: hanclass-frontend stopped.
+2025-12-27T22:31:01.0985968Z Container start method called.
+2025-12-27T22:31:01.1021209Z Establishing network.
+2025-12-27T22:31:01.1041546Z Pulling image: appsvc/node:20-lts_20251016.4.tuxprod.
+2025-12-27T22:31:01.4552492Z Container is starting.
+2025-12-27T22:31:01.4563337Z Establishing user namespace if not established already.
+2025-12-27T22:31:01.4610976Z Establishing network if not established already.
+2025-12-27T22:31:01.4629939Z Mounting volumes.
+2025-12-27T22:31:01.4759454Z Nested mountpoint 
+2025-12-27T22:31:01.5491826Z Nested mountpoint volatile/logs
+2025-12-27T22:31:01.5841602Z Nested mountpoint 
+2025-12-27T22:31:01.6528653Z Nested mountpoint 
+2025-12-27T22:31:01.6636851Z Nested mountpoint 
+2025-12-27T22:31:02.5711481Z Creating container.
+2025-12-27T22:31:02.5724517Z Creating pipes for streaming container io.
+2025-12-27T22:31:02.5741210Z Creating stdout named pipe at /podr/container/pipe/ccc9b49a7130_hanclass-frontend/stdout_60e13b92fb6e4f13915b3e1034c15de9.
+2025-12-27T22:31:02.5811668Z Successfully created stdout named pipe at: /podr/container/pipe/ccc9b49a7130_hanclass-frontend/stdout_60e13b92fb6e4f13915b3e1034c15de9.
+2025-12-27T22:31:02.5816354Z Opening named pipe /podr/container/pipe/ccc9b49a7130_hanclass-frontend/stdout_60e13b92fb6e4f13915b3e1034c15de9 for reading in non-blocking mode.
+2025-12-27T22:31:02.5837240Z Successfully opened named pipe: /podr/container/pipe/ccc9b49a7130_hanclass-frontend/stdout_60e13b92fb6e4f13915b3e1034c15de9.
+2025-12-27T22:31:02.5843976Z Successfully removed non-blocking flag from /podr/container/pipe/ccc9b49a7130_hanclass-frontend/stdout_60e13b92fb6e4f13915b3e1034c15de9.
+2025-12-27T22:31:02.6037098Z Creating stderr named pipe at /podr/container/pipe/ccc9b49a7130_hanclass-frontend/stderr_b42881ea8b7a4cfca63fcbdbbae35d8e.
+2025-12-27T22:31:02.6203175Z Successfully created stderr named pipe at: /podr/container/pipe/ccc9b49a7130_hanclass-frontend/stderr_b42881ea8b7a4cfca63fcbdbbae35d8e.
+2025-12-27T22:31:02.6209520Z Opening named pipe /podr/container/pipe/ccc9b49a7130_hanclass-frontend/stderr_b42881ea8b7a4cfca63fcbdbbae35d8e for reading in non-blocking mode.
+2025-12-27T22:31:02.6216085Z Successfully opened named pipe: /podr/container/pipe/ccc9b49a7130_hanclass-frontend/stderr_b42881ea8b7a4cfca63fcbdbbae35d8e.
+2025-12-27T22:31:02.6217666Z Successfully removed non-blocking flag from /podr/container/pipe/ccc9b49a7130_hanclass-frontend/stderr_b42881ea8b7a4cfca63fcbdbbae35d8e.
+2025-12-27T22:31:02.6297997Z Creating container with image: appsvc/node:20-lts_20251016.4.tuxprod from registry: 10.1.0.6:13209 and fully qualified image name: 10.1.0.6:13209/appsvc/node:20-lts_20251016.4.tuxprod
+2025-12-27T22:31:03.6639541Z Starting container: ccc9b49a7130_hanclass-frontend.
+2025-12-27T22:31:03.7704632Z Starting watchers and probes.
+2025-12-27T22:31:03.7904622Z Starting metrics collection.
+2025-12-27T22:31:03.7981211Z Container is running.
+2025-12-27T22:31:05.0252546Z Container start method finished after 3926 ms.
+2025-12-27T22:34:22.2221545Z Container has finished running with exit code: 127.
+2025-12-27T22:34:22.2293804Z Container is terminating. Grace period: 5 seconds.
+2025-12-27T22:34:22.3120481Z Stop and delete container. Retry count = 0
+2025-12-27T22:34:22.4148275Z Stopping container: ccc9b49a7130_hanclass-frontend.
+2025-12-27T22:34:22.6142927Z Deleting container: ccc9b49a7130_hanclass-frontend. Retry count = 0
+2025-12-27T22:34:23.9446418Z Container spec TerminationMessagePolicy  path 
+2025-12-27T22:34:23.9715404Z Container is terminated. Total time elapsed: 1734 ms.
+2025-12-27T22:34:23.9809321Z Site container: hanclass-frontend terminated during site startup.
+2025-12-27T22:34:25.4385457Z Site startup probe failed after 200.2365342 seconds.
+2025-12-27T22:34:25.9902435Z Failed to start site. Revert by stopping site.
+2025-12-27T22:34:26.1811410Z Site: hanclass-frontend stopped.
+2025-12-27T22:34:27.2551291Z Site: hanclass-frontend will be blocked for 1 minutes till 12/27/2025 22:35:27
+2025-12-27T22:34:54.0845093Z Start site prohibitted because the site is being blocked.
+2025-12-27T22:35:27.2546742Z Site: hanclass-frontend is unblocked.
+2025-12-27T22:49:10.7323861Z Container start method called.
+2025-12-27T22:49:10.7332232Z Establishing network.
+2025-12-27T22:49:10.7345812Z Pulling image: appsvc/node:20-lts_20251016.4.tuxprod.
+2025-12-27T22:49:11.2039533Z Container is starting.
+2025-12-27T22:49:11.2066210Z Establishing user namespace if not established already.
+2025-12-27T22:49:11.2134936Z Establishing network if not established already.
+2025-12-27T22:49:11.2147105Z Mounting volumes.
+2025-12-27T22:49:11.2232716Z Nested mountpoint 
+2025-12-27T22:49:11.3071166Z Nested mountpoint volatile/logs
+2025-12-27T22:49:11.4591029Z Nested mountpoint 
+2025-12-27T22:49:11.5525774Z Nested mountpoint 
+2025-12-27T22:49:11.6537086Z Nested mountpoint 
+2025-12-27T22:49:12.5956924Z Creating container.
+2025-12-27T22:49:12.5958470Z Creating pipes for streaming container io.
+2025-12-27T22:49:12.6039497Z Creating stdout named pipe at /podr/container/pipe/fa64dc6ec145_hanclass-frontend/stdout_22c082416a42423e965e57a71e74f1d5.
+2025-12-27T22:49:12.6345442Z Successfully created stdout named pipe at: /podr/container/pipe/fa64dc6ec145_hanclass-frontend/stdout_22c082416a42423e965e57a71e74f1d5.
+2025-12-27T22:49:12.6423387Z Opening named pipe /podr/container/pipe/fa64dc6ec145_hanclass-frontend/stdout_22c082416a42423e965e57a71e74f1d5 for reading in non-blocking mode.
+2025-12-27T22:49:12.6437953Z Successfully opened named pipe: /podr/container/pipe/fa64dc6ec145_hanclass-frontend/stdout_22c082416a42423e965e57a71e74f1d5.
+2025-12-27T22:49:12.6599354Z Successfully removed non-blocking flag from /podr/container/pipe/fa64dc6ec145_hanclass-frontend/stdout_22c082416a42423e965e57a71e74f1d5.
+2025-12-27T22:49:12.6608126Z Creating stderr named pipe at /podr/container/pipe/fa64dc6ec145_hanclass-frontend/stderr_11f387521de24d619a55162c21d8d92a.
+2025-12-27T22:49:12.6611252Z Successfully created stderr named pipe at: /podr/container/pipe/fa64dc6ec145_hanclass-frontend/stderr_11f387521de24d619a55162c21d8d92a.
+2025-12-27T22:49:12.6612764Z Opening named pipe /podr/container/pipe/fa64dc6ec145_hanclass-frontend/stderr_11f387521de24d619a55162c21d8d92a for reading in non-blocking mode.
+2025-12-27T22:49:12.6617416Z Successfully opened named pipe: /podr/container/pipe/fa64dc6ec145_hanclass-frontend/stderr_11f387521de24d619a55162c21d8d92a.
+2025-12-27T22:49:12.6630038Z Successfully removed non-blocking flag from /podr/container/pipe/fa64dc6ec145_hanclass-frontend/stderr_11f387521de24d619a55162c21d8d92a.
+2025-12-27T22:49:12.6705488Z Creating container with image: appsvc/node:20-lts_20251016.4.tuxprod from registry: 10.1.0.6:13209 and fully qualified image name: 10.1.0.6:13209/appsvc/node:20-lts_20251016.4.tuxprod
+2025-12-27T22:49:14.0280142Z Starting container: fa64dc6ec145_hanclass-frontend.
+2025-12-27T22:49:14.1509028Z Starting watchers and probes.
+2025-12-27T22:49:14.1660531Z Starting metrics collection.
+2025-12-27T22:49:14.1916985Z Container is running.
+2025-12-27T22:49:14.4578127Z Container start method finished after 3725 ms.
+2025-12-27T22:51:31.4201560Z Container has finished running with exit code: 1.
+2025-12-27T22:51:31.4226978Z Container is terminating. Grace period: 5 seconds.
+2025-12-27T22:51:31.4426625Z Stop and delete container. Retry count = 0
+2025-12-27T22:51:31.4434587Z Stopping container: fa64dc6ec145_hanclass-frontend.
+2025-12-27T22:51:31.5168863Z Deleting container: fa64dc6ec145_hanclass-frontend. Retry count = 0
+2025-12-27T22:51:32.3324248Z Container spec TerminationMessagePolicy  path 
+2025-12-27T22:51:32.3536603Z Container is terminated. Total time elapsed: 921 ms.
+2025-12-27T22:51:32.3577448Z Site container: hanclass-frontend terminated during site startup.
+2025-12-27T22:51:34.0501319Z Site startup probe failed after 139.4913533 seconds.
+2025-12-27T22:51:34.9711428Z Failed to start site. Revert by stopping site.
+2025-12-27T22:51:35.0864918Z Site: hanclass-frontend stopped.
+2025-12-27T22:51:37.0340159Z Site: hanclass-frontend will be blocked for 1 minutes till 12/27/2025 22:52:37
+2025-12-27T22:52:37.0221352Z Site: hanclass-frontend is unblocked.
+2025-12-27T23:04:20.2094499Z Container start method called.
+2025-12-27T23:04:20.2195008Z Establishing network.
+2025-12-27T23:04:20.2196596Z Pulling image: appsvc/node:20-lts_20251016.4.tuxprod.
+2025-12-27T23:04:20.7714640Z Container is starting.
+2025-12-27T23:04:20.7790535Z Establishing user namespace if not established already.
+2025-12-27T23:04:20.7791650Z Establishing network if not established already.
+2025-12-27T23:04:20.7792939Z Mounting volumes.
+2025-12-27T23:04:20.7803022Z Nested mountpoint 
+2025-12-27T23:04:20.8175517Z Nested mountpoint volatile/logs
+2025-12-27T23:04:20.8726921Z Nested mountpoint 
+2025-12-27T23:04:20.9392429Z Nested mountpoint 
+2025-12-27T23:04:21.0434698Z Nested mountpoint 
+2025-12-27T23:04:21.6751524Z Creating container.
+2025-12-27T23:04:21.6763504Z Creating pipes for streaming container io.
+2025-12-27T23:04:21.6851590Z Creating stdout named pipe at /podr/container/pipe/4dc980970577_hanclass-frontend/stdout_3552ad8dda454561b4cbd8dfe0e26ec5.
+2025-12-27T23:04:21.6934444Z Successfully created stdout named pipe at: /podr/container/pipe/4dc980970577_hanclass-frontend/stdout_3552ad8dda454561b4cbd8dfe0e26ec5.
+2025-12-27T23:04:21.6937828Z Opening named pipe /podr/container/pipe/4dc980970577_hanclass-frontend/stdout_3552ad8dda454561b4cbd8dfe0e26ec5 for reading in non-blocking mode.
+2025-12-27T23:04:21.6944391Z Successfully opened named pipe: /podr/container/pipe/4dc980970577_hanclass-frontend/stdout_3552ad8dda454561b4cbd8dfe0e26ec5.
+2025-12-27T23:04:21.6951371Z Successfully removed non-blocking flag from /podr/container/pipe/4dc980970577_hanclass-frontend/stdout_3552ad8dda454561b4cbd8dfe0e26ec5.
+2025-12-27T23:04:21.7107457Z Creating stderr named pipe at /podr/container/pipe/4dc980970577_hanclass-frontend/stderr_6cc0b6e371f14cc9aa96124a4316c28f.
+2025-12-27T23:04:21.7118610Z Successfully created stderr named pipe at: /podr/container/pipe/4dc980970577_hanclass-frontend/stderr_6cc0b6e371f14cc9aa96124a4316c28f.
+2025-12-27T23:04:21.7133113Z Opening named pipe /podr/container/pipe/4dc980970577_hanclass-frontend/stderr_6cc0b6e371f14cc9aa96124a4316c28f for reading in non-blocking mode.
+2025-12-27T23:04:21.7140500Z Successfully opened named pipe: /podr/container/pipe/4dc980970577_hanclass-frontend/stderr_6cc0b6e371f14cc9aa96124a4316c28f.
+2025-12-27T23:04:21.7297197Z Successfully removed non-blocking flag from /podr/container/pipe/4dc980970577_hanclass-frontend/stderr_6cc0b6e371f14cc9aa96124a4316c28f.
+2025-12-27T23:04:21.7298718Z Creating container with image: appsvc/node:20-lts_20251016.4.tuxprod from registry: 10.1.0.6:13209 and fully qualified image name: 10.1.0.6:13209/appsvc/node:20-lts_20251016.4.tuxprod
+2025-12-27T23:04:22.4116467Z Starting container: 4dc980970577_hanclass-frontend.
+2025-12-27T23:04:22.5250547Z Starting watchers and probes.
+2025-12-27T23:04:22.5265630Z Starting metrics collection.
+2025-12-27T23:04:22.5543585Z Container is running.
+2025-12-27T23:04:22.8309543Z Container start method finished after 2620 ms.
+2025-12-27T23:08:02.2159810Z Container has finished running with exit code: 1.
+2025-12-27T23:08:02.2240880Z Container is terminating. Grace period: 5 seconds.
+2025-12-27T23:08:02.2714473Z Stop and delete container. Retry count = 0
+2025-12-27T23:08:02.2792245Z Stopping container: 4dc980970577_hanclass-frontend.
+2025-12-27T23:08:02.6923252Z Deleting container: 4dc980970577_hanclass-frontend. Retry count = 0
+2025-12-27T23:08:08.7335399Z Container spec TerminationMessagePolicy  path 
+2025-12-27T23:08:08.7643099Z Container is terminated. Total time elapsed: 6515 ms.
+2025-12-27T23:08:08.7872899Z Site container: hanclass-frontend terminated during site startup.
+2025-12-27T23:08:14.2777732Z Site startup probe failed after 231.4154654 seconds.
+2025-12-27T23:08:14.8504814Z Failed to start site. Revert by stopping site.
+2025-12-27T23:08:15.5294626Z Site: hanclass-frontend stopped.
+2025-12-27T23:10:33.9210887Z Container start method called.
+2025-12-27T23:10:33.9415953Z Establishing network.
+2025-12-27T23:10:33.9417405Z Pulling image: appsvc/node:20-lts_20251016.4.tuxprod.
+2025-12-27T23:10:34.4246964Z Container is starting.
+2025-12-27T23:10:34.4249133Z Establishing user namespace if not established already.
+2025-12-27T23:10:34.4250271Z Establishing network if not established already.
+2025-12-27T23:10:34.4251545Z Mounting volumes.
+2025-12-27T23:10:34.4253211Z Nested mountpoint 
+2025-12-27T23:10:34.4893340Z Nested mountpoint volatile/logs
+2025-12-27T23:10:34.5553506Z Nested mountpoint 
+2025-12-27T23:10:34.6602244Z Nested mountpoint 
+2025-12-27T23:10:34.6967389Z Nested mountpoint 
+2025-12-27T23:10:35.4335337Z Creating container.
+2025-12-27T23:10:35.4343420Z Creating pipes for streaming container io.
+2025-12-27T23:10:35.4352403Z Creating stdout named pipe at /podr/container/pipe/ef9a2070a59d_hanclass-frontend/stdout_32b54f17e0a041ab9f54c4d7faba48a1.
+2025-12-27T23:10:35.4448160Z Successfully created stdout named pipe at: /podr/container/pipe/ef9a2070a59d_hanclass-frontend/stdout_32b54f17e0a041ab9f54c4d7faba48a1.
+2025-12-27T23:10:35.4611180Z Opening named pipe /podr/container/pipe/ef9a2070a59d_hanclass-frontend/stdout_32b54f17e0a041ab9f54c4d7faba48a1 for reading in non-blocking mode.
+2025-12-27T23:10:35.4619112Z Successfully opened named pipe: /podr/container/pipe/ef9a2070a59d_hanclass-frontend/stdout_32b54f17e0a041ab9f54c4d7faba48a1.
+2025-12-27T23:10:35.4624640Z Successfully removed non-blocking flag from /podr/container/pipe/ef9a2070a59d_hanclass-frontend/stdout_32b54f17e0a041ab9f54c4d7faba48a1.
+2025-12-27T23:10:35.4632756Z Creating stderr named pipe at /podr/container/pipe/ef9a2070a59d_hanclass-frontend/stderr_ffba00c77c3c4cb5a1d389eb27d82797.
+2025-12-27T23:10:35.4640265Z Successfully created stderr named pipe at: /podr/container/pipe/ef9a2070a59d_hanclass-frontend/stderr_ffba00c77c3c4cb5a1d389eb27d82797.
+2025-12-27T23:10:35.4703464Z Opening named pipe /podr/container/pipe/ef9a2070a59d_hanclass-frontend/stderr_ffba00c77c3c4cb5a1d389eb27d82797 for reading in non-blocking mode.
+2025-12-27T23:10:35.4706063Z Successfully opened named pipe: /podr/container/pipe/ef9a2070a59d_hanclass-frontend/stderr_ffba00c77c3c4cb5a1d389eb27d82797.
+2025-12-27T23:10:35.4708549Z Successfully removed non-blocking flag from /podr/container/pipe/ef9a2070a59d_hanclass-frontend/stderr_ffba00c77c3c4cb5a1d389eb27d82797.
+2025-12-27T23:10:35.4711018Z Creating container with image: appsvc/node:20-lts_20251016.4.tuxprod from registry: 10.1.0.6:13209 and fully qualified image name: 10.1.0.6:13209/appsvc/node:20-lts_20251016.4.tuxprod
+2025-12-27T23:10:36.2137858Z Starting container: ef9a2070a59d_hanclass-frontend.
+2025-12-27T23:10:36.2938598Z Starting watchers and probes.
+2025-12-27T23:10:36.3006460Z Starting metrics collection.
+2025-12-27T23:10:36.3009361Z Container is running.
+2025-12-27T23:10:37.3862461Z Container start method finished after 3464 ms.
+2025-12-27T23:13:20.8137247Z Container has finished running with exit code: 1.
+2025-12-27T23:13:20.8202466Z Container is terminating. Grace period: 5 seconds.
+2025-12-27T23:13:20.8552747Z Stop and delete container. Retry count = 0
+2025-12-27T23:13:20.8597651Z Stopping container: ef9a2070a59d_hanclass-frontend.
+2025-12-27T23:13:20.9809476Z Deleting container: ef9a2070a59d_hanclass-frontend. Retry count = 0
+2025-12-27T23:13:21.8472505Z Container spec TerminationMessagePolicy  path 
+2025-12-27T23:13:21.8557642Z Container is terminated. Total time elapsed: 1010 ms.
+2025-12-27T23:13:21.8584102Z Site container: hanclass-frontend terminated during site startup.
+2025-12-27T23:13:22.0352729Z Site startup probe failed after 164.5235979 seconds.
+2025-12-27T23:13:22.3416140Z Failed to start site. Revert by stopping site.
+2025-12-27T23:13:22.3703434Z Site: hanclass-frontend stopped.
+2025-12-27T23:15:13.6418748Z Container start method called.
+2025-12-27T23:15:13.6858243Z Establishing network.
+2025-12-27T23:15:13.6860932Z Pulling image: appsvc/node:20-lts_20251016.4.tuxprod.
+2025-12-27T23:15:14.1031444Z Container is starting.
+2025-12-27T23:15:14.1033336Z Establishing user namespace if not established already.
+2025-12-27T23:15:14.1034541Z Establishing network if not established already.
+2025-12-27T23:15:14.1035894Z Mounting volumes.
+2025-12-27T23:15:14.1121731Z Nested mountpoint 
+2025-12-27T23:15:14.1236697Z Nested mountpoint volatile/logs
+2025-12-27T23:15:14.2802186Z Nested mountpoint 
+2025-12-27T23:15:14.3765475Z Nested mountpoint 
+2025-12-27T23:15:14.3961912Z Nested mountpoint 
+2025-12-27T23:15:14.8579072Z Creating container.
+2025-12-27T23:15:14.9018561Z Creating pipes for streaming container io.
+2025-12-27T23:15:14.9104802Z Creating stdout named pipe at /podr/container/pipe/641aaaf7d883_hanclass-frontend/stdout_c52fbc5b66ef425f90d14d7bbcd43f88.
+2025-12-27T23:15:14.9297419Z Successfully created stdout named pipe at: /podr/container/pipe/641aaaf7d883_hanclass-frontend/stdout_c52fbc5b66ef425f90d14d7bbcd43f88.
+2025-12-27T23:15:14.9307332Z Opening named pipe /podr/container/pipe/641aaaf7d883_hanclass-frontend/stdout_c52fbc5b66ef425f90d14d7bbcd43f88 for reading in non-blocking mode.
+2025-12-27T23:15:14.9315510Z Successfully opened named pipe: /podr/container/pipe/641aaaf7d883_hanclass-frontend/stdout_c52fbc5b66ef425f90d14d7bbcd43f88.
+2025-12-27T23:15:14.9317177Z Successfully removed non-blocking flag from /podr/container/pipe/641aaaf7d883_hanclass-frontend/stdout_c52fbc5b66ef425f90d14d7bbcd43f88.
+2025-12-27T23:15:14.9318951Z Creating stderr named pipe at /podr/container/pipe/641aaaf7d883_hanclass-frontend/stderr_715ada560ad643339f0186e4744b897a.
+2025-12-27T23:15:14.9327195Z Successfully created stderr named pipe at: /podr/container/pipe/641aaaf7d883_hanclass-frontend/stderr_715ada560ad643339f0186e4744b897a.
+2025-12-27T23:15:14.9405905Z Opening named pipe /podr/container/pipe/641aaaf7d883_hanclass-frontend/stderr_715ada560ad643339f0186e4744b897a for reading in non-blocking mode.
+2025-12-27T23:15:14.9412716Z Successfully opened named pipe: /podr/container/pipe/641aaaf7d883_hanclass-frontend/stderr_715ada560ad643339f0186e4744b897a.
+2025-12-27T23:15:14.9419574Z Successfully removed non-blocking flag from /podr/container/pipe/641aaaf7d883_hanclass-frontend/stderr_715ada560ad643339f0186e4744b897a.
+2025-12-27T23:15:14.9481484Z Creating container with image: appsvc/node:20-lts_20251016.4.tuxprod from registry: 10.1.0.6:13209 and fully qualified image name: 10.1.0.6:13209/appsvc/node:20-lts_20251016.4.tuxprod
+2025-12-27T23:15:17.3701132Z Starting container: 641aaaf7d883_hanclass-frontend.
+2025-12-27T23:15:17.6012673Z Starting watchers and probes.
+2025-12-27T23:15:17.6015921Z Starting metrics collection.
+2025-12-27T23:15:17.6017343Z Container is running.
+2025-12-27T23:15:18.2770161Z Container start method finished after 4592 ms.
+2025-12-27T23:17:53.4467172Z Container has finished running with exit code: 1.
+2025-12-27T23:17:53.4469580Z Container is terminating. Grace period: 5 seconds.
+2025-12-27T23:17:53.5229610Z Stop and delete container. Retry count = 0
+2025-12-27T23:17:53.5231662Z Stopping container: 641aaaf7d883_hanclass-frontend.
+2025-12-27T23:17:54.5358150Z Deleting container: 641aaaf7d883_hanclass-frontend. Retry count = 0
+2025-12-27T23:17:55.1298344Z Container spec TerminationMessagePolicy  path 
+2025-12-27T23:17:55.1591667Z Container is terminated. Total time elapsed: 1657 ms.
+2025-12-27T23:17:55.1603730Z Site container: hanclass-frontend terminated during site startup.
+2025-12-27T23:17:55.4361411Z Site startup probe failed after 157.1489811 seconds.
+2025-12-27T23:17:56.0173568Z Failed to start site. Revert by stopping site.
+2025-12-27T23:17:56.0557086Z Site: hanclass-frontend stopped.
+2025-12-27T23:17:57.7127722Z Site: hanclass-frontend will be blocked for 1 minutes till 12/27/2025 23:18:57
+2025-12-27T23:18:57.6883145Z Site: hanclass-frontend is unblocked.
+2025-12-27T23:41:04.4064953Z Container start method called.
+2025-12-27T23:41:04.4413784Z Establishing network.
+2025-12-27T23:41:04.4448028Z Pulling image: appsvc/node:20-lts_20251016.4.tuxprod.
+2025-12-27T23:41:06.1042887Z Container is starting.
+2025-12-27T23:41:06.1045255Z Establishing user namespace if not established already.
+2025-12-27T23:41:06.1046290Z Establishing network if not established already.
+2025-12-27T23:41:06.1068856Z Mounting volumes.
+2025-12-27T23:41:06.1453849Z Nested mountpoint 
+2025-12-27T23:41:06.2693922Z Nested mountpoint volatile/logs
+2025-12-27T23:41:06.4870434Z Nested mountpoint 
+2025-12-27T23:41:06.6301876Z Nested mountpoint 
+2025-12-27T23:41:06.7852394Z Nested mountpoint 
+2025-12-27T23:41:07.6358957Z Creating container.
+2025-12-27T23:41:07.6798916Z Creating pipes for streaming container io.
+2025-12-27T23:41:07.6810574Z Creating stdout named pipe at /podr/container/pipe/eb7e9194268b_hanclass-frontend/stdout_c182134e7d614e0a89da0b7f8d11cecc.
+2025-12-27T23:41:07.6893454Z Successfully created stdout named pipe at: /podr/container/pipe/eb7e9194268b_hanclass-frontend/stdout_c182134e7d614e0a89da0b7f8d11cecc.
+2025-12-27T23:41:07.6910551Z Opening named pipe /podr/container/pipe/eb7e9194268b_hanclass-frontend/stdout_c182134e7d614e0a89da0b7f8d11cecc for reading in non-blocking mode.
+2025-12-27T23:41:07.7009537Z Successfully opened named pipe: /podr/container/pipe/eb7e9194268b_hanclass-frontend/stdout_c182134e7d614e0a89da0b7f8d11cecc.
+2025-12-27T23:41:07.7284271Z Successfully removed non-blocking flag from /podr/container/pipe/eb7e9194268b_hanclass-frontend/stdout_c182134e7d614e0a89da0b7f8d11cecc.
+2025-12-27T23:41:07.7470428Z Creating stderr named pipe at /podr/container/pipe/eb7e9194268b_hanclass-frontend/stderr_1f0ff883f3234f19a3e5ecc41836ee5e.
+2025-12-27T23:41:07.7485556Z Successfully created stderr named pipe at: /podr/container/pipe/eb7e9194268b_hanclass-frontend/stderr_1f0ff883f3234f19a3e5ecc41836ee5e.
+2025-12-27T23:41:07.7593657Z Opening named pipe /podr/container/pipe/eb7e9194268b_hanclass-frontend/stderr_1f0ff883f3234f19a3e5ecc41836ee5e for reading in non-blocking mode.
+2025-12-27T23:41:07.7873509Z Successfully opened named pipe: /podr/container/pipe/eb7e9194268b_hanclass-frontend/stderr_1f0ff883f3234f19a3e5ecc41836ee5e.
+2025-12-27T23:41:07.8225879Z Successfully removed non-blocking flag from /podr/container/pipe/eb7e9194268b_hanclass-frontend/stderr_1f0ff883f3234f19a3e5ecc41836ee5e.
+2025-12-27T23:41:07.8511624Z Creating container with image: appsvc/node:20-lts_20251016.4.tuxprod from registry: 10.1.0.6:13209 and fully qualified image name: 10.1.0.6:13209/appsvc/node:20-lts_20251016.4.tuxprod
+2025-12-27T23:41:09.9388908Z Starting container: eb7e9194268b_hanclass-frontend.
+2025-12-27T23:41:10.1116739Z Starting watchers and probes.
+2025-12-27T23:41:10.1234099Z Starting metrics collection.
+2025-12-27T23:41:10.1404284Z Container is running.
+2025-12-27T23:41:10.4475599Z Container start method finished after 6021 ms.
+2025-12-27T23:43:50.9449508Z Container has finished running with exit code: 1.
+2025-12-27T23:43:50.9475540Z Container is terminating. Grace period: 5 seconds.
+2025-12-27T23:43:50.9598490Z Stop and delete container. Retry count = 0
+2025-12-27T23:43:50.9626744Z Stopping container: eb7e9194268b_hanclass-frontend.
+2025-12-27T23:43:51.0391680Z Deleting container: eb7e9194268b_hanclass-frontend. Retry count = 0
+2025-12-27T23:43:51.6690919Z Container spec TerminationMessagePolicy  path 
+2025-12-27T23:43:51.6795572Z Container is terminated. Total time elapsed: 729 ms.
+2025-12-27T23:43:51.6810153Z Site container: hanclass-frontend terminated during site startup.
+2025-12-27T23:43:52.2408522Z Site startup probe failed after 161.679955 seconds.
+2025-12-27T23:43:52.6562932Z Failed to start site. Revert by stopping site.
+2025-12-27T23:43:52.7952337Z Site: hanclass-frontend stopped.

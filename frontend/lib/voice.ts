@@ -32,11 +32,24 @@ export class VoiceRecognition {
       return;
     }
 
-    this.recognition = new SpeechRecognition();
-    this.recognition.lang = options.lang || 'ko-KR';
-    this.recognition.continuous = options.continuous ?? true;
-    this.recognition.interimResults = options.interimResults ?? true;
-    this.recognition.maxAlternatives = options.maxAlternatives ?? 1;
+    try {
+      this.recognition = new SpeechRecognition();
+      if (!this.recognition) {
+        console.warn('Failed to create SpeechRecognition instance');
+        return;
+      }
+    } catch (error) {
+      console.error('Failed to create SpeechRecognition:', error);
+      return;
+    }
+
+    // TypeScript null 체크를 위한 assertion
+    if (this.recognition) {
+      this.recognition.lang = options.lang || 'ko-KR';
+      this.recognition.continuous = options.continuous ?? true;
+      this.recognition.interimResults = options.interimResults ?? true;
+      this.recognition.maxAlternatives = options.maxAlternatives ?? 1;
+    }
 
           this.recognition.onresult = (event: SpeechRecognitionEvent) => {
             const results = event.results;

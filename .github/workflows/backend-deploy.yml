@@ -47,8 +47,8 @@ jobs:
           context: ./backend
           push: true
           tags: ${{ env.ACR_NAME }}.azurecr.io/${{ env.ACR_IMAGE }}
-          cache-from: type=registry,ref=${{ env.ACR_NAME }}.azurecr.io/${{ env.ACR_IMAGE }}
-          cache-to: type=inline
+          cache-from: type=registry,ref=${{ env.ACR_NAME }}.azurecr.io/${{ env.ACR_IMAGE }},mode=max
+          cache-to: type=inline,mode=max
 
       - name: Deploy to Azure App Service
         uses: azure/webapps-deploy@v3

@@ -1,0 +1,316 @@
+<step title="BackgroundTrace" date="2025-12-27T12:00:21.371" instance="978831" url="/api/publish" method="POST" >
+  <step title="Cleanup Xml Logs" date="2025-12-27T12:00:21.381" /><!-- duration: 57ms -->
+  <step title="Creating temporary deployment - FetchDeploymentManager" date="2025-12-27T12:00:21.766" /><!-- duration: 10ms -->
+  <step title="Creating temporary deployment" date="2025-12-27T12:00:21.792" /><!-- duration: 259ms -->
+  <step title="Performing fetch based deployment" date="2025-12-27T12:00:22.270" >
+    <step title="Cleaning up temp folders from previous zip deployments and extracting pushed zip file /tmp/zipdeploy/634881c9-4183-4432-ba38-74082ecf3009.zip (0.02 MB) to /tmp/zipdeploy/extracted" date="2025-12-27T12:00:23.720" >
+      <step title="ChmodRecursive Process exited with total time taken in ms: 76" date="2025-12-27T12:00:23.871" /><!-- duration: 22ms -->
+    </step><!-- duration: 179ms -->
+    <step title="Deployment timer started" date="2025-12-27T12:00:25.920" >
+      <step title="DeploymentManager.Deploy(id:0192c9ee-27a2-4a37-bdb5-1083ec552a5e)" date="2025-12-27T12:00:25.956" >
+        <step title="Collecting changeset information" date="2025-12-27T12:00:26.056" /><!-- duration: 168ms -->
+        <step title="Updating submodules" date="2025-12-27T12:00:26.238" /><!-- duration: 1140ms -->
+        <step title="Determining deployment builder" date="2025-12-27T12:00:27.619" >
+          <step title="Builder is OryxBuilder" date="2025-12-27T12:00:27.642" /><!-- duration: 4ms -->
+        </step><!-- duration: 32ms -->
+        <step title="PreDeployment: context.CleanOutputPath False" date="2025-12-27T12:00:27.716" >
+          <step title="PreDeployment: context.OutputPath /home/site/wwwroot" date="2025-12-27T12:00:27.901" >
+            <step title="Building" date="2025-12-27T12:00:28.052" >
+              <step title="Executing external process" date="2025-12-27T12:00:28.376" type="process" path="bash" arguments="-c &quot;oryx build /tmp/zipdeploy/extracted -o /home/site/wwwroot --platform nodejs --platform-version 20 -p virtualenv_name= --log-file /tmp/build-debug.log  -i /tmp/8de453f8698d673 -p compress_node_modules=tar-gz | tee /tmp/oryx-build.log ; exit $PIPESTATUS &quot;" >
+                <step title="Cpu: npm install(1001,22.870s)+build.sh(885,0.070s)+oryx(862,8.180s)+tee(863,0.000s)+bash(861,0.000s)=total(31.100s)" date="2025-12-27T12:02:25.416" /><!-- duration: 76ms -->
+                <step title="bash: no io activity for 61s, prev-cpu=-1.000s, current-cpu=31.100s" date="2025-12-27T12:02:25.845" /><!-- duration: 44ms -->
+                <step title="Cpu: npm install(1001,40.390s)+build.sh(885,0.070s)+oryx(862,8.260s)+tee(863,0.000s)+bash(861,0.000s)=total(48.720s)" date="2025-12-27T12:03:26.470" /><!-- duration: 21ms -->
+                <step title="bash: no io activity for 125s, prev-cpu=31.100s, current-cpu=48.720s" date="2025-12-27T12:03:26.518" /><!-- duration: 27ms -->
+                <step title="Process dump" date="2025-12-27T12:05:20.158" exitCode="1" type="processOutput" /><!-- duration: 27ms -->
+              </step><!-- duration: 291862ms -->
+              <step title="Error occurred" date="2025-12-27T12:05:21.218" type="error" text="npm warn deprecated next@14.2.0: This version has a security vulnerability. Please upgrade to a patched version. See https://nextjs.org/blog/security-update-2025-12-11 for more details.
+Failed to compile.
+
+app/layout.tsx
+An error occurred in `next/font`.
+
+Error: Cannot find module &apos;tailwindcss&apos;
+Require stack:
+- /tmp/8de453f8698d673/node_modules/next/dist/build/webpack/config/blocks/css/plugins.js
+- /tmp/8de453f8698d673/node_modules/next/dist/build/webpack/config/blocks/css/index.js
+- /tmp/8de453f8698d673/node_modules/next/dist/build/webpack/config/index.js
+- /tmp/8de453f8698d673/node_modules/next/dist/build/webpack-config.js
+- /tmp/8de453f8698d673/node_modules/next/dist/build/webpack-build/impl.js
+- /tmp/8de453f8698d673/node_modules/next/dist/compiled/jest-worker/processChild.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)
+    at /tmp/8de453f8698d673/node_modules/next/dist/server/require-hook.js:55:36
+    at Function.resolve (node:internal/modules/helpers:193:19)
+    at loadPlugin (/tmp/8de453f8698d673/node_modules/next/dist/build/webpack/config/blocks/css/plugins.js:49:32)
+    at /tmp/8de453f8698d673/node_modules/next/dist/build/webpack/config/blocks/css/plugins.js:157:56
+    at Array.map (&lt;anonymous&gt;)
+    at getPostCssPlugins (/tmp/8de453f8698d673/node_modules/next/dist/build/webpack/config/blocks/css/plugins.js:157:47)
+    at async /tmp/8de453f8698d673/node_modules/next/dist/build/webpack/config/blocks/css/index.js:124:36
+    at async /tmp/8de453f8698d673/node_modules/next/dist/build/webpack/loaders/next-font-loader/index.js:86:33
+    at async Span.traceAsyncFn (/tmp/8de453f8698d673/node_modules/next/dist/trace/trace.js:154:20)
+
+./app/admin/api-keys/page.tsx
+Module not found: Can&apos;t resolve &apos;@/lib/api&apos;
+
+https://nextjs.org/docs/messages/module-not-found
+
+./app/conversation/page.tsx
+Module not found: Can&apos;t resolve &apos;@/components/ChatInterface&apos;
+
+https://nextjs.org/docs/messages/module-not-found
+
+./app/level-test/page.tsx
+Module not found: Can&apos;t resolve &apos;@/components/VoiceRecorder&apos;
+
+https://nextjs.org/docs/messages/module-not-found
+
+./app/word-game/page.tsx
+Module not found: Can&apos;t resolve &apos;@/components/VoiceRecorder&apos;
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+&gt; Build failed because of webpack errors
+/bin/bash -c &quot;oryx build /tmp/zipdeploy/extracted -o /home/site/wwwroot --platform nodejs --platform-version 20 -p virtualenv_name= --log-file /tmp/build-debug.log  -i /tmp/8de453f8698d673 -p compress_node_modules=tar-gz | tee /tmp/oryx-build.log ; exit $PIPESTATUS &quot;" stackTrace="   at Kudu.Core.Infrastructure.Executable.ExecuteInternal(ITracer tracer, Func`2 onWriteOutput, Func`2 onWriteError, CancellationToken token, Encoding encoding, String arguments, Object[] args) in /tmp/KuduLite/Kudu.Core/Infrastructure/Executable.cs:line 239
+   at Kudu.Core.Infrastructure.Executable.ExecuteWithProgressWriter(ILogger logger, ITracer tracer, CancellationToken token, String arguments, Object[] args) in /tmp/KuduLite/Kudu.Core/Infrastructure/Executable.cs:line 118
+   at Kudu.Core.Deployment.Generator.ExternalCommandBuilder.RunCommand(DeploymentContext context, String command, Boolean ignoreManifest, CancellationToken token, String message) in /tmp/KuduLite/Kudu.Core/Deployment/Generator/ExternalCommandBuilder.cs:line 122" /><!-- duration: 62ms -->
+              <step title="Error occurred" date="2025-12-27T12:05:21.386" type="error" text="npm warn deprecated next@14.2.0: This version has a security vulnerability. Please upgrade to a patched version. See https://nextjs.org/blog/security-update-2025-12-11 for more details.
+Failed to compile.
+
+app/layout.tsx
+An error occurred in `next/font`.
+
+Error: Cannot find module &apos;tailwindcss&apos;
+Require stack:
+- /tmp/8de453f8698d673/node_modules/next/dist/build/webpack/config/blocks/css/plugins.js
+- /tmp/8de453f8698d673/node_modules/next/dist/build/webpack/config/blocks/css/index.js
+- /tmp/8de453f8698d673/node_modules/next/dist/build/webpack/config/index.js
+- /tmp/8de453f8698d673/node_modules/next/dist/build/webpack-config.js
+- /tmp/8de453f8698d673/node_modules/next/dist/build/webpack-build/impl.js
+- /tmp/8de453f8698d673/node_modules/next/dist/compiled/jest-worker/processChild.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)
+    at /tmp/8de453f8698d673/node_modules/next/dist/server/require-hook.js:55:36
+    at Function.resolve (node:internal/modules/helpers:193:19)
+    at loadPlugin (/tmp/8de453f8698d673/node_modules/next/dist/build/webpack/config/blocks/css/plugins.js:49:32)
+    at /tmp/8de453f8698d673/node_modules/next/dist/build/webpack/config/blocks/css/plugins.js:157:56
+    at Array.map (&lt;anonymous&gt;)
+    at getPostCssPlugins (/tmp/8de453f8698d673/node_modules/next/dist/build/webpack/config/blocks/css/plugins.js:157:47)
+    at async /tmp/8de453f8698d673/node_modules/next/dist/build/webpack/config/blocks/css/index.js:124:36
+    at async /tmp/8de453f8698d673/node_modules/next/dist/build/webpack/loaders/next-font-loader/index.js:86:33
+    at async Span.traceAsyncFn (/tmp/8de453f8698d673/node_modules/next/dist/trace/trace.js:154:20)
+
+./app/admin/api-keys/page.tsx
+Module not found: Can&apos;t resolve &apos;@/lib/api&apos;
+
+https://nextjs.org/docs/messages/module-not-found
+
+./app/conversation/page.tsx
+Module not found: Can&apos;t resolve &apos;@/components/ChatInterface&apos;
+
+https://nextjs.org/docs/messages/module-not-found
+
+./app/level-test/page.tsx
+Module not found: Can&apos;t resolve &apos;@/components/VoiceRecorder&apos;
+
+https://nextjs.org/docs/messages/module-not-found
+
+./app/word-game/page.tsx
+Module not found: Can&apos;t resolve &apos;@/components/VoiceRecorder&apos;
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+&gt; Build failed because of webpack errors
+/bin/bash -c &quot;oryx build /tmp/zipdeploy/extracted -o /home/site/wwwroot --platform nodejs --platform-version 20 -p virtualenv_name= --log-file /tmp/build-debug.log  -i /tmp/8de453f8698d673 -p compress_node_modules=tar-gz | tee /tmp/oryx-build.log ; exit $PIPESTATUS &quot;" stackTrace="   at Kudu.Core.Infrastructure.Executable.ExecuteInternal(ITracer tracer, Func`2 onWriteOutput, Func`2 onWriteError, CancellationToken token, Encoding encoding, String arguments, Object[] args) in /tmp/KuduLite/Kudu.Core/Infrastructure/Executable.cs:line 239
+   at Kudu.Core.Infrastructure.Executable.ExecuteWithProgressWriter(ILogger logger, ITracer tracer, CancellationToken token, String arguments, Object[] args) in /tmp/KuduLite/Kudu.Core/Infrastructure/Executable.cs:line 118
+   at Kudu.Core.Deployment.Generator.ExternalCommandBuilder.RunCommand(DeploymentContext context, String command, Boolean ignoreManifest, CancellationToken token, String message) in /tmp/KuduLite/Kudu.Core/Deployment/Generator/ExternalCommandBuilder.cs:line 122
+   at Kudu.Core.Deployment.Generator.OryxBuilder.RunBuildCommand(IOryxArguments args, DeploymentContext context, CancellationToken token) in /tmp/KuduLite/Kudu.Core/Deployment/Generator/OryxBuilder.cs:line 295
+   at Kudu.Core.Deployment.Generator.OryxBuilder.Build(DeploymentContext context, CancellationToken token) in /tmp/KuduLite/Kudu.Core/Deployment/Generator/OryxBuilder.cs:line 136
+   at Kudu.Core.Deployment.DeploymentManager.Build(ChangeSet changeSet, ITracer tracer, IDisposable deployStep, IRepository repository, DeploymentInfoBase deploymentInfo, DeploymentAnalytics deploymentAnalytics, Boolean fullBuildByDefault, CancellationToken cancellationToken) in /tmp/KuduLite/Kudu.Core/Deployment/DeploymentManager.cs:line 771" /><!-- duration: 9ms -->
+              <step title="Using GenericDeploymentLogParser" date="2025-12-27T12:05:22.609" /><!-- duration: 36ms -->
+              <step title="Purge deployment items" date="2025-12-27T12:05:24.552" >
+                <step title="Remove c5cc4f99-, Failed, received at 12/27/2025 11:51:35" date="2025-12-27T12:05:24.638" /><!-- duration: 4ms -->
+                <step title="Remove temp-24af, Failed, received at 12/27/2025 11:51:30" date="2025-12-27T12:05:24.752" /><!-- duration: 9ms -->
+              </step><!-- duration: 217ms -->
+            </step><!-- duration: 296728ms -->
+          </step><!-- duration: 296889ms -->
+          <step title="Error occurred" date="2025-12-27T12:05:24.798" type="error" text="npm warn deprecated next@14.2.0: This version has a security vulnerability. Please upgrade to a patched version. See https://nextjs.org/blog/security-update-2025-12-11 for more details.
+Failed to compile.
+
+app/layout.tsx
+An error occurred in `next/font`.
+
+Error: Cannot find module &apos;tailwindcss&apos;
+Require stack:
+- /tmp/8de453f8698d673/node_modules/next/dist/build/webpack/config/blocks/css/plugins.js
+- /tmp/8de453f8698d673/node_modules/next/dist/build/webpack/config/blocks/css/index.js
+- /tmp/8de453f8698d673/node_modules/next/dist/build/webpack/config/index.js
+- /tmp/8de453f8698d673/node_modules/next/dist/build/webpack-config.js
+- /tmp/8de453f8698d673/node_modules/next/dist/build/webpack-build/impl.js
+- /tmp/8de453f8698d673/node_modules/next/dist/compiled/jest-worker/processChild.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)
+    at /tmp/8de453f8698d673/node_modules/next/dist/server/require-hook.js:55:36
+    at Function.resolve (node:internal/modules/helpers:193:19)
+    at loadPlugin (/tmp/8de453f8698d673/node_modules/next/dist/build/webpack/config/blocks/css/plugins.js:49:32)
+    at /tmp/8de453f8698d673/node_modules/next/dist/build/webpack/config/blocks/css/plugins.js:157:56
+    at Array.map (&lt;anonymous&gt;)
+    at getPostCssPlugins (/tmp/8de453f8698d673/node_modules/next/dist/build/webpack/config/blocks/css/plugins.js:157:47)
+    at async /tmp/8de453f8698d673/node_modules/next/dist/build/webpack/config/blocks/css/index.js:124:36
+    at async /tmp/8de453f8698d673/node_modules/next/dist/build/webpack/loaders/next-font-loader/index.js:86:33
+    at async Span.traceAsyncFn (/tmp/8de453f8698d673/node_modules/next/dist/trace/trace.js:154:20)
+
+./app/admin/api-keys/page.tsx
+Module not found: Can&apos;t resolve &apos;@/lib/api&apos;
+
+https://nextjs.org/docs/messages/module-not-found
+
+./app/conversation/page.tsx
+Module not found: Can&apos;t resolve &apos;@/components/ChatInterface&apos;
+
+https://nextjs.org/docs/messages/module-not-found
+
+./app/level-test/page.tsx
+Module not found: Can&apos;t resolve &apos;@/components/VoiceRecorder&apos;
+
+https://nextjs.org/docs/messages/module-not-found
+
+./app/word-game/page.tsx
+Module not found: Can&apos;t resolve &apos;@/components/VoiceRecorder&apos;
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+&gt; Build failed because of webpack errors
+/bin/bash -c &quot;oryx build /tmp/zipdeploy/extracted -o /home/site/wwwroot --platform nodejs --platform-version 20 -p virtualenv_name= --log-file /tmp/build-debug.log  -i /tmp/8de453f8698d673 -p compress_node_modules=tar-gz | tee /tmp/oryx-build.log ; exit $PIPESTATUS &quot;" stackTrace="   at Kudu.Core.Infrastructure.Executable.ExecuteInternal(ITracer tracer, Func`2 onWriteOutput, Func`2 onWriteError, CancellationToken token, Encoding encoding, String arguments, Object[] args) in /tmp/KuduLite/Kudu.Core/Infrastructure/Executable.cs:line 239
+   at Kudu.Core.Infrastructure.Executable.ExecuteWithProgressWriter(ILogger logger, ITracer tracer, CancellationToken token, String arguments, Object[] args) in /tmp/KuduLite/Kudu.Core/Infrastructure/Executable.cs:line 118
+   at Kudu.Core.Deployment.Generator.ExternalCommandBuilder.RunCommand(DeploymentContext context, String command, Boolean ignoreManifest, CancellationToken token, String message) in /tmp/KuduLite/Kudu.Core/Deployment/Generator/ExternalCommandBuilder.cs:line 122
+   at Kudu.Core.Deployment.Generator.OryxBuilder.RunBuildCommand(IOryxArguments args, DeploymentContext context, CancellationToken token) in /tmp/KuduLite/Kudu.Core/Deployment/Generator/OryxBuilder.cs:line 295
+   at Kudu.Core.Deployment.Generator.OryxBuilder.Build(DeploymentContext context, CancellationToken token) in /tmp/KuduLite/Kudu.Core/Deployment/Generator/OryxBuilder.cs:line 136
+   at Kudu.Core.Deployment.DeploymentManager.Build(ChangeSet changeSet, ITracer tracer, IDisposable deployStep, IRepository repository, DeploymentInfoBase deploymentInfo, DeploymentAnalytics deploymentAnalytics, Boolean fullBuildByDefault, CancellationToken cancellationToken) in /tmp/KuduLite/Kudu.Core/Deployment/DeploymentManager.cs:line 771
+   at Kudu.Core.Deployment.DeploymentManager.Build(ChangeSet changeSet, ITracer tracer, IDisposable deployStep, IRepository repository, DeploymentInfoBase deploymentInfo, DeploymentAnalytics deploymentAnalytics, Boolean fullBuildByDefault, CancellationToken cancellationToken) in /tmp/KuduLite/Kudu.Core/Deployment/DeploymentManager.cs:line 840" /><!-- duration: 10ms -->
+          <step title="Cleaning up temp files" date="2025-12-27T12:05:24.915" /><!-- duration: 3770ms -->
+          <step title="Cleaning up temp files" date="2025-12-27T12:05:28.696" /><!-- duration: 508ms -->
+          <step title="Error occurred" date="2025-12-27T12:05:29.238" type="error" text="npm warn deprecated next@14.2.0: This version has a security vulnerability. Please upgrade to a patched version. See https://nextjs.org/blog/security-update-2025-12-11 for more details.
+Failed to compile.
+
+app/layout.tsx
+An error occurred in `next/font`.
+
+Error: Cannot find module &apos;tailwindcss&apos;
+Require stack:
+- /tmp/8de453f8698d673/node_modules/next/dist/build/webpack/config/blocks/css/plugins.js
+- /tmp/8de453f8698d673/node_modules/next/dist/build/webpack/config/blocks/css/index.js
+- /tmp/8de453f8698d673/node_modules/next/dist/build/webpack/config/index.js
+- /tmp/8de453f8698d673/node_modules/next/dist/build/webpack-config.js
+- /tmp/8de453f8698d673/node_modules/next/dist/build/webpack-build/impl.js
+- /tmp/8de453f8698d673/node_modules/next/dist/compiled/jest-worker/processChild.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)
+    at /tmp/8de453f8698d673/node_modules/next/dist/server/require-hook.js:55:36
+    at Function.resolve (node:internal/modules/helpers:193:19)
+    at loadPlugin (/tmp/8de453f8698d673/node_modules/next/dist/build/webpack/config/blocks/css/plugins.js:49:32)
+    at /tmp/8de453f8698d673/node_modules/next/dist/build/webpack/config/blocks/css/plugins.js:157:56
+    at Array.map (&lt;anonymous&gt;)
+    at getPostCssPlugins (/tmp/8de453f8698d673/node_modules/next/dist/build/webpack/config/blocks/css/plugins.js:157:47)
+    at async /tmp/8de453f8698d673/node_modules/next/dist/build/webpack/config/blocks/css/index.js:124:36
+    at async /tmp/8de453f8698d673/node_modules/next/dist/build/webpack/loaders/next-font-loader/index.js:86:33
+    at async Span.traceAsyncFn (/tmp/8de453f8698d673/node_modules/next/dist/trace/trace.js:154:20)
+
+./app/admin/api-keys/page.tsx
+Module not found: Can&apos;t resolve &apos;@/lib/api&apos;
+
+https://nextjs.org/docs/messages/module-not-found
+
+./app/conversation/page.tsx
+Module not found: Can&apos;t resolve &apos;@/components/ChatInterface&apos;
+
+https://nextjs.org/docs/messages/module-not-found
+
+./app/level-test/page.tsx
+Module not found: Can&apos;t resolve &apos;@/components/VoiceRecorder&apos;
+
+https://nextjs.org/docs/messages/module-not-found
+
+./app/word-game/page.tsx
+Module not found: Can&apos;t resolve &apos;@/components/VoiceRecorder&apos;
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+&gt; Build failed because of webpack errors
+/bin/bash -c &quot;oryx build /tmp/zipdeploy/extracted -o /home/site/wwwroot --platform nodejs --platform-version 20 -p virtualenv_name= --log-file /tmp/build-debug.log  -i /tmp/8de453f8698d673 -p compress_node_modules=tar-gz | tee /tmp/oryx-build.log ; exit $PIPESTATUS &quot;" stackTrace="   at Kudu.Core.Infrastructure.Executable.ExecuteInternal(ITracer tracer, Func`2 onWriteOutput, Func`2 onWriteError, CancellationToken token, Encoding encoding, String arguments, Object[] args) in /tmp/KuduLite/Kudu.Core/Infrastructure/Executable.cs:line 239
+   at Kudu.Core.Infrastructure.Executable.ExecuteWithProgressWriter(ILogger logger, ITracer tracer, CancellationToken token, String arguments, Object[] args) in /tmp/KuduLite/Kudu.Core/Infrastructure/Executable.cs:line 118
+   at Kudu.Core.Deployment.Generator.ExternalCommandBuilder.RunCommand(DeploymentContext context, String command, Boolean ignoreManifest, CancellationToken token, String message) in /tmp/KuduLite/Kudu.Core/Deployment/Generator/ExternalCommandBuilder.cs:line 122
+   at Kudu.Core.Deployment.Generator.OryxBuilder.RunBuildCommand(IOryxArguments args, DeploymentContext context, CancellationToken token) in /tmp/KuduLite/Kudu.Core/Deployment/Generator/OryxBuilder.cs:line 295
+   at Kudu.Core.Deployment.Generator.OryxBuilder.Build(DeploymentContext context, CancellationToken token) in /tmp/KuduLite/Kudu.Core/Deployment/Generator/OryxBuilder.cs:line 136
+   at Kudu.Core.Deployment.DeploymentManager.Build(ChangeSet changeSet, ITracer tracer, IDisposable deployStep, IRepository repository, DeploymentInfoBase deploymentInfo, DeploymentAnalytics deploymentAnalytics, Boolean fullBuildByDefault, CancellationToken cancellationToken) in /tmp/KuduLite/Kudu.Core/Deployment/DeploymentManager.cs:line 771
+   at Kudu.Core.Deployment.DeploymentManager.Build(ChangeSet changeSet, ITracer tracer, IDisposable deployStep, IRepository repository, DeploymentInfoBase deploymentInfo, DeploymentAnalytics deploymentAnalytics, Boolean fullBuildByDefault, CancellationToken cancellationToken) in /tmp/KuduLite/Kudu.Core/Deployment/DeploymentManager.cs:line 840
+   at Kudu.Core.Deployment.DeploymentManager.DeployAsync(IRepository repository, ChangeSet changeSet, String deployer, Boolean clean, DeploymentInfoBase deploymentInfo, Boolean needFileUpdate, Boolean fullBuildByDefault) in /tmp/KuduLite/Kudu.Core/Deployment/DeploymentManager.cs:line 266" /><!-- duration: 9ms -->
+        </step><!-- duration: 301537ms -->
+        <step title="Reloading status file with latest updates" date="2025-12-27T12:05:29.307" >
+          <step title="WebHooksManager.PublishEventAsync: PostDeployment" date="2025-12-27T12:05:29.326" /><!-- duration: 384ms -->
+        </step><!-- duration: 421ms -->
+        <step title="Error occurred" date="2025-12-27T12:05:29.733" type="error" text="npm warn deprecated next@14.2.0: This version has a security vulnerability. Please upgrade to a patched version. See https://nextjs.org/blog/security-update-2025-12-11 for more details.
+Failed to compile.
+
+app/layout.tsx
+An error occurred in `next/font`.
+
+Error: Cannot find module &apos;tailwindcss&apos;
+Require stack:
+- /tmp/8de453f8698d673/node_modules/next/dist/build/webpack/config/blocks/css/plugins.js
+- /tmp/8de453f8698d673/node_modules/next/dist/build/webpack/config/blocks/css/index.js
+- /tmp/8de453f8698d673/node_modules/next/dist/build/webpack/config/index.js
+- /tmp/8de453f8698d673/node_modules/next/dist/build/webpack-config.js
+- /tmp/8de453f8698d673/node_modules/next/dist/build/webpack-build/impl.js
+- /tmp/8de453f8698d673/node_modules/next/dist/compiled/jest-worker/processChild.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)
+    at /tmp/8de453f8698d673/node_modules/next/dist/server/require-hook.js:55:36
+    at Function.resolve (node:internal/modules/helpers:193:19)
+    at loadPlugin (/tmp/8de453f8698d673/node_modules/next/dist/build/webpack/config/blocks/css/plugins.js:49:32)
+    at /tmp/8de453f8698d673/node_modules/next/dist/build/webpack/config/blocks/css/plugins.js:157:56
+    at Array.map (&lt;anonymous&gt;)
+    at getPostCssPlugins (/tmp/8de453f8698d673/node_modules/next/dist/build/webpack/config/blocks/css/plugins.js:157:47)
+    at async /tmp/8de453f8698d673/node_modules/next/dist/build/webpack/config/blocks/css/index.js:124:36
+    at async /tmp/8de453f8698d673/node_modules/next/dist/build/webpack/loaders/next-font-loader/index.js:86:33
+    at async Span.traceAsyncFn (/tmp/8de453f8698d673/node_modules/next/dist/trace/trace.js:154:20)
+
+./app/admin/api-keys/page.tsx
+Module not found: Can&apos;t resolve &apos;@/lib/api&apos;
+
+https://nextjs.org/docs/messages/module-not-found
+
+./app/conversation/page.tsx
+Module not found: Can&apos;t resolve &apos;@/components/ChatInterface&apos;
+
+https://nextjs.org/docs/messages/module-not-found
+
+./app/level-test/page.tsx
+Module not found: Can&apos;t resolve &apos;@/components/VoiceRecorder&apos;
+
+https://nextjs.org/docs/messages/module-not-found
+
+./app/word-game/page.tsx
+Module not found: Can&apos;t resolve &apos;@/components/VoiceRecorder&apos;
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+&gt; Build failed because of webpack errors
+/bin/bash -c &quot;oryx build /tmp/zipdeploy/extracted -o /home/site/wwwroot --platform nodejs --platform-version 20 -p virtualenv_name= --log-file /tmp/build-debug.log  -i /tmp/8de453f8698d673 -p compress_node_modules=tar-gz | tee /tmp/oryx-build.log ; exit $PIPESTATUS &quot;" stackTrace="   at Kudu.Core.Infrastructure.Executable.ExecuteInternal(ITracer tracer, Func`2 onWriteOutput, Func`2 onWriteError, CancellationToken token, Encoding encoding, String arguments, Object[] args) in /tmp/KuduLite/Kudu.Core/Infrastructure/Executable.cs:line 239
+   at Kudu.Core.Infrastructure.Executable.ExecuteWithProgressWriter(ILogger logger, ITracer tracer, CancellationToken token, String arguments, Object[] args) in /tmp/KuduLite/Kudu.Core/Infrastructure/Executable.cs:line 118
+   at Kudu.Core.Deployment.Generator.ExternalCommandBuilder.RunCommand(DeploymentContext context, String command, Boolean ignoreManifest, CancellationToken token, String message) in /tmp/KuduLite/Kudu.Core/Deployment/Generator/ExternalCommandBuilder.cs:line 122
+   at Kudu.Core.Deployment.Generator.OryxBuilder.RunBuildCommand(IOryxArguments args, DeploymentContext context, CancellationToken token) in /tmp/KuduLite/Kudu.Core/Deployment/Generator/OryxBuilder.cs:line 295
+   at Kudu.Core.Deployment.Generator.OryxBuilder.Build(DeploymentContext context, CancellationToken token) in /tmp/KuduLite/Kudu.Core/Deployment/Generator/OryxBuilder.cs:line 136
+   at Kudu.Core.Deployment.DeploymentManager.Build(ChangeSet changeSet, ITracer tracer, IDisposable deployStep, IRepository repository, DeploymentInfoBase deploymentInfo, DeploymentAnalytics deploymentAnalytics, Boolean fullBuildByDefault, CancellationToken cancellationToken) in /tmp/KuduLite/Kudu.Core/Deployment/DeploymentManager.cs:line 771
+   at Kudu.Core.Deployment.DeploymentManager.Build(ChangeSet changeSet, ITracer tracer, IDisposable deployStep, IRepository repository, DeploymentInfoBase deploymentInfo, DeploymentAnalytics deploymentAnalytics, Boolean fullBuildByDefault, CancellationToken cancellationToken) in /tmp/KuduLite/Kudu.Core/Deployment/DeploymentManager.cs:line 840
+   at Kudu.Core.Deployment.DeploymentManager.DeployAsync(IRepository repository, ChangeSet changeSet, String deployer, Boolean clean, DeploymentInfoBase deploymentInfo, Boolean needFileUpdate, Boolean fullBuildByDefault) in /tmp/KuduLite/Kudu.Core/Deployment/DeploymentManager.cs:line 266" /><!-- duration: 7ms -->
+        <step title="Marking deployment as failed and cleaning up the temp deployment" date="2025-12-27T12:05:29.818" /><!-- duration: 16ms -->
+      </step><!-- duration: 304102ms -->
+      <step title="Error occurred" date="2025-12-27T12:05:30.101" type="error" text="One or more errors occurred. (Deployment failed)" stackTrace="   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task.Wait(Int32 millisecondsTimeout, CancellationToken cancellationToken)
+   at System.Threading.Tasks.Task.Wait()
+   at Kudu.Core.Deployment.FetchDeploymentManager.&lt;&gt;c__DisplayClass22_1.&lt;PerformBackgroundDeployment&gt;b__3() in /tmp/KuduLite/Kudu.Core/Deployment/FetchDeploymentManager.cs:line 414
+   at Kudu.Contracts.Infrastructure.LockExtensions.TryLockOperation(IOperationLock lockObj, Action operation, String operationName, TimeSpan timeout) in /tmp/KuduLite/Kudu.Contracts/Infrastructure/LockExtensions.cs:line 34
+   at Kudu.Contracts.Infrastructure.LockExtensions.LockOperation(IOperationLock lockObj, Action operation, String operationName, TimeSpan timeout) in /tmp/KuduLite/Kudu.Contracts/Infrastructure/LockExtensions.cs:line 46
+   at Kudu.Core.Deployment.FetchDeploymentManager.&lt;&gt;c__DisplayClass22_0.&lt;PerformBackgroundDeployment&gt;b__1() in /tmp/KuduLite/Kudu.Core/Deployment/FetchDeploymentManager.cs:line 393" innerText="Deployment failed" innerStackTrace="   at Kudu.Core.Deployment.DeploymentManager.DeployAsync(IRepository repository, ChangeSet changeSet, String deployer, Boolean clean, DeploymentInfoBase deploymentInfo, Boolean needFileUpdate, Boolean fullBuildByDefault) in /tmp/KuduLite/Kudu.Core/Deployment/DeploymentManager.cs:line 307
+   at Kudu.Core.Deployment.FetchDeploymentManager.PerformDeployment(DeploymentInfoBase deploymentInfo, IDisposable tempDeployment, ChangeSet tempChangeSet, DeployStatusApiResult updateStatusObj) in /tmp/KuduLite/Kudu.Core/Deployment/FetchDeploymentManager.cs:line 230" /><!-- duration: 6ms -->
+    </step><!-- duration: 304194ms -->

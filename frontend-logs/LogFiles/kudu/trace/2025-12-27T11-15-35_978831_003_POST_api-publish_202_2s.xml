@@ -1,0 +1,16 @@
+<step title="Incoming Request" date="2025-12-27T11:15:35.356" instance="978831" url="/api/publish?type=zip&amp;async=True" method="POST" type="request" pid="836,1,22" Accept="*/*" Host="hanclass-frontend.scm.azurewebsites.net" User-Agent="AZURECLI/2.81.0 (HOMEBREW)" Accept-Encoding="gzip, deflate" Authorization="Bea..." Cache-Control="no-cache" Content-Type="application/octet-stream" Cookie="ARRAffinity=978831a12b989a546f04a417ac73afab2417e3847711476ee09674c03af7af1b; ARRAffinitySameSite=978831a12b989a546f04a417ac73afab2417e3847711476ee09674c03af7af1b" Content-Length="26028" x-ms-client-request-id="59a3f0ea-e315-11f0-b24d-3296fc4ad343" x-ms-artifact-checksum="6ed8c828e4b1515d4e4634d9d8272a74780e381f0ab3d8bf702498769b70b053" X-ARR-LOG-ID="59a3f0ea-e315-11f0-b24d-3296fc4ad343" CLIENT-IP="221.140.73.24:61302" X-SITE-DEPLOYMENT-ID="hanclass-frontend" WAS-DEFAULT-HOSTNAME="hanclass-frontend.scm.azurewebsites.net" X-Forwarded-Proto="https" X-AppService-Proto="https" X-Forwarded-TlsVersion="1.3" X-WAWS-Unencoded-URL="/api/publish?type=zip&amp;async=True" X-Client-IP="221.140.73.24" X-Client-Port="61302" >
+  <step title="OneDeploy" date="2025-12-27T11:15:35.531" >
+    <step title="None repository commit" date="2025-12-27T11:15:35.607" >
+      <step title="Commit id: c5bd9719-0fa9-4c6d-9e8b-970535880138" date="2025-12-27T11:15:35.633" Message="N/A" AuthorName="N/A" AuthorEmail="N/A" /><!-- duration: 22ms -->
+    </step><!-- duration: 103ms -->
+    <step title="Starting PushDeployAsync" date="2025-12-27T11:15:35.732" /><!-- duration: 11ms -->
+    <step title="Writing artifact to /tmp/zipdeploy/921b841c-1c77-4d6a-b370-32ad86456e82.zip" date="2025-12-27T11:15:35.826" >
+      <step title="Writing multipart request body to /tmp/zipdeploy/921b841c-1c77-4d6a-b370-32ad86456e82.zip" date="2025-12-27T11:15:35.852" /><!-- duration: 23ms -->
+    </step><!-- duration: 224ms -->
+    <step title="Start deployment in the background" date="2025-12-27T11:15:36.122" >
+      <step title="Acquiring Deployment Lock" date="2025-12-27T11:15:36.286" /><!-- duration: 26ms -->
+      <step title="Acquired Deployment Lock" date="2025-12-27T11:15:36.520" /><!-- duration: 20ms -->
+    </step><!-- duration: 690ms -->
+  </step><!-- duration: 1364ms -->
+  <step title="Outgoing response" date="2025-12-27T11:15:36.944" type="response" statusCode="202" statusText="Accepted" /><!-- duration: 27ms -->
+</step><!-- duration: 1624ms -->

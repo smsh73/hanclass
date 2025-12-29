@@ -1,0 +1,40 @@
+<step title="Incoming Request" date="2025-12-27T09:09:36.440" instance="978831" url="/api/publish?type=zip&amp;async=False" method="POST" type="request" pid="833,1,25" Accept="*/*" Host="hanclass-frontend.scm.azurewebsites.net" User-Agent="AZURECLI/2.81.0 (HOMEBREW)" Accept-Encoding="gzip, deflate" Authorization="Bea..." Cache-Control="no-cache" Content-Type="application/octet-stream" Cookie="ARRAffinity=978831a12b989a546f04a417ac73afab2417e3847711476ee09674c03af7af1b; ARRAffinitySameSite=978831a12b989a546f04a417ac73afab2417e3847711476ee09674c03af7af1b" Content-Length="26538" x-ms-client-request-id="c0c07710-e303-11f0-9125-3296fc4ad343" x-ms-artifact-checksum="473e66f07e2b562bea57175cc728b46849d99f5762de90be15c0d4875afd7931" X-ARR-LOG-ID="c0c07710-e303-11f0-9125-3296fc4ad343" CLIENT-IP="221.140.73.24:52047" X-SITE-DEPLOYMENT-ID="hanclass-frontend" WAS-DEFAULT-HOSTNAME="hanclass-frontend.scm.azurewebsites.net" X-Forwarded-Proto="https" X-AppService-Proto="https" X-Forwarded-TlsVersion="1.3" X-WAWS-Unencoded-URL="/api/publish?type=zip&amp;async=False" X-Client-IP="221.140.73.24" X-Client-Port="52047" >
+  <step title="OneDeploy" date="2025-12-27T09:09:36.608" >
+    <step title="None repository commit" date="2025-12-27T09:09:36.638" >
+      <step title="Commit id: 3f924cfb-bf26-4c0a-a2c1-d1f916133285" date="2025-12-27T09:09:36.648" Message="N/A" AuthorName="N/A" AuthorEmail="N/A" /><!-- duration: 7ms -->
+    </step><!-- duration: 21ms -->
+    <step title="Starting PushDeployAsync" date="2025-12-27T09:09:36.671" /><!-- duration: 5ms -->
+    <step title="Writing artifact to /tmp/zipdeploy/7784e6db-122e-45fe-ac0d-f3b80dabb69d.zip" date="2025-12-27T09:09:36.713" >
+      <step title="Writing multipart request body to /tmp/zipdeploy/7784e6db-122e-45fe-ac0d-f3b80dabb69d.zip" date="2025-12-27T09:09:36.719" /><!-- duration: 4ms -->
+    </step><!-- duration: 114ms -->
+    <step title="Attempting to fetch target branch HEAD" date="2025-12-27T09:09:36.870" /><!-- duration: 5ms -->
+    <step title="Acquiring Deployment Lock" date="2025-12-27T09:09:36.881" /><!-- duration: 6ms -->
+    <step title="Acquired Deployment Lock" date="2025-12-27T09:09:36.979" /><!-- duration: 6ms -->
+    <step title="Performing fetch based deployment" date="2025-12-27T09:09:36.995" >
+      <step title="Creating temporary deployment" date="2025-12-27T09:09:37.001" /><!-- duration: 92ms -->
+      <step title="Releasing Deployment Lock" date="2025-12-27T09:09:38.525" /><!-- duration: 84ms -->
+      <step title="Cleaning up temp folders from previous zip deployments and extracting pushed zip file /tmp/zipdeploy/7784e6db-122e-45fe-ac0d-f3b80dabb69d.zip (0.03 MB) to /tmp/zipdeploy/extracted" date="2025-12-27T09:09:38.895" >
+        <step title="ChmodRecursive Process exited with total time taken in ms: 103" date="2025-12-27T09:09:39.306" /><!-- duration: 12ms -->
+      </step><!-- duration: 432ms -->
+      <step title="None repository commit" date="2025-12-27T09:09:39.336" >
+        <step title="Commit id: 3f924cfb-bf26-4c0a-a2c1-d1f916133285" date="2025-12-27T09:09:39.345" Message="OneDeploy" AuthorName="N/A" AuthorEmail="N/A" /><!-- duration: 4ms -->
+      </step><!-- duration: 18ms -->
+      <step title="Deployment timer started" date="2025-12-27T09:09:42.434" >
+        <step title="DeploymentManager.Deploy(id:3f924cfb-bf26-4c0a-a2c1-d1f916133285)" date="2025-12-27T09:09:42.496" >
+          <step title="Collecting changeset information" date="2025-12-27T09:09:42.574" /><!-- duration: 248ms -->
+          <step title="Updating submodules" date="2025-12-27T09:09:42.868" /><!-- duration: 1233ms -->
+          <step title="Determining deployment builder" date="2025-12-27T09:09:45.172" >
+            <step title="Builder is OryxBuilder" date="2025-12-27T09:09:45.274" /><!-- duration: 14ms -->
+          </step><!-- duration: 124ms -->
+          <step title="PreDeployment: context.CleanOutputPath False" date="2025-12-27T09:09:45.420" >
+            <step title="PreDeployment: context.OutputPath /home/site/wwwroot" date="2025-12-27T09:09:45.809" >
+              <step title="Building" date="2025-12-27T09:09:46.163" >
+                <step title="Executing external process" date="2025-12-27T09:09:47.068" type="process" path="bash" arguments="-c &quot;oryx build /tmp/zipdeploy/extracted -o /home/site/wwwroot --platform nodejs --platform-version 20 -p virtualenv_name= --log-file /tmp/build-debug.log  -i /tmp/8de4527adb17ef3 -p compress_node_modules=tar-gz | tee /tmp/oryx-build.log ; exit $PIPESTATUS &quot;" >
+                  <step title="Cpu: npm install(1100,17.640s)+build.sh(980,0.080s)+oryx(948,10.250s)+tee(949,0.000s)+bash(947,0.000s)=total(27.930s)" date="2025-12-27T09:12:42.804" /><!-- duration: 107ms -->
+                  <step title="bash: no io activity for 60s, prev-cpu=-1.000s, current-cpu=27.930s" date="2025-12-27T09:12:43.682" /><!-- duration: 94ms -->
+                  <step title="Cpu: npm install(1100,27.840s)+build.sh(980,0.080s)+oryx(948,10.330s)+tee(949,0.000s)+bash(947,0.000s)=total(38.250s)" date="2025-12-27T09:13:44.170" /><!-- duration: 34ms -->
+                  <step title="bash: no io activity for 128s, prev-cpu=27.930s, current-cpu=38.250s" date="2025-12-27T09:13:44.244" /><!-- duration: 35ms -->
+                  <step title="Cpu: npm install(1100,48.870s)+build.sh(980,0.080s)+oryx(948,10.350s)+tee(949,0.000s)+bash(947,0.000s)=total(59.300s)" date="2025-12-27T09:14:44.640" /><!-- duration: 19ms -->
+                  <step title="bash: no io activity for 189s, prev-cpu=38.250s, current-cpu=59.300s" date="2025-12-27T09:14:44.688" /><!-- duration: 38ms -->
+                  <step title="Cpu: npm install(1100,75.750s)+build.sh(980,0.080s)+oryx(948,10.500s)+tee(949,0.000s)+bash(947,0.000s)=total(86.290s)" date="2025-12-27T09:15:46.345" /><!-- duration: 33ms -->
+                  <step title="bash: no io activity for 249s, prev-cpu=59.300s, current-cpu=86.290s" date="2025-12-27T09:15:46.418" /><!-- duration: 378ms -->

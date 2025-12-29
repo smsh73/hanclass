@@ -1,0 +1,13 @@
+<step title="Incoming Request" date="2025-12-27T10:27:00.658" instance="978831" url="/api/publish?type=zip&amp;async=True" method="POST" type="request" pid="833,1,41" Accept="*/*" Host="hanclass-frontend.scm.azurewebsites.net" User-Agent="AZURECLI/2.81.0 (HOMEBREW)" Accept-Encoding="gzip, deflate" Authorization="Bea..." Cache-Control="no-cache" Content-Type="application/octet-stream" Cookie="ARRAffinity=978831a12b989a546f04a417ac73afab2417e3847711476ee09674c03af7af1b; ARRAffinitySameSite=978831a12b989a546f04a417ac73afab2417e3847711476ee09674c03af7af1b" Content-Length="26049" x-ms-client-request-id="913cc25e-e30e-11f0-b7c4-3296fc4ad343" x-ms-artifact-checksum="8ed8541180142debbd6b6d6492ca26ab815dfa3136d07b94132160183a18daa4" X-ARR-LOG-ID="913cc25e-e30e-11f0-b7c4-3296fc4ad343" CLIENT-IP="221.140.73.24:53928" X-SITE-DEPLOYMENT-ID="hanclass-frontend" WAS-DEFAULT-HOSTNAME="hanclass-frontend.scm.azurewebsites.net" X-Forwarded-Proto="https" X-AppService-Proto="https" X-Forwarded-TlsVersion="1.3" X-WAWS-Unencoded-URL="/api/publish?type=zip&amp;async=True" X-Client-IP="221.140.73.24" X-Client-Port="53928" >
+  <step title="OneDeploy" date="2025-12-27T10:27:01.759" >
+    <step title="Starting PushDeployAsync" date="2025-12-27T10:27:01.898" /><!-- duration: 16ms -->
+    <step title="Writing artifact to /tmp/zipdeploy/1ffcded8-5a04-4c73-b5c5-ba2b7027d3b6.zip" date="2025-12-27T10:27:01.960" >
+      <step title="Writing multipart request body to /tmp/zipdeploy/1ffcded8-5a04-4c73-b5c5-ba2b7027d3b6.zip" date="2025-12-27T10:27:02.019" /><!-- duration: 20ms -->
+    </step><!-- duration: 663ms -->
+    <step title="Start deployment in the background" date="2025-12-27T10:27:02.654" >
+      <step title="Acquiring Deployment Lock" date="2025-12-27T10:27:03.058" /><!-- duration: 85ms -->
+      <step title="Acquired Deployment Lock" date="2025-12-27T10:27:03.474" /><!-- duration: 112ms -->
+    </step><!-- duration: 1538ms -->
+  </step><!-- duration: 2563ms -->
+  <step title="Outgoing response" date="2025-12-27T10:27:04.360" type="response" statusCode="202" statusText="Accepted" /><!-- duration: 10ms -->
+</step><!-- duration: 3722ms -->

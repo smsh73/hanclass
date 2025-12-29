@@ -47,8 +47,8 @@ jobs:
           context: ./frontend
           push: true
           tags: ${{ env.ACR_NAME }}.azurecr.io/${{ env.ACR_IMAGE }}
-          cache-from: type=registry,ref=${{ env.ACR_NAME }}.azurecr.io/${{ env.ACR_IMAGE }}
-          cache-to: type=inline
+          cache-from: type=registry,ref=${{ env.ACR_NAME }}.azurecr.io/${{ env.ACR_IMAGE }},mode=max
+          cache-to: type=inline,mode=max
           build-args: |
             NEXT_PUBLIC_API_URL=https://hanclass-backend.azurewebsites.net
 
