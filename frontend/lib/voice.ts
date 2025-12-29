@@ -186,7 +186,7 @@ export class VoiceSynthesis {
       }
     };
 
-    utterance.onerror = (event) => {
+    utterance.onerror = (event: SpeechSynthesisErrorEvent) => {
       this.isSpeaking = false;
       if (this.onErrorCallback) {
         this.onErrorCallback(new Error(`Speech synthesis error: ${event.error}`));
