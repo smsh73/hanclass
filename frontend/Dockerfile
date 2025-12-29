@@ -62,18 +62,20 @@ RUN adduser --system --uid 1001 nextjs
 COPY --from=builder /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
-# standalone 디렉토리 복사 (있으면)
-RUN --mount=from=builder,source=/app/.next/standalone,target=/tmp/standalone \
-    if [ -d /tmp/standalone ]; then \
-      cp -r /tmp/standalone/* ./ && \
-      echo "Standalone build copied"; \
+# standalone 디렉토리 복사 시도 (있으면 사용, 없으면 일반 빌드)
+COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./standalone-temp 2>/dev/null || true
+
+# standalone이 있으면 사용, 없으면 일반 빌드 파일 복사
+RUN if [ -d "./standalone-temp" ] && [ "$(ls -A ./standalone-temp)" ]; then \
+      cp -r ./standalone-temp/* ./ && \
+      rm -rf ./standalone-temp && \
+      echo "✓ Standalone build copied successfully"; \
     else \
-      echo "No standalone build, copying server files"; \
-      mkdir -p .next/server && \
-      cp -r /app/.next/server/* .next/server/ 2>/dev/null || true; \
+      echo "⚠ Standalone build not found, using standard build"; \
+      rm -rf ./standalone-temp 2>/dev/null || true; \
     fi
 
-# standalone이 없으면 필요한 파일 복사
+# standalone이 없을 때를 대비한 파일 복사
 COPY --from=builder --chown=nextjs:nodejs /app/.next/server ./.next/server
 COPY --from=builder --chown=nextjs:nodejs /app/node_modules ./node_modules
 COPY --from=builder --chown=nextjs:nodejs /app/package.json ./package.json
