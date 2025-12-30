@@ -63,11 +63,11 @@ RUN adduser --system --uid 1001 nextjs
 RUN mkdir -p ./public
 # public 디렉토리 복사 시도 (없으면 빈 디렉토리 유지)
 RUN --mount=from=builder,source=/app/public,target=/tmp/public \
-    if [ -d "/tmp/public" ] && [ "$(ls -A /tmp/public 2>/dev/null)" ]; then \
-      cp -r /tmp/public/* ./public/ && \
+    if [ -d "/tmp/public" ] && [ -n "$(find /tmp/public -mindepth 1 -maxdepth 1 2>/dev/null | head -1)" ]; then \
+      cp -r /tmp/public/. ./public/ 2>/dev/null || true && \
       echo "✓ Public directory copied"; \
     else \
-      echo "⚠ Public directory not found, using empty directory"; \
+      echo "⚠ Public directory not found or empty, using empty directory"; \
     fi
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
@@ -79,8 +79,8 @@ COPY --from=builder --chown=nextjs:nodejs /app/package.json ./package.json
 # standalone 디렉토리 복사 시도 (있으면 덮어쓰기)
 # 빌더에서 standalone 존재 여부 확인 후 복사
 RUN --mount=from=builder,source=/app/.next,target=/tmp/next \
-    if [ -d "/tmp/next/standalone" ]; then \
-      cp -r /tmp/next/standalone/* ./ && \
+    if [ -d "/tmp/next/standalone" ] && [ -n "$(find /tmp/next/standalone -mindepth 1 -maxdepth 1 2>/dev/null | head -1)" ]; then \
+      cp -r /tmp/next/standalone/. ./ 2>/dev/null || true && \
       echo "✓ Standalone build copied successfully"; \
     else \
       echo "⚠ Standalone build not found, using standard build"; \
