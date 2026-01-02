@@ -71,6 +71,10 @@ RUN --mount=from=builder,source=/app/public,target=/tmp/public \
     fi
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
+# Copy startup.sh if it exists (for Azure App Service)
+COPY --from=builder --chown=nextjs:nodejs /app/startup.sh ./startup.sh 2>/dev/null || echo "startup.sh not found, skipping..."
+RUN chmod +x ./startup.sh 2>/dev/null || true
+
 # 먼저 일반 빌드 파일 복사 (항상 필요)
 COPY --from=builder --chown=nextjs:nodejs /app/.next/server ./.next/server
 COPY --from=builder --chown=nextjs:nodejs /app/node_modules ./node_modules
@@ -93,6 +97,7 @@ EXPOSE 8080
 ENV PORT=8080
 ENV HOSTNAME="0.0.0.0"
 
-# standalone이 있으면 server.js 사용, 없으면 next start 사용
-CMD ["sh", "-c", "if [ -f server.js ]; then echo 'Starting standalone server...' && node server.js; else echo 'Starting Next.js server...' && npm start; fi"]
+# standalone이 있으면 server.js 사용, 없으면 npm start 사용
+# Azure App Service가 startup.sh를 실행하려고 하면, startup.sh가 있으면 사용하고 없으면 직접 실행
+CMD ["sh", "-c", "if [ -f ./startup.sh ]; then echo 'Using startup.sh...' && ./startup.sh; elif [ -f server.js ]; then echo 'Starting standalone server...' && node server.js; else echo 'Starting Next.js server...' && npm start; fi"]
 
