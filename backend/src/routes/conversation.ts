@@ -50,6 +50,19 @@ router.post('/start', async (req, res, next) => {
       throw new AppError('Topic is required', 400);
     }
 
+    // userId는 선택사항 (없어도 대화 가능)
+    if (userId) {
+      // userId가 있으면 사용자 정보 확인 (선택사항)
+      try {
+        const userResult = await query('SELECT * FROM users WHERE id = $1', [userId]);
+        if (userResult.rows.length === 0) {
+          // 사용자가 없어도 대화는 계속 진행
+        }
+      } catch (error) {
+        // 사용자 조회 실패해도 대화는 계속 진행
+      }
+    }
+
     const systemPrompt = `당신은 한국어를 가르치는 친절한 AI 선생님입니다. 
 학생과 자연스럽고 대화하듯이 한국어를 가르쳐주세요.
 학생의 레벨: ${level || 'beginner'}

@@ -41,12 +41,22 @@ export default function WordGamePage() {
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/api/word-game/words?limit=100`
       );
+      
+      if (!response.ok) {
+        throw new Error('단어를 불러오는데 실패했습니다.');
+      }
+
       const data = await response.json();
       if (data.success) {
-        setWords(data.words);
+        setWords(data.words || []);
+      } else {
+        throw new Error(data.message || '단어를 불러오는데 실패했습니다.');
       }
     } catch (error) {
       console.error('Failed to fetch words:', error);
+      setWords([]);
+      const errorMessage = error instanceof Error ? error.message : '단어를 불러오는데 실패했습니다.';
+      alert(errorMessage);
     }
   };
 

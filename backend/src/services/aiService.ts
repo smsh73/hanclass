@@ -144,7 +144,7 @@ class AIService {
       ? this.fallbackProviders
       : (['openai', 'claude', 'gemini'] as AIProvider[]);
 
-    const lastError: Error | null = null;
+    let lastError: Error | null = null;
 
     for (const provider of providers) {
       try {
@@ -153,15 +153,18 @@ class AIService {
         return response;
       } catch (error: any) {
         logger.warn(`AI provider ${provider} failed, trying fallback`, {
-          error: error.message,
+          error: error?.message || String(error),
         });
         if (error instanceof Error) {
-          // Continue to next provider
+          lastError = error;
+        } else {
+          lastError = new Error(String(error));
         }
+        // Continue to next provider
       }
     }
 
-    throw new Error('All AI providers failed');
+    throw lastError || new Error('All AI providers failed');
   }
 
   private async callProvider(

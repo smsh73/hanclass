@@ -17,6 +17,10 @@ export default function HomePage() {
       setUserName(savedName);
       setShowNameInput(false);
     }
+  }, []);
+
+  useEffect(() => {
+    if (!userName) return;
 
     // 활동 감지
     const updateActivity = () => {
@@ -35,7 +39,13 @@ export default function HomePage() {
       const diff = now.getTime() - lastActivity.getTime();
       if (diff > 30 * 60 * 1000 && userName) {
         // 30분 무인터랙션 시 로그아웃
-        handleLogout();
+        if (typeof window !== 'undefined') {
+          sessionStorage.removeItem('userName');
+          sessionStorage.removeItem('sessionId');
+        }
+        setUserName('');
+        setShowNameInput(true);
+        router.push('/');
       }
     }, 60000); // 1분마다 체크
 
@@ -47,7 +57,7 @@ export default function HomePage() {
       }
       clearInterval(checkTimeout);
     };
-  }, [userName, lastActivity]);
+  }, [userName, lastActivity, router]);
 
   const handleNameSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

@@ -61,8 +61,27 @@ export default function LevelTestPage() {
   const handleSubmit = async () => {
     setIsSubmitting(true);
     try {
-      // Get user ID from session (simplified)
-      const userId = 1; // TODO: Get from session
+      // 세션에서 userId 가져오기
+      const sessionId = typeof window !== 'undefined' ? sessionStorage.getItem('sessionId') : null;
+      let userId: number | null = null;
+      
+      if (sessionId) {
+        try {
+          const userResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/session/${sessionId}`);
+          const userData = await userResponse.json();
+          if (userData.success && userData.user) {
+            userId = userData.user.id;
+          }
+        } catch (error) {
+          console.error('Failed to get user from session:', error);
+        }
+      }
+
+      if (!userId) {
+        alert('세션이 만료되었습니다. 다시 로그인해주세요.');
+        router.push('/');
+        return;
+      }
 
       const answerArray = Object.entries(answers).map(([questionId, answer]) => ({
         questionId: parseInt(questionId),
@@ -76,12 +95,21 @@ export default function LevelTestPage() {
         body: JSON.stringify({ userId, answers: answerArray }),
       });
 
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({ message: '테스트 제출에 실패했습니다.' }));
+        throw new Error(errorData.message || '테스트 제출에 실패했습니다.');
+      }
+
       const data = await response.json();
       if (data.success) {
         setResult(data.result);
+      } else {
+        throw new Error(data.message || '테스트 제출에 실패했습니다.');
       }
     } catch (error) {
       console.error('Failed to submit test:', error);
+      const errorMessage = error instanceof Error ? error.message : '테스트 제출에 실패했습니다.';
+      alert(errorMessage);
     } finally {
       setIsSubmitting(false);
     }

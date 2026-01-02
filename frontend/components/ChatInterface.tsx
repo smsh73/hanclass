@@ -38,15 +38,36 @@ export default function ChatInterface({ topic, level = 'beginner', onClose }: Ch
   const startConversation = async () => {
     setIsLoading(true);
     try {
+      // 세션에서 userId 가져오기
+      const sessionId = typeof window !== 'undefined' ? sessionStorage.getItem('sessionId') : null;
+      let userId: number | null = null;
+      
+      if (sessionId) {
+        try {
+          const userResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/session/${sessionId}`);
+          const userData = await userResponse.json();
+          if (userData.success && userData.user) {
+            userId = userData.user.id;
+          }
+        } catch (error) {
+          console.error('Failed to get user from session:', error);
+        }
+      }
+
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/conversation/start`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           topic,
           level,
-          userId: 1, // TODO: Get from session
+          userId: userId || undefined, // userId가 없으면 undefined
         }),
       });
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({ message: '대화 시작에 실패했습니다.' }));
+        throw new Error(errorData.message || '대화 시작에 실패했습니다.');
+      }
 
       const data = await response.json();
       if (data.success) {
@@ -57,9 +78,19 @@ export default function ChatInterface({ topic, level = 'beginner', onClose }: Ch
           timestamp: new Date(),
         };
         setMessages([aiMessage]);
+      } else {
+        throw new Error(data.message || '대화 시작에 실패했습니다.');
       }
     } catch (error) {
       console.error('Failed to start conversation:', error);
+      const errorMessage = error instanceof Error ? error.message : '대화 시작에 실패했습니다.';
+      const errorMsg: Message = {
+        id: Date.now().toString(),
+        role: 'assistant',
+        content: `오류: ${errorMessage}`,
+        timestamp: new Date(),
+      };
+      setMessages([errorMsg]);
     } finally {
       setIsLoading(false);
     }
@@ -79,7 +110,8 @@ export default function ChatInterface({ topic, level = 'beginner', onClose }: Ch
     setIsLoading(true);
 
     try {
-      const conversationHistory = messages.map((msg) => ({
+      // 현재 메시지를 포함한 전체 대화 히스토리
+      const conversationHistory = [...messages, userMessage].map((msg) => ({
         role: msg.role,
         content: msg.content,
       }));
@@ -95,6 +127,11 @@ export default function ChatInterface({ topic, level = 'beginner', onClose }: Ch
         }),
       });
 
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({ message: '메시지 전송에 실패했습니다.' }));
+        throw new Error(errorData.message || '메시지 전송에 실패했습니다.');
+      }
+
       const data = await response.json();
       if (data.success) {
         const aiMessage: Message = {
@@ -104,9 +141,19 @@ export default function ChatInterface({ topic, level = 'beginner', onClose }: Ch
           timestamp: new Date(),
         };
         setMessages((prev) => [...prev, aiMessage]);
+      } else {
+        throw new Error(data.message || '메시지 전송에 실패했습니다.');
       }
     } catch (error) {
       console.error('Failed to send message:', error);
+      const errorMessage = error instanceof Error ? error.message : '메시지 전송에 실패했습니다.';
+      const errorMsg: Message = {
+        id: (Date.now() + 1).toString(),
+        role: 'assistant',
+        content: `오류: ${errorMessage}`,
+        timestamp: new Date(),
+      };
+      setMessages((prev) => [...prev, errorMsg]);
     } finally {
       setIsLoading(false);
     }
