@@ -75,8 +75,10 @@ async function startServer() {
     await aiService.initialize();
     logger.info('AI service initialized successfully');
 
-    httpServer.listen(PORT, () => {
-      logger.info(`Server running on port ${PORT}`);
+    // Azure App Service는 0.0.0.0으로 바인딩해야 함
+    const HOST = process.env.HOSTNAME || '0.0.0.0';
+    httpServer.listen(PORT, HOST, () => {
+      logger.info(`Server running on ${HOST}:${PORT}`);
       logger.info(`Environment: ${process.env.NODE_ENV || 'development'}`);
     });
   } catch (error) {
