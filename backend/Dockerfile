@@ -24,8 +24,12 @@ RUN mkdir -p dist/database/migrations && \
 # 프로덕션 의존성만 다시 설치 (이미지 크기 최적화)
 RUN npm prune --production
 
-# 포트 노출
-EXPOSE 3001
+# 포트 노출 (Azure App Service는 PORT 환경 변수를 자동 설정)
+EXPOSE 8080
+
+# Azure App Service를 위한 환경 변수 설정
+ENV PORT=8080
+ENV NODE_ENV=production
 
 # 마이그레이션 및 애플리케이션 실행 (마이그레이션 실패해도 애플리케이션 시작)
 CMD sh -c "npm run migrate || echo 'Migration failed, continuing...' && node dist/index.js"
