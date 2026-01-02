@@ -31,12 +31,22 @@ export default function LevelTestPage() {
   const fetchQuestions = async () => {
     try {
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/level-test/questions`);
+      
+      if (!response.ok) {
+        throw new Error('문제를 불러오는데 실패했습니다.');
+      }
+
       const data = await response.json();
       if (data.success) {
-        setQuestions(data.questions);
+        setQuestions(data.questions || []);
+      } else {
+        throw new Error(data.message || '문제를 불러오는데 실패했습니다.');
       }
     } catch (error) {
       console.error('Failed to fetch questions:', error);
+      setQuestions([]);
+      const errorMessage = error instanceof Error ? error.message : '문제를 불러오는데 실패했습니다.';
+      alert(errorMessage);
     } finally {
       setIsLoading(false);
     }
