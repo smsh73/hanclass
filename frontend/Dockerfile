@@ -73,8 +73,15 @@ COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
 # Copy startup.sh if it exists (for Azure App Service)
 # Note: Docker 컨테이너에서는 CMD를 사용하므로 startup.sh는 선택사항
-COPY --from=builder --chown=nextjs:nodejs /app/startup.sh ./startup.sh 2>/dev/null || true
-RUN if [ -f ./startup.sh ]; then chmod +x ./startup.sh && echo "✓ startup.sh copied and made executable"; else echo "⚠ startup.sh not found, using CMD"; fi
+RUN --mount=from=builder,source=/app/startup.sh,target=/tmp/startup.sh \
+    if [ -f /tmp/startup.sh ]; then \
+      cp /tmp/startup.sh ./startup.sh && \
+      chmod +x ./startup.sh && \
+      chown nextjs:nodejs ./startup.sh && \
+      echo "✓ startup.sh copied and made executable"; \
+    else \
+      echo "⚠ startup.sh not found, using CMD"; \
+    fi
 
 # 먼저 일반 빌드 파일 복사 (항상 필요)
 COPY --from=builder --chown=nextjs:nodejs /app/.next/server ./.next/server
