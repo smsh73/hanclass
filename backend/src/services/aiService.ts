@@ -164,7 +164,12 @@ class AIService {
       }
     }
 
-    throw lastError || new Error('All AI providers failed');
+    // Provide helpful error message when no providers are configured
+    if (!this.primaryProvider && this.fallbackProviders.length === 0) {
+      throw new Error('No AI providers configured. Please configure at least one API key (OpenAI, Claude, or Gemini) in the admin settings.');
+    }
+    
+    throw lastError || new Error('All AI providers failed. Please check your API keys in the admin settings.');
   }
 
   private async callProvider(
