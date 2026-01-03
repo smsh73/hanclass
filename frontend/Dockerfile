@@ -42,6 +42,25 @@ RUN echo "=== 파일 구조 확인 ===" && \
 # 빌드 실행 (자세한 로그 출력)
 RUN npm run build 2>&1 | tee build.log || (echo "=== 빌드 실패 ===" && echo "=== 빌드 로그 ===" && cat build.log && echo "=== .next 디렉토리 확인 ===" && ls -la .next/ 2>/dev/null || echo ".next 디렉토리 없음" && echo "=== package.json 확인 ===" && cat package.json && exit 1)
 
+# 빌드 후 BUILD_ID 확인 및 생성 (필수)
+RUN echo "=== 빌드 후 BUILD_ID 확인 ===" && \
+    if [ ! -f ".next/BUILD_ID" ]; then \
+      echo "WARNING: BUILD_ID가 없습니다. 빌드 로그 확인 중..." && \
+      tail -100 build.log 2>/dev/null | grep -i "error\|fail\|warn" | head -20 || echo "빌드 로그에서 오류를 찾을 수 없음" && \
+      echo "=== .next 디렉토리 전체 구조 ===" && \
+      find .next -type f -name "*.js" -o -name "*.json" | head -20 && \
+      echo "=== BUILD_ID 수동 생성 시도 ===" && \
+      if [ -d ".next" ]; then \
+        echo "$(date +%s)" > .next/BUILD_ID && \
+        echo "✓ BUILD_ID 수동 생성 완료: $(cat .next/BUILD_ID)" || \
+        (echo "ERROR: BUILD_ID 생성 실패" && exit 1); \
+      else \
+        echo "ERROR: .next 디렉토리가 없습니다!" && exit 1; \
+      fi; \
+    else \
+      echo "✓ BUILD_ID found: $(cat .next/BUILD_ID)"; \
+    fi
+
 # 빌드 결과 확인 (BUILD_ID 및 standalone 확인)
 RUN echo "=== 빌드 결과 확인 ===" && \
     echo "=== .next 디렉토리 존재 확인 ===" && \
