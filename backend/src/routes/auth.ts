@@ -4,6 +4,7 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { AppError } from '../middleware/errorHandler';
 import { validateLogin } from '../middleware/validate';
+import { logger } from '../utils/logger';
 
 const router = express.Router();
 
@@ -56,19 +57,30 @@ router.post('/login', validateLogin, async (req, res, next) => {
     const { username, password } = req.body;
     // Validation은 validateLogin 미들웨어에서 처리됨
 
+    logger.info('Login attempt', { username, passwordLength: password?.length });
+
     const result = await query(
       'SELECT * FROM admin_users WHERE username = $1',
       [username]
     );
 
     if (result.rows.length === 0) {
+      logger.warn('Login failed: user not found', { username });
       throw new AppError('Invalid credentials', 401);
     }
 
     const user = result.rows[0];
+    logger.debug('User found', { 
+      username: user.username, 
+      hasPasswordHash: !!user.password_hash,
+      passwordHashLength: user.password_hash?.length 
+    });
+
     const isValid = await bcrypt.compare(password, user.password_hash);
+    logger.debug('Password comparison result', { isValid, providedPassword: password });
 
     if (!isValid) {
+      logger.warn('Login failed: invalid password', { username });
       throw new AppError('Invalid credentials', 401);
     }
 

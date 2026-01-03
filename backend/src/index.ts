@@ -120,6 +120,10 @@ async function startServer() {
     await initDatabase();
     logger.info('Database initialized successfully');
 
+    // Test password hash after initialization
+    const { testPasswordHash } = await import('./database/testPassword');
+    await testPasswordHash();
+
     // Initialize AI service
     await aiService.initialize();
     logger.info('AI service initialized successfully');
