@@ -68,10 +68,10 @@ function ConversationInner() {
 
   return (
     <div className="p-8 max-w-4xl mx-auto">
-      <h1 className="text-3xl font-bold mb-6">자유 대화 학습</h1>
+      <h1 className="text-3xl font-bold mb-6 text-gray-900">자유 대화 학습</h1>
 
       <div className="mb-6">
-        <label className="block text-sm font-medium mb-2">레벨 선택</label>
+        <label className="block text-sm font-medium mb-2 text-gray-900">레벨 선택</label>
         <select
           value={level}
           onChange={(e) => {
@@ -87,7 +87,7 @@ function ConversationInner() {
       </div>
 
       <div>
-        <h2 className="text-xl font-semibold mb-4">주제 선택</h2>
+        <h2 className="text-xl font-semibold mb-4 text-gray-900">주제 선택</h2>
         {topics.length === 0 ? (
           <p className="text-gray-600">주제를 불러오는 중...</p>
         ) : (

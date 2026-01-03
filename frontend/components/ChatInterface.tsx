@@ -186,8 +186,8 @@ export default function ChatInterface({ topic, level = 'beginner', onClose }: Ch
   if (!conversationStarted) {
     return (
       <div className="flex flex-col items-center justify-center h-full p-8">
-        <h2 className="text-2xl font-bold mb-4">주제: {topic}</h2>
-        <p className="text-gray-600 mb-6">AI 선생님과 대화를 시작하세요!</p>
+        <h2 className="text-2xl font-bold mb-4 text-gray-900">주제: {topic}</h2>
+        <p className="text-gray-700 mb-6">AI 선생님과 대화를 시작하세요!</p>
         <button
           onClick={() => setConversationStarted(true)}
           className="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
@@ -211,8 +211,8 @@ export default function ChatInterface({ topic, level = 'beginner', onClose }: Ch
       {/* Header */}
       <div className="border-b p-4 flex justify-between items-center">
         <div>
-          <h3 className="font-semibold">주제: {topic}</h3>
-          <p className="text-sm text-gray-500">레벨: {level}</p>
+          <h3 className="font-semibold text-gray-900">주제: {topic}</h3>
+          <p className="text-sm text-gray-700">레벨: {level}</p>
         </div>
         {onClose && (
           <button

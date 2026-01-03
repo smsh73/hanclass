@@ -138,21 +138,21 @@ export default function LevelTestPage() {
   };
 
   if (isLoading) {
-    return <div className="p-8">로딩 중...</div>;
+    return <div className="p-8 text-gray-900">로딩 중...</div>;
   }
 
   if (result) {
     return (
       <div className="p-8 max-w-2xl mx-auto">
-        <h1 className="text-3xl font-bold mb-6">레벨 테스트 결과</h1>
+        <h1 className="text-3xl font-bold mb-6 text-gray-900">레벨 테스트 결과</h1>
         <div className="bg-white rounded-lg shadow p-6">
           <div className="mb-4">
-            <p className="text-lg">점수: {result.score}점</p>
-            <p className="text-lg">레벨: {result.level}</p>
+            <p className="text-lg text-gray-900">점수: {result.score}점</p>
+            <p className="text-lg text-gray-900">레벨: {result.level}</p>
           </div>
           <div className="mt-4">
-            <h2 className="text-xl font-semibold mb-2">세부 점수</h2>
-            <ul>
+            <h2 className="text-xl font-semibold mb-2 text-gray-900">세부 점수</h2>
+            <ul className="text-gray-800">
               <li>읽기: {result.details.reading}점</li>
               <li>듣기: {result.details.listening}점</li>
               <li>말하기: {result.details.speaking}점</li>
@@ -174,7 +174,7 @@ export default function LevelTestPage() {
 
   return (
     <div className="p-8 max-w-2xl mx-auto">
-      <h1 className="text-3xl font-bold mb-6">레벨 테스트</h1>
+      <h1 className="text-3xl font-bold mb-6 text-gray-900">레벨 테스트</h1>
 
       <div className="bg-white rounded-lg shadow p-6">
         <div className="mb-4">
@@ -184,7 +184,7 @@ export default function LevelTestPage() {
         </div>
 
         <div className="mb-6">
-          <h2 className="text-xl font-semibold mb-4">{currentQuestion?.question}</h2>
+          <h2 className="text-xl font-semibold mb-4 text-gray-900">{currentQuestion?.question}</h2>
 
           {currentQuestion?.type === 'speaking' && (
             <div className="mb-4">
@@ -212,8 +212,8 @@ export default function LevelTestPage() {
                   onClick={() => handleAnswer(currentQuestion.id, option)}
                   className={`w-full text-left p-3 rounded border ${
                     answers[currentQuestion.id] === option
-                      ? 'bg-blue-100 border-blue-500'
-                      : 'bg-gray-50 border-gray-300 hover:bg-gray-100'
+                      ? 'bg-blue-100 border-blue-500 text-blue-900'
+                      : 'bg-gray-50 border-gray-300 hover:bg-gray-100 text-gray-900'
                   }`}
                 >
                   {option}

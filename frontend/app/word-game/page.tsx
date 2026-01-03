@@ -141,11 +141,11 @@ export default function WordGamePage() {
   if (gameResult) {
     return (
       <div className="p-8 max-w-2xl mx-auto">
-        <h1 className="text-3xl font-bold mb-6">게임 결과</h1>
+        <h1 className="text-3xl font-bold mb-6 text-gray-900">게임 결과</h1>
         <div className="bg-white rounded-lg shadow p-6">
           <div className="text-center">
-            <p className="text-4xl font-bold mb-4">{gameResult.score} / {gameResult.totalWords}</p>
-            <p className="text-2xl mb-6">정답률: {gameResult.percentage}%</p>
+            <p className="text-4xl font-bold mb-4 text-gray-900">{gameResult.score} / {gameResult.totalWords}</p>
+            <p className="text-2xl mb-6 text-gray-900">정답률: {gameResult.percentage}%</p>
             <div className="flex gap-4 justify-center">
               <button
                 onClick={() => {
@@ -172,10 +172,10 @@ export default function WordGamePage() {
   if (!isPlaying) {
     return (
       <div className="p-8 max-w-2xl mx-auto">
-        <h1 className="text-3xl font-bold mb-6">단어 맞추기 게임</h1>
+        <h1 className="text-3xl font-bold mb-6 text-gray-900">단어 맞추기 게임</h1>
         <div className="bg-white rounded-lg shadow p-6">
-          <p className="mb-4">규칙:</p>
-          <ul className="list-disc list-inside mb-6">
+          <p className="mb-4 text-gray-900">규칙:</p>
+          <ul className="list-disc list-inside mb-6 text-gray-800">
             <li>화면에 나타나는 한글 단어를 음성으로 말하세요</li>
             <li>각 단어마다 5초의 시간이 주어집니다</li>
             <li>1분에 10단어, 총 100문제입니다</li>
@@ -194,20 +194,20 @@ export default function WordGamePage() {
   const currentWord = words[currentWordIndex];
 
   return (
-    <div className="p-8 max-w-2xl mx-auto">
-      <div className="mb-4 flex justify-between items-center">
-        <h1 className="text-2xl font-bold">단어 맞추기</h1>
-        <div className="text-right">
-          <p>점수: {score}</p>
-          <p>남은 시간: {timeLeft}초</p>
-          <p>문제 {currentWordIndex + 1} / {words.length}</p>
+      <div className="p-8 max-w-2xl mx-auto">
+        <div className="mb-4 flex justify-between items-center">
+          <h1 className="text-2xl font-bold text-gray-900">단어 맞추기</h1>
+          <div className="text-right">
+            <p className="text-gray-900">점수: {score}</p>
+            <p className="text-gray-900">남은 시간: {timeLeft}초</p>
+            <p className="text-gray-900">문제 {currentWordIndex + 1} / {words.length}</p>
+          </div>
         </div>
-      </div>
 
-      <div className="bg-white rounded-lg shadow p-8">
-        <div className="text-center mb-8">
-          <p className="text-6xl font-bold mb-4">{currentWord?.word}</p>
-        </div>
+        <div className="bg-white rounded-lg shadow p-8">
+          <div className="text-center mb-8">
+            <p className="text-6xl font-bold mb-4 text-gray-900">{currentWord?.word}</p>
+          </div>
 
         <div className="mb-6">
           <VoiceRecorder
