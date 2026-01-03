@@ -80,11 +80,16 @@ export default function AdminPage() {
             </p>
           </Link>
 
-          <div className="bg-white rounded-lg shadow-lg p-6">
-            <div className="text-4xl mb-4">📊</div>
-            <h3 className="text-xl font-semibold mb-2 text-gray-900">통계</h3>
-            <p className="text-gray-700">학습 통계를 확인하세요 (준비 중)</p>
-          </div>
+          <Link
+            href="/admin/sessions"
+            className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow"
+          >
+            <div className="text-4xl mb-4">👥</div>
+            <h3 className="text-xl font-semibold mb-2 text-gray-900">세션 관리</h3>
+            <p className="text-gray-700">
+              사용자 세션을 확인하고 관리하세요
+            </p>
+          </Link>
         </div>
       </main>
     </div>
