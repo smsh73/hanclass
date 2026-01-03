@@ -86,17 +86,17 @@ export default function CurriculumPage() {
               className="w-full px-4 py-2 border rounded-lg"
               disabled={isUploading}
             />
-            <p className="mt-2 text-sm text-gray-600">
+            <p className="mt-2 text-sm text-gray-700">
               여러 파일을 동시에 선택할 수 있습니다. 각 파일은 별도의 커리큘럼으로 생성됩니다.
             </p>
           </div>
 
           {files.length > 0 && (
             <div className="mb-4">
-              <p className="text-sm font-medium mb-2">선택된 파일:</p>
+              <p className="text-sm font-medium mb-2 text-gray-900">선택된 파일:</p>
               <ul className="list-disc list-inside">
                 {files.map((file, index) => (
-                  <li key={index} className="text-sm text-gray-600">
+                  <li key={index} className="text-sm text-gray-700">
                     {file.name}
                   </li>
                 ))}
@@ -115,14 +115,14 @@ export default function CurriculumPage() {
 
         {uploadProgress && (
           <div className="mt-4 p-4 bg-gray-50 rounded">
-            <p className="text-sm">{uploadProgress}</p>
+            <p className="text-sm text-gray-900">{uploadProgress}</p>
           </div>
         )}
       </div>
 
       <div className="bg-white rounded-lg shadow p-6">
         <h2 className="text-xl font-semibold mb-4 text-gray-900">안내</h2>
-        <ul className="list-disc list-inside space-y-2 text-gray-600">
+        <ul className="list-disc list-inside space-y-2 text-gray-700">
           <li>Word (.docx) 또는 PDF (.pdf) 파일을 업로드할 수 있습니다.</li>
           <li>여러 파일을 동시에 업로드하면 각각 별도의 커리큘럼으로 생성됩니다.</li>
           <li>AI가 자동으로 문서를 분석하여 커리큘럼을 생성합니다.</li>

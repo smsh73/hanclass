@@ -122,7 +122,7 @@ export default function HomePage() {
       <main className="max-w-7xl mx-auto px-4 py-12">
         {showNameInput ? (
           <div className="max-w-md mx-auto bg-white rounded-lg shadow-lg p-8">
-            <h2 className="text-2xl font-bold mb-6 text-center">이름을 입력하세요</h2>
+            <h2 className="text-2xl font-bold mb-6 text-center text-gray-900">이름을 입력하세요</h2>
             <form onSubmit={handleNameSubmit}>
               <input
                 type="text"
@@ -158,8 +158,8 @@ export default function HomePage() {
                 className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow"
               >
                 <div className="text-4xl mb-4">📝</div>
-                <h3 className="text-xl font-semibold mb-2">레벨 테스트</h3>
-                <p className="text-gray-600">
+                <h3 className="text-xl font-semibold mb-2 text-gray-900">레벨 테스트</h3>
+                <p className="text-gray-700">
                   초급, 중급, 고급 중 나의 한국어 레벨을 확인해보세요
                 </p>
               </Link>
@@ -170,8 +170,8 @@ export default function HomePage() {
                 className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow"
               >
                 <div className="text-4xl mb-4">💬</div>
-                <h3 className="text-xl font-semibold mb-2">자유 대화 학습</h3>
-                <p className="text-gray-600">
+                <h3 className="text-xl font-semibold mb-2 text-gray-900">자유 대화 학습</h3>
+                <p className="text-gray-700">
                   주제별로 AI 선생님과 자연스럽게 대화하며 한국어를 배워보세요
                 </p>
               </Link>
@@ -182,8 +182,8 @@ export default function HomePage() {
                 className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow"
               >
                 <div className="text-4xl mb-4">🎮</div>
-                <h3 className="text-xl font-semibold mb-2">단어 맞추기 게임</h3>
-                <p className="text-gray-600">
+                <h3 className="text-xl font-semibold mb-2 text-gray-900">단어 맞추기 게임</h3>
+                <p className="text-gray-700">
                   재미있는 게임으로 한국어 단어를 배우고 연습해보세요
                 </p>
               </Link>
@@ -194,8 +194,8 @@ export default function HomePage() {
                 className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow border-2 border-gray-300"
               >
                 <div className="text-4xl mb-4">⚙️</div>
-                <h3 className="text-xl font-semibold mb-2">관리자</h3>
-                <p className="text-gray-600">
+                <h3 className="text-xl font-semibold mb-2 text-gray-900">관리자</h3>
+                <p className="text-gray-700">
                   시스템 관리 및 설정을 위한 관리자 페이지입니다
                 </p>
               </Link>

@@ -74,7 +74,7 @@ export default function APIKeysPage() {
   };
 
   if (isLoading) {
-    return <div className="p-8">로딩 중...</div>;
+    return <div className="p-8 text-gray-900">로딩 중...</div>;
   }
 
   return (
@@ -178,7 +178,7 @@ export default function APIKeysPage() {
         </table>
         {testResult && (
           <div className="p-4 bg-gray-50">
-            <p className="text-sm">{testResult}</p>
+            <p className="text-sm text-gray-900">{testResult}</p>
           </div>
         )}
       </div>

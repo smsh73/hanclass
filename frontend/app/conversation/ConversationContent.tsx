@@ -106,7 +106,7 @@ function ConversationInner() {
                 onClick={() => setSelectedTopic(topic)}
                 className="p-4 border rounded-lg hover:bg-blue-50 hover:border-blue-500 text-left"
               >
-                <h3 className="font-semibold">{topic}</h3>
+                <h3 className="font-semibold text-gray-900">{topic}</h3>
               </button>
             ))}
           </div>
@@ -118,7 +118,7 @@ function ConversationInner() {
 
 export default function ConversationContent() {
   return (
-    <Suspense fallback={<div className="p-8">로딩 중...</div>}>
+    <Suspense fallback={<div className="p-8 text-gray-900">로딩 중...</div>}>
       <ConversationInner />
     </Suspense>
   );
