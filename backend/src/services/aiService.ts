@@ -180,10 +180,19 @@ class AIService {
 
     switch (provider) {
       case 'openai':
+        if (!this.openaiClient) {
+          throw new Error('OpenAI client not initialized. Please configure OpenAI API key in admin settings.');
+        }
         return this.callOpenAI(messages, options, timeout);
       case 'claude':
+        if (!this.claudeClient) {
+          throw new Error('Claude client not initialized. Please configure Claude API key in admin settings.');
+        }
         return this.callClaude(messages, options, timeout);
       case 'gemini':
+        if (!this.geminiClient) {
+          throw new Error('Gemini client not initialized. Please configure Gemini API key in admin settings.');
+        }
         return this.callGemini(messages, options, timeout);
       default:
         throw new Error(`Unknown provider: ${provider}`);
