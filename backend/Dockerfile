@@ -1,4 +1,4 @@
-FROM node:18-alpine
+FROM node:20-alpine
 
 # 한글 인코딩 지원
 ENV LANG=ko_KR.UTF-8
@@ -29,6 +29,7 @@ EXPOSE 8080
 
 # Azure App Service를 위한 환경 변수 설정
 ENV PORT=8080
+ENV HOSTNAME=0.0.0.0
 ENV NODE_ENV=production
 
 # 마이그레이션 및 애플리케이션 실행 (마이그레이션 실패해도 애플리케이션 시작)
