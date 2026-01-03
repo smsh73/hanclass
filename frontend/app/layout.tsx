@@ -14,8 +14,24 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  // 서버 사이드에서 환경 변수 확인 (빌드 타임에 로깅)
+  if (typeof window === 'undefined') {
+    console.log('🔍 Server-side NEXT_PUBLIC_API_URL:', process.env.NEXT_PUBLIC_API_URL);
+  }
+
   return (
     <html lang="ko">
+      <head>
+        {/* 클라이언트 사이드에서 환경 변수 확인 */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              console.log('🔍 Client-side NEXT_PUBLIC_API_URL:', '${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'}');
+              window.__API_URL__ = '${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'}';
+            `,
+          }}
+        />
+      </head>
       <body className={inter.className}>{children}</body>
     </html>
   )

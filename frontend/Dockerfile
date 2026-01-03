@@ -22,8 +22,14 @@ COPY . .
 ENV NEXT_TELEMETRY_DISABLED=1
 
 # Build Next.js with standalone output
+# ARG는 빌드 타임에만 사용 가능, ENV는 런타임에도 사용 가능
 ARG NEXT_PUBLIC_API_URL=https://hanclass-backend.azurewebsites.net
 ENV NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL
+
+# 빌드 시 환경 변수 확인
+RUN echo "=== Building with NEXT_PUBLIC_API_URL ===" && \
+    echo "NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL" && \
+    echo "This value will be embedded in the Next.js build"
 
 # 디버깅: 파일 구조 확인
 RUN echo "=== 파일 구조 확인 ===" && \

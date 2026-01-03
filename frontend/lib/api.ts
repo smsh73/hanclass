@@ -1,4 +1,11 @@
+// API URL 설정 - 빌드 타임에 결정됨
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+
+// 디버깅: 클라이언트 사이드에서 API URL 확인
+if (typeof window !== 'undefined') {
+  console.log('🔍 API URL:', API_URL);
+  console.log('🔍 NEXT_PUBLIC_API_URL env:', process.env.NEXT_PUBLIC_API_URL);
+}
 
 export async function apiRequest(
   endpoint: string,
