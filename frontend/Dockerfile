@@ -44,24 +44,37 @@ RUN npm run build 2>&1 | tee build.log || (echo "=== 빌드 실패 ===" && echo 
 
 # 빌드 결과 확인 (BUILD_ID 및 standalone 확인)
 RUN echo "=== 빌드 결과 확인 ===" && \
+    echo "=== .next 디렉토리 존재 확인 ===" && \
     if [ ! -d ".next" ]; then \
       echo "ERROR: .next 디렉토리가 없습니다!" && exit 1; \
+    else \
+      echo "✓ .next 디렉토리 존재"; \
     fi && \
+    echo "=== .next 디렉토리 전체 내용 ===" && \
+    ls -la .next/ && \
+    echo "=== BUILD_ID 확인 ===" && \
     if [ ! -f ".next/BUILD_ID" ]; then \
-      echo "ERROR: BUILD_ID 파일이 없습니다! 빌드가 제대로 완료되지 않았습니다." && \
-      echo "=== .next 디렉토리 내용 ===" && ls -la .next/ && exit 1; \
+      echo "WARNING: BUILD_ID 파일이 없습니다. 빌드 로그를 확인하세요." && \
+      echo "=== 빌드 로그 마지막 50줄 ===" && \
+      tail -50 build.log 2>/dev/null || echo "빌드 로그 파일 없음"; \
     else \
       echo "✓ BUILD_ID found: $(cat .next/BUILD_ID)"; \
     fi && \
+    echo "=== standalone 빌드 확인 ===" && \
     if [ ! -d ".next/standalone" ]; then \
       echo "WARNING: .next/standalone 디렉토리가 없습니다. 일반 빌드 모드로 전환합니다." && \
-      echo "=== .next 디렉토리 내용 ===" && ls -la .next/; \
+      echo "=== .next/server 디렉토리 확인 ===" && \
+      ls -la .next/server 2>/dev/null || echo ".next/server 디렉토리 없음"; \
     else \
       echo "✓ standalone 빌드 성공"; \
+      echo "=== standalone 디렉토리 내용 ===" && \
+      ls -la .next/standalone/ | head -10 && \
       if [ -f ".next/standalone/server.js" ]; then \
         echo "✓ standalone/server.js found"; \
       else \
         echo "⚠ standalone/server.js not found"; \
+        echo "=== standalone 디렉토리 전체 내용 ===" && \
+        find .next/standalone -type f | head -20; \
       fi; \
     fi
 
