@@ -71,8 +71,29 @@ RUN --mount=from=builder,source=/app/public,target=/tmp/public \
     fi
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
-# startup.sh는 Azure App Service ZIP 배포용이므로 Docker에서는 복사하지 않음
-# Docker 컨테이너에서는 이미 빌드가 완료되어 있으므로 server.js를 직접 실행
+# startup.sh 복사 (Azure App Service가 자동 실행할 수 있으므로 반드시 필요)
+# Docker 환경에서는 server.js가 이미 존재하므로 startup.sh가 자동 감지하여 빌드 건너뛰기
+RUN --mount=from=builder,source=/app/startup.sh,target=/tmp/startup.sh \
+    if [ -f /tmp/startup.sh ]; then \
+      cp /tmp/startup.sh ./startup.sh && \
+      chmod +x ./startup.sh && \
+      chown nextjs:nodejs ./startup.sh && \
+      echo "✓ startup.sh copied (will auto-detect Docker and skip build)"; \
+    else \
+      echo "⚠ startup.sh not found in builder, creating minimal version"; \
+      echo '#!/bin/sh' > ./startup.sh && \
+      echo 'if [ -f "server.js" ] || [ -f "/app/server.js" ]; then' >> ./startup.sh && \
+      echo '  echo "=== Docker Container Detected ==="' >> ./startup.sh && \
+      echo '  echo "Server.js already exists, starting directly..."' >> ./startup.sh && \
+      echo '  if [ -f "server.js" ]; then exec node server.js; fi' >> ./startup.sh && \
+      echo '  if [ -f "/app/server.js" ]; then cd /app && exec node server.js; fi' >> ./startup.sh && \
+      echo '  exit 0' >> ./startup.sh && \
+      echo 'fi' >> ./startup.sh && \
+      echo 'echo "Azure App Service ZIP deployment - build required"' >> ./startup.sh && \
+      chmod +x ./startup.sh && \
+      chown nextjs:nodejs ./startup.sh && \
+      echo "✓ Minimal startup.sh created"; \
+    fi
 
 # 먼저 일반 빌드 파일 복사 (항상 필요)
 COPY --from=builder --chown=nextjs:nodejs /app/.next/server ./.next/server
