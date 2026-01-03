@@ -45,6 +45,16 @@ export async function getUserFromSession(sessionId: string): Promise<{ userId: n
 }
 
 /**
+ * 세션 ID 가져오기
+ */
+export function getSessionId(): string | null {
+  if (typeof window === 'undefined') {
+    return null;
+  }
+  return sessionStorage.getItem('sessionId');
+}
+
+/**
  * 현재 사용자 ID 가져오기 (세션에서)
  */
 export async function getCurrentUserId(): Promise<number | null> {

@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import VoiceRecorder from './VoiceRecorder';
 import VoicePlayer from './VoicePlayer';
+import { getSessionId } from '@/lib/session';
 
 interface Message {
   id: string;
@@ -19,12 +20,14 @@ interface ChatInterfaceProps {
 }
 
 export default function ChatInterface({ topic, level = 'beginner', onClose }: ChatInterfaceProps) {
+  const router = useRouter();
   const [messages, setMessages] = useState<Message[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isAISpeaking, setIsAISpeaking] = useState(false);
   const [conversationStarted, setConversationStarted] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const [userTranscript, setUserTranscript] = useState('');
+  const sessionId = getSessionId(); // Get session ID
 
   useEffect(() => {
     if (conversationStarted) {
@@ -61,7 +64,7 @@ export default function ChatInterface({ topic, level = 'beginner', onClose }: Ch
         body: JSON.stringify({
           topic,
           level,
-          userId: userId || undefined, // userId가 없으면 undefined
+          sessionId: sessionId || undefined, // sessionId 전달
         }),
       });
 
@@ -125,6 +128,7 @@ export default function ChatInterface({ topic, level = 'beginner', onClose }: Ch
           topic,
           level,
           conversationHistory,
+          sessionId: sessionId || undefined, // sessionId 전달
         }),
       });
 
