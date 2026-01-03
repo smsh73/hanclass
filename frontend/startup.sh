@@ -2,7 +2,22 @@
 # Azure App Service ZIP 배포용 스크립트
 # Docker 컨테이너에서는 이미 빌드가 완료되어 있으므로 이 스크립트를 사용하지 않음
 
-# 작업 디렉토리 확인 (Docker vs Azure App Service)
+# Docker 컨테이너 환경 감지: server.js가 이미 존재하면 Docker 환경
+if [ -f "server.js" ] || [ -f "/app/server.js" ]; then
+  echo "=== Docker Container Detected ==="
+  echo "Server.js already exists, skipping build process"
+  echo "Starting server directly..."
+  if [ -f "server.js" ]; then
+    exec node server.js
+  elif [ -f "/app/server.js" ]; then
+    cd /app
+    exec node server.js
+  fi
+  exit 0
+fi
+
+# Azure App Service ZIP 배포 환경
+# 작업 디렉토리 확인
 if [ -d "/home/site/wwwroot" ]; then
   cd /home/site/wwwroot
 elif [ -d "/app" ]; then

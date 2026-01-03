@@ -71,22 +71,22 @@ RUN --mount=from=builder,source=/app/public,target=/tmp/public \
     fi
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
-# Copy startup.sh if it exists (for Azure App Service)
-# Note: Docker 컨테이너에서는 CMD를 사용하므로 startup.sh는 선택사항
-RUN --mount=from=builder,source=/app/startup.sh,target=/tmp/startup.sh \
-    if [ -f /tmp/startup.sh ]; then \
-      cp /tmp/startup.sh ./startup.sh && \
-      chmod +x ./startup.sh && \
-      chown nextjs:nodejs ./startup.sh && \
-      echo "✓ startup.sh copied and made executable"; \
-    else \
-      echo "⚠ startup.sh not found, using CMD"; \
-    fi
+# startup.sh는 Azure App Service ZIP 배포용이므로 Docker에서는 복사하지 않음
+# Docker 컨테이너에서는 이미 빌드가 완료되어 있으므로 server.js를 직접 실행
 
 # 먼저 일반 빌드 파일 복사 (항상 필요)
 COPY --from=builder --chown=nextjs:nodejs /app/.next/server ./.next/server
 COPY --from=builder --chown=nextjs:nodejs /app/node_modules ./node_modules
 COPY --from=builder --chown=nextjs:nodejs /app/package.json ./package.json
+# package-lock.json도 복사하여 권한 문제 방지 (있으면)
+RUN --mount=from=builder,source=/app/package-lock.json,target=/tmp/package-lock.json \
+    if [ -f /tmp/package-lock.json ]; then \
+      cp /tmp/package-lock.json ./package-lock.json && \
+      chown nextjs:nodejs ./package-lock.json && \
+      echo "✓ package-lock.json copied"; \
+    else \
+      echo "⚠ package-lock.json not found, skipping"; \
+    fi
 
 # standalone 디렉토리 복사 시도 (있으면 덮어쓰기)
 # 빌더에서 standalone 존재 여부 확인 후 복사
@@ -106,6 +106,7 @@ ENV PORT=8080
 ENV HOSTNAME="0.0.0.0"
 
 # Docker 컨테이너에서는 이미 빌드가 완료되어 있으므로 직접 실행
+# startup.sh는 실행하지 않음 (Azure App Service ZIP 배포용)
 # 우선순위: server.js > .next/standalone/server.js > npm start
-CMD ["sh", "-c", "if [ -f server.js ]; then echo 'Starting standalone server from root...' && node server.js; elif [ -f .next/standalone/server.js ]; then echo 'Starting standalone server from .next/standalone...' && node .next/standalone/server.js; else echo 'Starting Next.js server...' && npm run start:next; fi"]
+CMD ["sh", "-c", "echo '=== Starting Next.js Server ===' && echo 'Working directory: $(pwd)' && echo 'Files:' && ls -la | grep -E 'server\\.js|package\\.json|node_modules' && if [ -f server.js ]; then echo '✓ Starting standalone server from root (server.js)...' && exec node server.js; elif [ -f .next/standalone/server.js ]; then echo '✓ Starting standalone server from .next/standalone...' && exec node .next/standalone/server.js; else echo '⚠ Using npm start...' && exec npm run start:next; fi"]
 
