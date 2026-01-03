@@ -129,7 +129,7 @@ export default function HomePage() {
                 value={userName}
                 onChange={(e) => setUserName(e.target.value)}
                 placeholder="이름을 입력하세요"
-                className="w-full px-4 py-3 border rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-3 bg-white text-gray-900 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 required
               />
               <button
