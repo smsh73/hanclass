@@ -10,6 +10,70 @@ const router = express.Router();
 router.use(authenticateToken);
 router.use(requireAdmin);
 
+// Verify admin token
+router.get('/verify', async (req: AuthRequest, res, next) => {
+  try {
+    res.json({ success: true, user: { id: req.user?.userId, role: 'admin' } });
+  } catch (error) {
+    next(error);
+  }
+});
+
+// Get all user sessions
+router.get('/sessions', async (req: AuthRequest, res, next) => {
+  try {
+    const result = await query(
+      `SELECT id, name, session_id, level, created_at, last_activity 
+       FROM users 
+       ORDER BY last_activity DESC 
+       LIMIT 100`
+    );
+    res.json({ success: true, sessions: result.rows });
+  } catch (error) {
+    next(error);
+  }
+});
+
+// Get session details
+router.get('/sessions/:sessionId', async (req: AuthRequest, res, next) => {
+  try {
+    const { sessionId } = req.params;
+    const result = await query(
+      'SELECT * FROM users WHERE session_id = $1',
+      [sessionId]
+    );
+    
+    if (result.rows.length === 0) {
+      throw new AppError('Session not found', 404);
+    }
+    
+    res.json({ success: true, session: result.rows[0] });
+  } catch (error) {
+    next(error);
+  }
+});
+
+// Delete session
+router.delete('/sessions/:sessionId', async (req: AuthRequest, res, next) => {
+  try {
+    const { sessionId } = req.params;
+    await query('DELETE FROM users WHERE session_id = $1', [sessionId]);
+    res.json({ success: true, message: 'Session deleted' });
+  } catch (error) {
+    next(error);
+  }
+});
+
+// Delete all sessions
+router.delete('/sessions', async (req: AuthRequest, res, next) => {
+  try {
+    await query('DELETE FROM users');
+    res.json({ success: true, message: 'All sessions deleted' });
+  } catch (error) {
+    next(error);
+  }
+});
+
 // Get API keys
 router.get('/api-keys', async (req: AuthRequest, res, next) => {
   try {

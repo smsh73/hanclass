@@ -4,6 +4,48 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
+function AdminCard() {
+  const router = useRouter();
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [isChecking, setIsChecking] = useState(true);
+
+  useEffect(() => {
+    const checkAdmin = async () => {
+      setIsChecking(true);
+      const authenticated = isAdminAuthenticated();
+      setIsAdmin(authenticated);
+      setIsChecking(false);
+    };
+    checkAdmin();
+  }, []);
+
+  const handleClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (isAdmin) {
+      router.push('/admin');
+    } else {
+      router.push('/admin/login');
+    }
+  };
+
+  return (
+    <div
+      onClick={handleClick}
+      className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow border-2 border-gray-300 cursor-pointer"
+    >
+      <div className="text-4xl mb-4">⚙️</div>
+      <h3 className="text-xl font-semibold mb-2 text-gray-900">관리자</h3>
+      <p className="text-gray-700">
+        {isChecking 
+          ? '확인 중...' 
+          : isAdmin 
+          ? '관리자 페이지로 이동' 
+          : '시스템 관리 및 설정을 위한 관리자 페이지입니다'}
+      </p>
+    </div>
+  );
+}
+
 export default function HomePage() {
   const router = useRouter();
   const [userName, setUserName] = useState<string>('');
@@ -189,16 +231,7 @@ export default function HomePage() {
               </Link>
 
               {/* Admin */}
-              <Link
-                href="/admin/login"
-                className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow border-2 border-gray-300"
-              >
-                <div className="text-4xl mb-4">⚙️</div>
-                <h3 className="text-xl font-semibold mb-2 text-gray-900">관리자</h3>
-                <p className="text-gray-700">
-                  시스템 관리 및 설정을 위한 관리자 페이지입니다
-                </p>
-              </Link>
+              <AdminCard />
             </div>
           </>
         )}
