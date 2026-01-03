@@ -34,6 +34,7 @@ export default function VoiceRecorder({
     recognition.onResult((text, isFinal) => {
       if (!isAISpeaking) {
         onTranscript(text, isFinal);
+        setError(null); // 성공 시 오류 메시지 제거
       }
     });
 
@@ -65,21 +66,28 @@ export default function VoiceRecorder({
   }, [isEnabled, isAISpeaking]);
 
   return (
-    <div className="flex items-center gap-2">
-      <div
-        className={`w-3 h-3 rounded-full ${
-          isListening && !isAISpeaking
-            ? 'bg-red-500 animate-pulse'
-            : 'bg-gray-400'
-        }`}
-      />
-      <span className="text-sm text-gray-600">
-        {isAISpeaking
-          ? 'AI가 말하는 중입니다...'
-          : isListening
-          ? '듣는 중...'
-          : '대기 중'}
-      </span>
+    <div className="flex flex-col gap-1">
+      <div className="flex items-center gap-2">
+        <div
+          className={`w-3 h-3 rounded-full ${
+            isListening && !isAISpeaking
+              ? 'bg-red-500 animate-pulse'
+              : 'bg-gray-400'
+          }`}
+        />
+        <span className="text-sm text-gray-600">
+          {isAISpeaking
+            ? 'AI가 말하는 중입니다...'
+            : isListening
+            ? '듣는 중...'
+            : '대기 중'}
+        </span>
+      </div>
+      {error && (
+        <span className="text-xs text-yellow-600">
+          {error}
+        </span>
+      )}
     </div>
   );
 }
