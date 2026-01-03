@@ -10,13 +10,28 @@ export async function initAdminUser() {
       ['admin']
     );
 
+    const defaultPassword = 'Admin@2026';
+    const passwordHash = await bcrypt.hash(defaultPassword, 10);
+
     if (result.rows.length > 0) {
-      logger.info('Admin user already exists');
+      // 기존 관리자 계정이 있으면 비밀번호를 기본값으로 업데이트
+      const currentPasswordHash = result.rows[0].password_hash;
+      const isPasswordCorrect = await bcrypt.compare(defaultPassword, currentPasswordHash);
+      
+      if (!isPasswordCorrect) {
+        // 비밀번호가 기본값이 아니면 업데이트
+        await query(
+          'UPDATE admin_users SET password_hash = $1 WHERE username = $2',
+          [passwordHash, 'admin']
+        );
+        logger.info('Admin user password updated to default: username=admin, password=Admin@2026');
+      } else {
+        logger.info('Admin user already exists with correct password');
+      }
       return;
     }
 
     // Create default admin user (password: Admin@2026)
-    const passwordHash = await bcrypt.hash('Admin@2026', 10);
     await query(
       'INSERT INTO admin_users (username, password_hash) VALUES ($1, $2)',
       ['admin', passwordHash]
