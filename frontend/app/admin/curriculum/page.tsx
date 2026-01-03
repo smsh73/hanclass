@@ -61,7 +61,15 @@ export default function CurriculumPage() {
 
   return (
     <div className="p-8 max-w-4xl mx-auto">
-      <h1 className="text-3xl font-bold mb-6">교안 업로드</h1>
+      <div className="mb-6 flex justify-between items-center">
+        <h1 className="text-3xl font-bold">교안 업로드</h1>
+        <button
+          onClick={() => router.push('/')}
+          className="px-4 py-2 text-sm bg-gray-200 text-gray-700 rounded hover:bg-gray-300"
+        >
+          홈으로
+        </button>
+      </div>
 
       <div className="bg-white rounded-lg shadow p-6 mb-6">
         <h2 className="text-xl font-semibold mb-4">파일 업로드</h2>

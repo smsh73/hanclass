@@ -172,7 +172,15 @@ export default function WordGamePage() {
   if (!isPlaying) {
     return (
       <div className="p-8 max-w-2xl mx-auto">
-        <h1 className="text-3xl font-bold mb-6 text-gray-900">단어 맞추기 게임</h1>
+        <div className="mb-6 flex justify-between items-center">
+          <h1 className="text-3xl font-bold text-gray-900">단어 맞추기 게임</h1>
+          <button
+            onClick={() => router.push('/')}
+            className="px-4 py-2 text-sm bg-gray-200 text-gray-700 rounded hover:bg-gray-300"
+          >
+            홈으로
+          </button>
+        </div>
         <div className="bg-white rounded-lg shadow p-6">
           <p className="mb-4 text-gray-900">규칙:</p>
           <ul className="list-disc list-inside mb-6 text-gray-800">
@@ -197,6 +205,15 @@ export default function WordGamePage() {
       <div className="p-8 max-w-2xl mx-auto">
         <div className="mb-4 flex justify-between items-center">
           <h1 className="text-2xl font-bold text-gray-900">단어 맞추기</h1>
+          <button
+            onClick={() => router.push('/')}
+            className="px-4 py-2 text-sm bg-gray-200 text-gray-700 rounded hover:bg-gray-300"
+          >
+            홈으로
+          </button>
+        </div>
+        <div className="mb-4 flex justify-between items-center">
+          <div></div>
           <div className="text-right">
             <p className="text-gray-900">점수: {score}</p>
             <p className="text-gray-900">남은 시간: {timeLeft}초</p>

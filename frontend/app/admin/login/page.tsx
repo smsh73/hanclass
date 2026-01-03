@@ -42,7 +42,15 @@ export default function AdminLoginPage() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
       <div className="max-w-md w-full bg-white rounded-lg shadow-lg p-8">
-        <h1 className="text-2xl font-bold mb-6 text-center">관리자 로그인</h1>
+        <div className="mb-6 flex justify-between items-center">
+          <h1 className="text-2xl font-bold">관리자 로그인</h1>
+          <button
+            onClick={() => router.push('/')}
+            className="px-4 py-2 text-sm bg-gray-200 text-gray-700 rounded hover:bg-gray-300"
+          >
+            홈으로
+          </button>
+        </div>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label className="block text-sm font-medium mb-2">사용자명</label>

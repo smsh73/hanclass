@@ -82,6 +82,15 @@ export default function APIKeysPage() {
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-3xl font-bold">API 키 관리</h1>
         <button
+          onClick={() => router.push('/')}
+          className="px-4 py-2 text-sm bg-gray-200 text-gray-700 rounded hover:bg-gray-300"
+        >
+          홈으로
+        </button>
+      </div>
+      <div className="flex justify-between items-center mb-6">
+        <div></div>
+        <button
           onClick={() => setShowAddForm(!showAddForm)}
           className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
         >

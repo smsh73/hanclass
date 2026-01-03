@@ -68,7 +68,15 @@ function ConversationInner() {
 
   return (
     <div className="p-8 max-w-4xl mx-auto">
-      <h1 className="text-3xl font-bold mb-6 text-gray-900">자유 대화 학습</h1>
+      <div className="mb-6 flex justify-between items-center">
+        <h1 className="text-3xl font-bold text-gray-900">자유 대화 학습</h1>
+        <button
+          onClick={() => router.push('/')}
+          className="px-4 py-2 text-sm bg-gray-200 text-gray-700 rounded hover:bg-gray-300"
+        >
+          홈으로
+        </button>
+      </div>
 
       <div className="mb-6">
         <label className="block text-sm font-medium mb-2 text-gray-900">레벨 선택</label>
