@@ -78,7 +78,7 @@ export default function AdminLoginPage() {
           </button>
         </form>
         <p className="mt-4 text-sm text-gray-600 text-center">
-          기본 계정: admin / admin123
+          기본 계정: admin / Admin@2026
         </p>
       </div>
     </div>

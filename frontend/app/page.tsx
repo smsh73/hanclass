@@ -187,6 +187,18 @@ export default function HomePage() {
                   재미있는 게임으로 한국어 단어를 배우고 연습해보세요
                 </p>
               </Link>
+
+              {/* Admin */}
+              <Link
+                href="/admin/login"
+                className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow border-2 border-gray-300"
+              >
+                <div className="text-4xl mb-4">⚙️</div>
+                <h3 className="text-xl font-semibold mb-2">관리자</h3>
+                <p className="text-gray-600">
+                  시스템 관리 및 설정을 위한 관리자 페이지입니다
+                </p>
+              </Link>
             </div>
           </>
         )}

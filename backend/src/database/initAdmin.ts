@@ -15,14 +15,14 @@ export async function initAdminUser() {
       return;
     }
 
-    // Create default admin user (password: admin123)
-    const passwordHash = await bcrypt.hash('admin123', 10);
+    // Create default admin user (password: Admin@2026)
+    const passwordHash = await bcrypt.hash('Admin@2026', 10);
     await query(
       'INSERT INTO admin_users (username, password_hash) VALUES ($1, $2)',
       ['admin', passwordHash]
     );
 
-    logger.info('Default admin user created: username=admin, password=admin123');
+    logger.info('Default admin user created: username=admin, password=Admin@2026');
   } catch (error) {
     logger.error('Failed to initialize admin user', error);
     throw error;
