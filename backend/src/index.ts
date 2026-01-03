@@ -81,6 +81,10 @@ app.get('/health', (req, res) => {
 // Swagger API Documentation
 setupSwagger(app);
 
+// Request Logger (모든 요청 로깅)
+import { requestLogger } from './middleware/requestLogger';
+app.use(requestLogger);
+
 // Rate Limiting 적용
 app.use('/api', apiLimiter);
 

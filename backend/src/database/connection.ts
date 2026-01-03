@@ -32,13 +32,44 @@ export async function getClient(): Promise<PoolClient> {
 
 export async function query(text: string, params?: any[]) {
   const start = Date.now();
+  const queryId = `query_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+  
   try {
+    logger.info('[DB QUERY]', {
+      queryId,
+      query: text.substring(0, 200), // 쿼리 일부만 로깅
+      hasParams: !!params && params.length > 0,
+      paramCount: params?.length || 0,
+      // 민감한 정보 마스킹
+      params: params?.map(p => {
+        if (typeof p === 'string' && (p.includes('password') || p.includes('hash'))) {
+          return '***';
+        }
+        return p;
+      })
+    });
+    
     const res = await pool.query(text, params);
     const duration = Date.now() - start;
-    logger.debug('Executed query', { text, duration, rows: res.rowCount });
+    
+    logger.info('[DB RESULT]', {
+      queryId,
+      duration: `${duration}ms`,
+      rowCount: res.rowCount,
+      success: true
+    });
+    
     return res;
-  } catch (error) {
-    logger.error('Query error', { text, error });
+  } catch (error: any) {
+    const duration = Date.now() - start;
+    logger.error('[DB ERROR]', {
+      queryId,
+      query: text.substring(0, 200),
+      duration: `${duration}ms`,
+      error: error.message,
+      code: error.code,
+      stack: error.stack?.substring(0, 300)
+    });
     throw error;
   }
 }

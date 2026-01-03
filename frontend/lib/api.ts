@@ -11,6 +11,17 @@ export async function apiRequest(
   endpoint: string,
   options: RequestInit = {}
 ) {
+  const requestId = `req_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+  const startTime = Date.now();
+  
+  console.log(`[API REQUEST] ${requestId}`, {
+    endpoint,
+    method: options.method || 'GET',
+    url: `${API_URL}${endpoint}`,
+    hasBody: !!options.body,
+    bodySize: options.body ? JSON.stringify(options.body).length : 0
+  });
+
   const token = typeof window !== 'undefined' ? localStorage.getItem('adminToken') : null;
   
   const headers: Record<string, string> = {
@@ -19,19 +30,60 @@ export async function apiRequest(
   };
 
   if (token) {
-    headers['Authorization'] = `Bearer ${token}`;
+    headers['Authorization'] = `Bearer ${token.substring(0, 20)}...`;
+    console.log(`[API REQUEST] ${requestId} - Token found`, { tokenLength: token.length });
+  } else {
+    console.log(`[API REQUEST] ${requestId} - No token`);
   }
 
-  const response = await fetch(`${API_URL}${endpoint}`, {
-    ...options,
-    headers,
-  });
+  try {
+    const response = await fetch(`${API_URL}${endpoint}`, {
+      ...options,
+      headers,
+    });
 
-  if (!response.ok) {
-    const error = await response.json().catch(() => ({ message: 'Request failed' }));
-    throw new Error(error.message || 'Request failed');
+    const duration = Date.now() - startTime;
+    console.log(`[API RESPONSE] ${requestId}`, {
+      status: response.status,
+      statusText: response.statusText,
+      ok: response.ok,
+      duration: `${duration}ms`,
+      headers: Object.fromEntries(response.headers.entries())
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      let errorData;
+      try {
+        errorData = JSON.parse(errorText);
+      } catch {
+        errorData = { message: errorText || 'Request failed' };
+      }
+      
+      console.error(`[API ERROR] ${requestId}`, {
+        status: response.status,
+        error: errorData,
+        responseText: errorText.substring(0, 200)
+      });
+      
+      throw new Error(errorData.message || errorData.error?.message || 'Request failed');
+    }
+
+    const data = await response.json();
+    console.log(`[API SUCCESS] ${requestId}`, {
+      dataKeys: Object.keys(data),
+      dataSize: JSON.stringify(data).length
+    });
+
+    return data;
+  } catch (error: any) {
+    const duration = Date.now() - startTime;
+    console.error(`[API EXCEPTION] ${requestId}`, {
+      error: error.message,
+      stack: error.stack,
+      duration: `${duration}ms`
+    });
+    throw error;
   }
-
-  return response.json();
 }
 

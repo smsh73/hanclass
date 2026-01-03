@@ -138,23 +138,65 @@ class AIService {
       systemPrompt?: string;
     }
   ): Promise<AIResponse> {
+    const requestId = `ai_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+    const startTime = Date.now();
+    
     const providers = this.primaryProvider
       ? [this.primaryProvider, ...this.fallbackProviders]
       : this.fallbackProviders.length > 0
       ? this.fallbackProviders
       : (['openai', 'claude', 'gemini'] as AIProvider[]);
 
+    logger.info('[AI REQUEST]', {
+      requestId,
+      providers: providers,
+      primaryProvider: this.primaryProvider,
+      fallbackProviders: this.fallbackProviders,
+      messageCount: messages.length,
+      lastMessage: messages[messages.length - 1]?.content?.substring(0, 100),
+      options: {
+        temperature: options?.temperature,
+        maxTokens: options?.maxTokens,
+        hasSystemPrompt: !!options?.systemPrompt
+      }
+    });
+
     let lastError: Error | null = null;
 
     for (const provider of providers) {
+      const providerStartTime = Date.now();
       try {
+        logger.info('[AI TRY PROVIDER]', {
+          requestId,
+          provider,
+          attempt: providers.indexOf(provider) + 1,
+          totalProviders: providers.length
+        });
+        
         const response = await this.callProvider(provider, messages, options);
-        logger.info('AI response successful', { provider });
+        const duration = Date.now() - startTime;
+        const providerDuration = Date.now() - providerStartTime;
+        
+        logger.info('[AI SUCCESS]', {
+          requestId,
+          provider,
+          duration: `${duration}ms`,
+          providerDuration: `${providerDuration}ms`,
+          responseLength: response.content.length,
+          usage: response.usage
+        });
+        
         return response;
       } catch (error: any) {
-        logger.warn(`AI provider ${provider} failed, trying fallback`, {
+        const providerDuration = Date.now() - providerStartTime;
+        logger.warn('[AI PROVIDER FAILED]', {
+          requestId,
+          provider,
+          duration: `${providerDuration}ms`,
           error: error?.message || String(error),
+          willTryFallback: providers.indexOf(provider) < providers.length - 1
         });
+        
         if (error instanceof Error) {
           lastError = error;
         } else {
@@ -164,10 +206,24 @@ class AIService {
       }
     }
 
+    const duration = Date.now() - startTime;
+    
     // Provide helpful error message when no providers are configured
     if (!this.primaryProvider && this.fallbackProviders.length === 0) {
+      logger.error('[AI NO PROVIDERS]', {
+        requestId,
+        duration: `${duration}ms`,
+        error: 'No AI providers configured'
+      });
       throw new Error('No AI providers configured. Please configure at least one API key (OpenAI, Claude, or Gemini) in the admin settings.');
     }
+    
+    logger.error('[AI ALL FAILED]', {
+      requestId,
+      duration: `${duration}ms`,
+      providers: providers,
+      lastError: lastError?.message
+    });
     
     throw lastError || new Error('All AI providers failed. Please check your API keys in the admin settings.');
   }
