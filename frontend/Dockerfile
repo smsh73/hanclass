@@ -101,20 +101,19 @@ RUN --mount=from=builder,source=/app/startup.sh,target=/tmp/startup.sh \
       echo "✓ Minimal startup.sh created"; \
     fi
 
-# 먼저 일반 빌드 파일 복사 (항상 필요)
-COPY --from=builder --chown=nextjs:nodejs /app/.next/server ./.next/server
+# .next 디렉토리 전체 복사 (production 빌드에 필요)
+COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next
 COPY --from=builder --chown=nextjs:nodejs /app/node_modules ./node_modules
 COPY --from=builder --chown=nextjs:nodejs /app/package.json ./package.json
 # package-lock.json은 선택적 파일이므로 복사하지 않음 (없어도 정상 작동)
 
-# standalone 디렉토리 복사 시도 (있으면 덮어쓰기)
-# 빌더에서 standalone 존재 여부 확인 후 복사
+# standalone 디렉토리가 있으면 루트로 복사 (standalone 빌드 우선 사용)
 RUN --mount=from=builder,source=/app/.next,target=/tmp/next \
     if [ -d "/tmp/next/standalone" ] && [ -n "$(find /tmp/next/standalone -mindepth 1 -maxdepth 1 2>/dev/null | head -1)" ]; then \
       cp -r /tmp/next/standalone/. ./ 2>/dev/null || true && \
-      echo "✓ Standalone build copied successfully"; \
+      echo "✓ Standalone build copied to root"; \
     else \
-      echo "⚠ Standalone build not found, using standard build"; \
+      echo "⚠ Standalone build not found, using standard build from .next"; \
     fi
 
 USER nextjs
