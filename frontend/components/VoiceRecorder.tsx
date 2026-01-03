@@ -44,6 +44,11 @@ export default function VoiceRecorder({
       }
     });
 
+    recognition.onError((errorType, errorMessage) => {
+      setError(errorMessage || '음성 인식 오류가 발생했습니다.');
+      setIsListening(false);
+    });
+
     recognitionRef.current = recognition;
 
     return () => {
