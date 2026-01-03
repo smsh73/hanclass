@@ -86,7 +86,7 @@ function ConversationInner() {
             setLevel(e.target.value);
             fetchTopics();
           }}
-          className="border rounded px-4 py-2"
+          className="bg-white text-gray-900 border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
         >
           <option value="beginner">초급</option>
           <option value="intermediate">중급</option>
