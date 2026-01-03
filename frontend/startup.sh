@@ -16,42 +16,50 @@ echo "Working directory: $(pwd)"
 echo "Files in directory:"
 ls -la | head -20
 
-# Clean up existing node_modules if it exists and has permission issues
-if [ -d "node_modules" ]; then
-  echo "Cleaning up existing node_modules..."
-  rm -rf node_modules 2>/dev/null || {
-    echo "Warning: Could not remove node_modules, continuing..."
+# Docker 컨테이너에서는 이미 빌드가 완료되어 있으므로 빌드 과정 생략
+# Azure App Service ZIP 배포에서만 빌드 수행
+if [ ! -d ".next" ] && [ ! -f "server.js" ]; then
+  echo "No build found. Starting build process..."
+  
+  # Clean up existing node_modules if it exists and has permission issues
+  if [ -d "node_modules" ]; then
+    echo "Cleaning up existing node_modules..."
+    rm -rf node_modules 2>/dev/null || {
+      echo "Warning: Could not remove node_modules, continuing..."
+    }
+  fi
+
+  # Clean npm cache
+  echo "Cleaning npm cache..."
+  npm cache clean --force 2>/dev/null || true
+
+  # Install dependencies with proper flags
+  echo "Installing dependencies..."
+  npm install --production=false --legacy-peer-deps --no-audit --no-fund || {
+    echo "npm install failed, trying with --force..."
+    npm install --production=false --legacy-peer-deps --force --no-audit --no-fund || {
+      echo "npm install failed completely!"
+      exit 1
+    }
   }
-fi
 
-# Clean npm cache
-echo "Cleaning npm cache..."
-npm cache clean --force 2>/dev/null || true
+  # Verify next is installed
+  if ! command -v next &> /dev/null && [ ! -f "node_modules/.bin/next" ]; then
+    echo "Error: next command not found after installation"
+    echo "Checking node_modules..."
+    ls -la node_modules/.bin/ | head -10 || echo "node_modules/.bin not found"
+    exit 1
+  fi
 
-# Install dependencies with proper flags
-echo "Installing dependencies..."
-npm install --production=false --legacy-peer-deps --no-audit --no-fund || {
-  echo "npm install failed, trying with --force..."
-  npm install --production=false --legacy-peer-deps --force --no-audit --no-fund || {
-    echo "npm install failed completely!"
+  # Build Next.js
+  echo "Building Next.js..."
+  npm run build || {
+    echo "Build failed!"
     exit 1
   }
-}
-
-# Verify next is installed
-if ! command -v next &> /dev/null && [ ! -f "node_modules/.bin/next" ]; then
-  echo "Error: next command not found after installation"
-  echo "Checking node_modules..."
-  ls -la node_modules/.bin/ | head -10 || echo "node_modules/.bin not found"
-  exit 1
+else
+  echo "Build already exists. Skipping build process..."
 fi
-
-# Build Next.js
-echo "Building Next.js..."
-npm run build || {
-  echo "Build failed!"
-  exit 1
-}
 
 # Docker 컨테이너에서는 이미 빌드가 완료되어 있으므로 빌드 과정 생략
 if [ -f "server.js" ]; then
