@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Request, Response, NextFunction } from 'express';
 import { v4 as uuidv4 } from 'uuid';
 import { query } from '../database/connection';
 import { AppError } from '../middleware/errorHandler';
@@ -39,7 +39,7 @@ const router = express.Router();
  *               $ref: '#/components/schemas/Error'
  */
 // Create session
-router.post('/create', validateCreateSession, async (req, res, next) => {
+router.post('/create', validateCreateSession, async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { name } = req.body;
     // Validation은 validateCreateSession 미들웨어에서 처리됨
@@ -66,7 +66,7 @@ router.post('/create', validateCreateSession, async (req, res, next) => {
 });
 
 // Get session
-router.get('/:sessionId', validateSessionId, async (req, res, next) => {
+router.get('/:sessionId', validateSessionId, async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { sessionId } = req.params;
 
@@ -89,7 +89,7 @@ router.get('/:sessionId', validateSessionId, async (req, res, next) => {
 });
 
 // Update activity
-router.post('/:sessionId/activity', validateSessionId, async (req, res, next) => {
+router.post('/:sessionId/activity', validateSessionId, async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { sessionId } = req.params;
 

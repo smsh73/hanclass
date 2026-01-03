@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Request, Response, NextFunction } from 'express';
 import { levelTestService } from '../services/levelTestService';
 import { AppError } from '../middleware/errorHandler';
 import { validateLevelTestSubmit } from '../middleware/validate';
@@ -7,7 +7,7 @@ import { query } from '../database/connection';
 const router = express.Router();
 
 // Get test questions
-router.get('/questions', async (req, res, next) => {
+router.get('/questions', async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { level } = req.query;
     const questions = levelTestService.getQuestions(
@@ -20,7 +20,7 @@ router.get('/questions', async (req, res, next) => {
 });
 
 // Submit test answers
-router.post('/submit', validateLevelTestSubmit, async (req, res, next) => {
+router.post('/submit', validateLevelTestSubmit, async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { sessionId, answers } = req.body;
     // Validation은 validateLevelTestSubmit 미들웨어에서 처리됨
@@ -38,7 +38,7 @@ router.post('/submit', validateLevelTestSubmit, async (req, res, next) => {
       }
     }
 
-    const result = await levelTestService.evaluateTest(userId, answers);
+    const result = await levelTestService.evaluateTest(userId || 0, answers);
     res.json({ success: true, result });
   } catch (error) {
     next(error);
@@ -46,7 +46,7 @@ router.post('/submit', validateLevelTestSubmit, async (req, res, next) => {
 });
 
 // Get test result
-router.get('/result/:userId', async (req, res, next) => {
+router.get('/result/:userId', async (req: Request, res: Response, next: NextFunction) => {
   try {
     const userId = parseInt(req.params.userId);
     if (isNaN(userId)) {

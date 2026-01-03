@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Request, Response, NextFunction } from 'express';
 import { aiService } from '../services/aiService';
 import { query } from '../database/connection';
 import { AppError } from '../middleware/errorHandler';
@@ -41,7 +41,7 @@ const router = express.Router();
  *               $ref: '#/components/schemas/ConversationResponse'
  */
 // Get conversation topics from curriculum
-router.get('/topics', async (req, res, next) => {
+router.get('/topics', async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { level, curriculumId } = req.query;
 
@@ -76,7 +76,7 @@ router.get('/topics', async (req, res, next) => {
 });
 
 // Start conversation
-router.post('/start', validateStartConversation, async (req, res, next) => {
+router.post('/start', validateStartConversation, async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { topic, level, sessionId } = req.body;
     // Validation은 validateStartConversation 미들웨어에서 처리됨
@@ -124,7 +124,7 @@ router.post('/start', validateStartConversation, async (req, res, next) => {
 });
 
 // Continue conversation
-router.post('/message', validateConversationMessage, async (req, res, next) => {
+router.post('/message', validateConversationMessage, async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { message, topic, level, conversationHistory } = req.body;
     // Validation은 validateConversationMessage 미들웨어에서 처리됨

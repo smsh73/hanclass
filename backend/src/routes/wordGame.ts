@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Request, Response, NextFunction } from 'express';
 import { query } from '../database/connection';
 import { AppError } from '../middleware/errorHandler';
 import { validateWordGameCheck } from '../middleware/validate';
@@ -6,7 +6,7 @@ import { validateWordGameCheck } from '../middleware/validate';
 const router = express.Router();
 
 // Get words for game
-router.get('/words', async (req, res, next) => {
+router.get('/words', async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { level, difficulty, limit = 10 } = req.query;
 
@@ -37,7 +37,7 @@ router.get('/words', async (req, res, next) => {
 });
 
 // Submit word game answer
-router.post('/check', validateWordGameCheck, async (req, res, next) => {
+router.post('/check', validateWordGameCheck, async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { word, userAnswer } = req.body;
     // Validation은 validateWordGameCheck 미들웨어에서 처리됨
