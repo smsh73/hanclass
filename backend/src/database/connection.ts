@@ -4,6 +4,11 @@ import { logger } from '../utils/logger';
 
 dotenv.config();
 
+// Azure Database for PostgreSQL requires SSL
+const isAzureDB = process.env.DB_HOST?.includes('.postgres.database.azure.com') || 
+                  process.env.DB_HOST?.includes('azure.com') ||
+                  process.env.AZURE_DB === 'true';
+
 const pool = new Pool({
   host: process.env.DB_HOST || 'localhost',
   port: parseInt(process.env.DB_PORT || '5432'),
@@ -12,8 +17,8 @@ const pool = new Pool({
   password: process.env.DB_PASSWORD || 'hanclass123',
   max: 20,
   idleTimeoutMillis: 30000,
-  connectionTimeoutMillis: 2000,
-  ssl: process.env.DB_HOST?.includes('azure.com') ? { rejectUnauthorized: false } : false,
+  connectionTimeoutMillis: 30000, // Azure Database는 네트워크 지연이 있을 수 있으므로 30초로 증가
+  ssl: isAzureDB ? { rejectUnauthorized: false } : false,
 });
 
 pool.on('error', (err: Error) => {
@@ -38,21 +43,40 @@ export async function query(text: string, params?: any[]) {
   }
 }
 
-export async function initDatabase() {
-  try {
-    // Test connection
-    const result = await query('SELECT NOW()');
-    logger.info('Database connection successful', { time: result.rows[0].now });
-    
-    // Run migrations
-    await runMigrations();
-    
-    // Initialize admin user
-    const { initAdminUser } = await import('./initAdmin');
-    await initAdminUser();
-  } catch (error) {
-    logger.error('Database initialization failed', error);
-    throw error;
+export async function initDatabase(retries = 3, delay = 5000) {
+  for (let i = 0; i < retries; i++) {
+    try {
+      logger.info(`Attempting database connection (${i + 1}/${retries})...`);
+      
+      // Test connection with timeout
+      const result = await Promise.race([
+        query('SELECT NOW()'),
+        new Promise((_, reject) => 
+          setTimeout(() => reject(new Error('Connection timeout')), 25000)
+        )
+      ]) as any;
+      
+      logger.info('Database connection successful', { time: result.rows[0].now });
+      
+      // Run migrations
+      await runMigrations();
+      
+      // Initialize admin user
+      const { initAdminUser } = await import('./initAdmin');
+      await initAdminUser();
+      
+      return; // Success, exit function
+    } catch (error: any) {
+      logger.error(`Database initialization attempt ${i + 1} failed`, error);
+      
+      if (i < retries - 1) {
+        logger.info(`Retrying in ${delay}ms...`);
+        await new Promise(resolve => setTimeout(resolve, delay));
+      } else {
+        logger.error('Database initialization failed after all retries', error);
+        throw error;
+      }
+    }
   }
 }
 

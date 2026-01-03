@@ -68,6 +68,15 @@ app.use(errorHandler);
 // Initialize database and start server
 async function startServer() {
   try {
+    // 데이터베이스 연결 정보 로깅 (비밀번호 제외)
+    logger.info('Database configuration', {
+      host: process.env.DB_HOST || 'localhost',
+      port: process.env.DB_PORT || '5432',
+      database: process.env.DB_NAME || 'hanclass',
+      user: process.env.DB_USER || 'hanclass',
+      ssl: process.env.DB_HOST?.includes('azure.com') || process.env.AZURE_DB === 'true',
+    });
+
     await initDatabase();
     logger.info('Database initialized successfully');
 
@@ -83,7 +92,12 @@ async function startServer() {
     });
   } catch (error) {
     logger.error('Failed to start server:', error);
-    process.exit(1);
+    // 데이터베이스 연결 실패 시에도 서버는 시작 (일부 기능만 제한)
+    logger.warn('Starting server without database connection. Some features may be limited.');
+    const HOST = process.env.HOSTNAME || '0.0.0.0';
+    httpServer.listen(PORT, HOST, () => {
+      logger.info(`Server running on ${HOST}:${PORT} (without database)`);
+    });
   }
 }
 
