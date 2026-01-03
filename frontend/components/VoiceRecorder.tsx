@@ -17,6 +17,7 @@ export default function VoiceRecorder({
   isAISpeaking,
 }: VoiceRecorderProps) {
   const [isListening, setIsListening] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const recognitionRef = useRef<VoiceRecognition | null>(null);
 
   useEffect(() => {

@@ -66,10 +66,31 @@ export class VoiceRecognition {
       };
 
       this.recognition.onerror = (event: SpeechRecognitionErrorEvent) => {
-        console.error('Speech recognition error:', event.error);
+        console.error('Speech recognition error:', event.error, event.message);
+        
+        // 네트워크 오류는 재시도하지 않고 사용자에게 알림
+        if (event.error === 'network') {
+          console.warn('Speech recognition network error. This may be due to network connectivity or browser limitations.');
+          // 네트워크 오류 시 자동 재시도 방지
+          this.isListening = false;
+          return;
+        }
+        
+        // 일시적인 오류는 재시도 가능
         if (event.error === 'no-speech') {
           // No speech detected, trigger silence callback after timeout
           this.resetSilenceTimeout();
+        } else if (event.error === 'aborted') {
+          // 사용자가 중단한 경우, 재시도하지 않음
+          this.isListening = false;
+        } else if (event.error === 'not-allowed') {
+          // 마이크 권한이 없는 경우
+          console.warn('Microphone permission denied. Please allow microphone access.');
+          this.isListening = false;
+        } else if (event.error === 'service-not-allowed') {
+          // Speech Recognition 서비스가 허용되지 않은 경우
+          console.warn('Speech Recognition service not allowed.');
+          this.isListening = false;
         }
       };
 
