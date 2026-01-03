@@ -3,9 +3,43 @@ import { aiService } from '../services/aiService';
 import { query } from '../database/connection';
 import { AppError } from '../middleware/errorHandler';
 import { io } from '../index';
+import { validateStartConversation, validateConversationMessage } from '../middleware/validate';
 
 const router = express.Router();
 
+/**
+ * @swagger
+ * /api/conversation/start:
+ *   post:
+ *     summary: 대화 시작
+ *     tags: [Conversation]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - topic
+ *             properties:
+ *               topic:
+ *                 type: string
+ *                 example: 인사하기
+ *               level:
+ *                 type: string
+ *                 enum: [beginner, intermediate, advanced]
+ *                 example: beginner
+ *               sessionId:
+ *                 type: string
+ *                 format: uuid
+ *     responses:
+ *       200:
+ *         description: 대화 시작 성공
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ConversationResponse'
+ */
 // Get conversation topics from curriculum
 router.get('/topics', async (req, res, next) => {
   try {
@@ -42,21 +76,17 @@ router.get('/topics', async (req, res, next) => {
 });
 
 // Start conversation
-router.post('/start', async (req, res, next) => {
+router.post('/start', validateStartConversation, async (req, res, next) => {
   try {
-    const { topic, level, userId } = req.body;
+    const { topic, level, sessionId } = req.body;
+    // Validation은 validateStartConversation 미들웨어에서 처리됨
 
-    if (!topic) {
-      throw new AppError('Topic is required', 400);
-    }
-
-    // userId는 선택사항 (없어도 대화 가능)
-    if (userId) {
-      // userId가 있으면 사용자 정보 확인 (선택사항)
+    // sessionId로 사용자 정보 확인 (선택사항)
+    if (sessionId) {
       try {
-        const userResult = await query('SELECT * FROM users WHERE id = $1', [userId]);
-        if (userResult.rows.length === 0) {
-          // 사용자가 없어도 대화는 계속 진행
+        const userResult = await query('SELECT * FROM users WHERE session_id = $1', [sessionId]);
+        if (userResult.rows.length > 0) {
+          // 사용자 정보가 있으면 레벨 정보 활용 가능
         }
       } catch (error) {
         // 사용자 조회 실패해도 대화는 계속 진행
@@ -94,13 +124,10 @@ router.post('/start', async (req, res, next) => {
 });
 
 // Continue conversation
-router.post('/message', async (req, res, next) => {
+router.post('/message', validateConversationMessage, async (req, res, next) => {
   try {
     const { message, topic, level, conversationHistory } = req.body;
-
-    if (!message) {
-      throw new AppError('Message is required', 400);
-    }
+    // Validation은 validateConversationMessage 미들웨어에서 처리됨
 
     const systemPrompt = `당신은 한국어를 가르치는 친절한 AI 선생님입니다. 
 학생과 자연스럽고 대화하듯이 한국어를 가르쳐주세요.

@@ -7,6 +7,8 @@ import { initDatabase } from './database/connection';
 import { errorHandler } from './middleware/errorHandler';
 import { logger } from './utils/logger';
 import { aiService } from './services/aiService';
+import { apiLimiter, authLimiter, aiLimiter } from './middleware/rateLimiter';
+import { setupSwagger } from './config/swagger';
 
 // Routes
 import authRoutes from './routes/auth';
@@ -31,10 +33,28 @@ const io = new Server(httpServer, {
 // Azure App Service는 PORT 환경 변수를 자동으로 설정 (기본값: 8080)
 const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 8080;
 
-// Middleware
+// CORS 설정 강화 - 특정 도메인만 허용
+const allowedOrigins = process.env.FRONTEND_URL 
+  ? process.env.FRONTEND_URL.split(',').map(url => url.trim())
+  : ['http://localhost:3000', 'http://localhost:3001'];
+
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:3000',
+  origin: (origin, callback) => {
+    // origin이 없는 경우 (같은 도메인 요청, Postman 등) 허용
+    if (!origin) {
+      return callback(null, true);
+    }
+    
+    if (allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      logger.warn(`CORS blocked origin: ${origin}`);
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
 }));
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ extended: true, limit: '50mb' }));
@@ -58,11 +78,17 @@ app.get('/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
-// Routes
-app.use('/api/auth', authRoutes);
+// Swagger API Documentation
+setupSwagger(app);
+
+// Rate Limiting 적용
+app.use('/api', apiLimiter);
+
+// Routes with specific rate limiters
+app.use('/api/auth', authLimiter, authRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/curriculum', curriculumRoutes);
-app.use('/api/conversation', conversationRoutes);
+app.use('/api/conversation', aiLimiter, conversationRoutes);
 app.use('/api/level-test', levelTestRoutes);
 app.use('/api/word-game', wordGameRoutes);
 app.use('/api/session', sessionRoutes);

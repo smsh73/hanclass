@@ -19,10 +19,16 @@ export function authenticateToken(
     throw new AppError('Access token required', 401);
   }
 
+  // JWT Secret은 반드시 환경 변수로 설정되어야 함
+  const jwtSecret = process.env.JWT_SECRET;
+  if (!jwtSecret) {
+    throw new AppError('JWT_SECRET is not configured', 500);
+  }
+
   try {
     const decoded = jwt.verify(
       token,
-      process.env.JWT_SECRET || 'your-secret-key'
+      jwtSecret
     ) as { userId: string; role: string };
     
     req.userId = decoded.userId;

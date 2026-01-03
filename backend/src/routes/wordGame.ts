@@ -1,6 +1,7 @@
 import express from 'express';
 import { query } from '../database/connection';
 import { AppError } from '../middleware/errorHandler';
+import { validateWordGameCheck } from '../middleware/validate';
 
 const router = express.Router();
 
@@ -36,13 +37,10 @@ router.get('/words', async (req, res, next) => {
 });
 
 // Submit word game answer
-router.post('/check', async (req, res, next) => {
+router.post('/check', validateWordGameCheck, async (req, res, next) => {
   try {
     const { word, userAnswer } = req.body;
-
-    if (!word || !userAnswer) {
-      throw new AppError('word and userAnswer required', 400);
-    }
+    // Validation은 validateWordGameCheck 미들웨어에서 처리됨
 
     // Simple comparison (can be enhanced with fuzzy matching)
     const isCorrect = word.toLowerCase().trim() === userAnswer.toLowerCase().trim();

@@ -2,17 +2,47 @@ import express from 'express';
 import { v4 as uuidv4 } from 'uuid';
 import { query } from '../database/connection';
 import { AppError } from '../middleware/errorHandler';
+import { validateCreateSession, validateSessionId } from '../middleware/validate';
 
 const router = express.Router();
 
+/**
+ * @swagger
+ * /api/session/create:
+ *   post:
+ *     summary: 세션 생성
+ *     tags: [Session]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - name
+ *             properties:
+ *               name:
+ *                 type: string
+ *                 example: 홍길동
+ *     responses:
+ *       200:
+ *         description: 세션 생성 성공
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Session'
+ *       400:
+ *         description: 잘못된 요청
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Error'
+ */
 // Create session
-router.post('/create', async (req, res, next) => {
+router.post('/create', validateCreateSession, async (req, res, next) => {
   try {
     const { name } = req.body;
-
-    if (!name || !name.trim()) {
-      throw new AppError('Name is required', 400);
-    }
+    // Validation은 validateCreateSession 미들웨어에서 처리됨
 
     const sessionId = uuidv4();
     const now = new Date();
@@ -36,7 +66,7 @@ router.post('/create', async (req, res, next) => {
 });
 
 // Get session
-router.get('/:sessionId', async (req, res, next) => {
+router.get('/:sessionId', validateSessionId, async (req, res, next) => {
   try {
     const { sessionId } = req.params;
 
@@ -59,7 +89,7 @@ router.get('/:sessionId', async (req, res, next) => {
 });
 
 // Update activity
-router.post('/:sessionId/activity', async (req, res, next) => {
+router.post('/:sessionId/activity', validateSessionId, async (req, res, next) => {
   try {
     const { sessionId } = req.params;
 

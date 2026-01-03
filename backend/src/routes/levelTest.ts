@@ -1,6 +1,8 @@
 import express from 'express';
 import { levelTestService } from '../services/levelTestService';
 import { AppError } from '../middleware/errorHandler';
+import { validateLevelTestSubmit } from '../middleware/validate';
+import { query } from '../database/connection';
 
 const router = express.Router();
 
@@ -18,12 +20,22 @@ router.get('/questions', async (req, res, next) => {
 });
 
 // Submit test answers
-router.post('/submit', async (req, res, next) => {
+router.post('/submit', validateLevelTestSubmit, async (req, res, next) => {
   try {
-    const { userId, answers } = req.body;
+    const { sessionId, answers } = req.body;
+    // Validation은 validateLevelTestSubmit 미들웨어에서 처리됨
 
-    if (!userId || !answers || !Array.isArray(answers)) {
-      throw new AppError('userId and answers array required', 400);
+    // sessionId로 userId 조회
+    let userId: number | null = null;
+    if (sessionId) {
+      try {
+        const userResult = await query('SELECT id FROM users WHERE session_id = $1', [sessionId]);
+        if (userResult.rows.length > 0) {
+          userId = userResult.rows[0].id;
+        }
+      } catch (error) {
+        // 사용자 조회 실패해도 테스트는 진행 (익명 사용자)
+      }
     }
 
     const result = await levelTestService.evaluateTest(userId, answers);

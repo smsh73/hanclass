@@ -3,16 +3,58 @@ import { query } from '../database/connection';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { AppError } from '../middleware/errorHandler';
+import { validateLogin } from '../middleware/validate';
 
 const router = express.Router();
 
-router.post('/login', async (req, res, next) => {
+/**
+ * @swagger
+ * /api/auth/login:
+ *   post:
+ *     summary: 관리자 로그인
+ *     tags: [Auth]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - username
+ *               - password
+ *             properties:
+ *               username:
+ *                 type: string
+ *                 example: admin
+ *               password:
+ *                 type: string
+ *                 example: Admin@2026
+ *     responses:
+ *       200:
+ *         description: 로그인 성공
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                 token:
+ *                   type: string
+ *                 user:
+ *                   type: object
+ *       401:
+ *         description: 인증 실패
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Error'
+ */
+
+router.post('/login', validateLogin, async (req, res, next) => {
   try {
     const { username, password } = req.body;
-
-    if (!username || !password) {
-      throw new AppError('Username and password required', 400);
-    }
+    // Validation은 validateLogin 미들웨어에서 처리됨
 
     const result = await query(
       'SELECT * FROM admin_users WHERE username = $1',
@@ -30,9 +72,15 @@ router.post('/login', async (req, res, next) => {
       throw new AppError('Invalid credentials', 401);
     }
 
+    // JWT Secret은 반드시 환경 변수로 설정되어야 함
+    const jwtSecret = process.env.JWT_SECRET;
+    if (!jwtSecret) {
+      throw new AppError('JWT_SECRET is not configured', 500);
+    }
+
     const token = jwt.sign(
       { userId: user.id, role: 'admin' },
-      process.env.JWT_SECRET || 'your-secret-key',
+      jwtSecret,
       { expiresIn: '24h' }
     );
 
