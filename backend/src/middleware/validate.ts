@@ -1,6 +1,7 @@
 import { body, param, query, ValidationChain, validationResult } from 'express-validator';
 import { Request, Response, NextFunction } from 'express';
 import { AppError } from './errorHandler';
+import { logger } from '../utils/logger';
 
 /**
  * Validation 결과 처리 미들웨어
@@ -10,14 +11,33 @@ export const handleValidationErrors = (
   res: Response,
   next: NextFunction
 ) => {
+  logger.info('[VALIDATION] Starting validation', {
+    path: req.path,
+    method: req.method,
+    body: req.body,
+    bodyKeys: Object.keys(req.body || {})
+  });
+  
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     const errorMessages = errors.array().map((err) => ({
       field: err.type === 'field' ? err.path : undefined,
       message: err.msg,
     }));
+    logger.warn('[VALIDATION] Validation failed', {
+      path: req.path,
+      method: req.method,
+      errors: errorMessages,
+      body: req.body
+    });
     throw new AppError(`Validation failed: ${errorMessages.map(e => e.message).join(', ')}`, 400);
   }
+  
+  logger.info('[VALIDATION] Validation passed', {
+    path: req.path,
+    method: req.method,
+    bodyKeys: Object.keys(req.body || {})
+  });
   next();
 };
 
