@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "node -e \"const fs = require('fs'); const path = require('path'); const serverPath = path.join(process.cwd(), '.next/standalone/server.js'); if (fs.existsSync(serverPath)) { require(serverPath); } else { require('next/dist/bin/next').default(['start']); }\"",
+    "start": "if [ -f .next/standalone/server.js ]; then node .next/standalone/server.js; else next start; fi",
     "start:standalone": "node .next/standalone/server.js",
     "start:next": "next start",
     "lint": "next lint"

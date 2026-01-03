@@ -12,18 +12,27 @@ if [ -d ".next" ] && [ -d "node_modules" ] && [ ! -d "/home/site/wwwroot" ]; the
   echo "Detected Docker environment (.next and node_modules exist)"
   echo "Skipping build process, starting server directly..."
   
-  # 우선순위: server.js > .next/standalone/server.js > npm start
+  # 우선순위: server.js > .next/standalone/server.js > .next/server.js > npm start
   if [ -f "server.js" ]; then
     echo "✓ Starting standalone server from root (server.js)..."
     exec node server.js
   elif [ -f ".next/standalone/server.js" ]; then
     echo "✓ Starting standalone server from .next/standalone..."
-    exec node .next/standalone/server.js
+    cd .next/standalone
+    # Copy static files if needed
+    if [ -d "../static" ] && [ ! -d ".next/static" ]; then
+      mkdir -p .next
+      cp -r ../static .next/static 2>/dev/null || true
+    fi
+    if [ -d "../../public" ] && [ ! -d "public" ]; then
+      cp -r ../../public ./public 2>/dev/null || true
+    fi
+    exec node server.js
   elif [ -f ".next/server.js" ]; then
     echo "✓ Starting server from .next..."
     exec node .next/server.js
   else
-    echo "⚠ Using npm start..."
+    echo "⚠ Using npm start (fallback)..."
     exec npm start
   fi
   exit 0
