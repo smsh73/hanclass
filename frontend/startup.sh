@@ -5,19 +5,35 @@
 # Docker 컨테이너 환경 감지 - 빠른 감지 및 실행
 if [ -d ".next" ] && [ -d "node_modules" ] && [ ! -d "/home/site/wwwroot" ]; then
   # Docker 환경: 바로 서버 시작
+  echo "=== Docker Container Detected ==="
+  echo "Working directory: $(pwd)"
+  echo "=== Checking build files ==="
+  
   if [ -f "server.js" ]; then
+    echo "✓ Found server.js in root, starting..."
     exec node server.js
   elif [ -d ".next/standalone" ] && [ -f ".next/standalone/server.js" ]; then
+    echo "✓ Found standalone build, starting..."
     cd .next/standalone
     [ -d "../static" ] && [ ! -d ".next/static" ] && mkdir -p .next && cp -r ../static .next/static 2>/dev/null || true
     [ -d "../../public" ] && [ ! -d "public" ] && cp -r ../../public ./public 2>/dev/null || true
     exec node server.js
   elif [ -f ".next/standalone/server.js" ]; then
+    echo "✓ Found standalone/server.js, starting..."
     cd .next/standalone
     [ -d "../static" ] && [ ! -d ".next/static" ] && mkdir -p .next && cp -r ../static .next/static 2>/dev/null || true
     [ -d "../../public" ] && [ ! -d "public" ] && cp -r ../../public ./public 2>/dev/null || true
     exec node server.js
   elif [ -f ".next/BUILD_ID" ]; then
+    echo "✓ Found BUILD_ID, starting with npm start..."
+    exec npm start
+  elif [ -d ".next/server" ]; then
+    echo "✓ Found .next/server directory, starting with npm start (BUILD_ID may be missing but server files exist)..."
+    exec npm start
+  elif [ -d ".next" ] && [ -n "$(find .next -mindepth 1 -maxdepth 1 2>/dev/null | head -1)" ]; then
+    echo "⚠ BUILD_ID not found, but .next directory exists. Attempting npm start..."
+    echo "=== .next directory contents ==="
+    ls -la .next/ 2>/dev/null | head -10
     exec npm start
   else
     echo "ERROR: No valid build found. Checking .next directory..."
