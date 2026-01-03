@@ -27,18 +27,41 @@ export function getSessionInfo(): SessionInfo {
  * 세션 ID로 사용자 정보 가져오기 (서버에서)
  */
 export async function getUserFromSession(sessionId: string): Promise<{ userId: number | null; userName: string | null }> {
+  const requestId = `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+  const startTime = Date.now();
+  
+  console.log(`[SESSION] ${requestId} - Getting user from session`, { sessionId });
+  
   try {
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/session/${sessionId}`);
+    const duration = Date.now() - startTime;
+    
+    console.log(`[SESSION] ${requestId} - Response received`, {
+      status: response.status,
+      ok: response.ok,
+      duration: `${duration}ms`
+    });
+    
     const data = await response.json();
     
     if (data.success && data.user) {
+      console.log(`[SESSION] ${requestId} - User found`, {
+        userId: data.user.id,
+        userName: data.user.name
+      });
       return {
         userId: data.user.id,
         userName: data.user.name,
       };
+    } else {
+      console.warn(`[SESSION] ${requestId} - User not found`, { data });
     }
-  } catch (error) {
-    console.error('Failed to get user from session:', error);
+  } catch (error: any) {
+    const duration = Date.now() - startTime;
+    console.error(`[SESSION] ${requestId} - Error`, {
+      error: error.message,
+      duration: `${duration}ms`
+    });
   }
   
   return { userId: null, userName: null };
