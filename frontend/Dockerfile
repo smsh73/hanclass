@@ -125,7 +125,8 @@ ENV PORT=8080
 ENV HOSTNAME="0.0.0.0"
 
 # Docker 컨테이너에서는 이미 빌드가 완료되어 있으므로 직접 실행
-# startup.sh는 실행하지 않음 (Azure App Service ZIP 배포용)
+# Azure App Service가 startup.sh를 자동 실행하므로, startup.sh가 Docker 환경을 감지하여 서버 시작
+# CMD는 fallback으로 사용 (startup.sh가 없을 경우)
 # 우선순위: server.js > .next/standalone/server.js > npm start
-CMD ["sh", "-c", "echo '=== Starting Next.js Server ===' && echo 'Working directory: $(pwd)' && echo 'Files:' && ls -la | grep -E 'server\\.js|package\\.json|node_modules' && if [ -f server.js ]; then echo '✓ Starting standalone server from root (server.js)...' && exec node server.js; elif [ -f .next/standalone/server.js ]; then echo '✓ Starting standalone server from .next/standalone...' && exec node .next/standalone/server.js; else echo '⚠ Using npm start...' && exec npm run start:next; fi"]
+CMD ["sh", "-c", "echo '=== Starting Next.js Server (CMD fallback) ===' && echo 'Working directory: $(pwd)' && echo 'Checking for server files...' && ls -la .next/standalone 2>/dev/null | head -5 || echo 'No standalone directory' && if [ -f server.js ]; then echo '✓ Starting standalone server from root (server.js)...' && exec node server.js; elif [ -f .next/standalone/server.js ]; then echo '✓ Starting standalone server from .next/standalone...' && cd .next/standalone && exec node server.js; elif [ -d .next/standalone ] && [ -f .next/standalone/server.js ]; then echo '✓ Starting from standalone directory...' && cd .next/standalone && exec node server.js; else echo '⚠ Using npm start (fallback)...' && exec npm start; fi"]
 
