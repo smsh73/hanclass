@@ -144,8 +144,8 @@ export default function HomePage() {
           <>
             {/* Hero Section */}
             <div className="text-center mb-12">
-              <h2 className="text-4xl font-bold mb-4">한국어를 재미있게 배워보세요!</h2>
-              <p className="text-xl text-gray-600">
+              <h2 className="text-4xl font-bold mb-4 text-blue-800">한국어를 재미있게 배워보세요!</h2>
+              <p className="text-xl text-gray-700">
                 AI 선생님과 함께하는 인터랙티브 한국어 학습
               </p>
             </div>
