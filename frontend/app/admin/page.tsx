@@ -27,7 +27,7 @@ export default function AdminPage() {
   };
 
   if (isLoading) {
-    return <div className="p-8">로딩 중...</div>;
+    return <div className="p-8 text-gray-900">로딩 중...</div>;
   }
 
   if (!isAuthenticated) {
@@ -38,7 +38,7 @@ export default function AdminPage() {
     <div className="min-h-screen bg-gray-50">
       <header className="bg-white shadow-sm">
         <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-          <h1 className="text-2xl font-bold">관리자 페이지</h1>
+          <h1 className="text-2xl font-bold text-gray-900">관리자 페이지</h1>
           <div className="flex gap-2">
             <button
               onClick={() => router.push('/')}
@@ -63,8 +63,8 @@ export default function AdminPage() {
             className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow"
           >
             <div className="text-4xl mb-4">🔑</div>
-            <h3 className="text-xl font-semibold mb-2">API 키 관리</h3>
-            <p className="text-gray-600">
+            <h3 className="text-xl font-semibold mb-2 text-gray-900">API 키 관리</h3>
+            <p className="text-gray-700">
               OpenAI, Claude, Gemini API 키를 등록하고 관리하세요
             </p>
           </Link>
@@ -74,16 +74,16 @@ export default function AdminPage() {
             className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow"
           >
             <div className="text-4xl mb-4">📚</div>
-            <h3 className="text-xl font-semibold mb-2">교안 업로드</h3>
-            <p className="text-gray-600">
+            <h3 className="text-xl font-semibold mb-2 text-gray-900">교안 업로드</h3>
+            <p className="text-gray-700">
               Word/PDF 파일을 업로드하여 커리큘럼을 생성하세요
             </p>
           </Link>
 
           <div className="bg-white rounded-lg shadow-lg p-6">
             <div className="text-4xl mb-4">📊</div>
-            <h3 className="text-xl font-semibold mb-2">통계</h3>
-            <p className="text-gray-600">학습 통계를 확인하세요 (준비 중)</p>
+            <h3 className="text-xl font-semibold mb-2 text-gray-900">통계</h3>
+            <p className="text-gray-700">학습 통계를 확인하세요 (준비 중)</p>
           </div>
         </div>
       </main>

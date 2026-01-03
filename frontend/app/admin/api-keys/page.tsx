@@ -80,7 +80,7 @@ export default function APIKeysPage() {
   return (
     <div className="p-8 max-w-4xl mx-auto">
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-3xl font-bold">API 키 관리</h1>
+        <h1 className="text-3xl font-bold text-gray-900">API 키 관리</h1>
         <div className="flex gap-2">
           <button
             onClick={() => router.push('/')}
@@ -90,7 +90,7 @@ export default function APIKeysPage() {
           </button>
           <button
             onClick={() => setShowAddForm(!showAddForm)}
-            className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+            className="px-4 py-2 bg-blue-500 text-gray-900 rounded hover:bg-blue-600 font-semibold"
           >
             {showAddForm ? '취소' : 'API 키 추가'}
           </button>
@@ -99,10 +99,10 @@ export default function APIKeysPage() {
 
       {showAddForm && (
         <div className="bg-white rounded-lg shadow p-6 mb-6">
-          <h2 className="text-xl font-semibold mb-4">새 API 키 등록</h2>
+          <h2 className="text-xl font-semibold mb-4 text-gray-900">새 API 키 등록</h2>
           <form onSubmit={handleSubmit}>
             <div className="mb-4">
-              <label className="block text-sm font-medium mb-2">Provider</label>
+              <label className="block text-sm font-medium mb-2 text-gray-900">Provider</label>
               <select
                 value={formData.provider}
                 onChange={(e) => setFormData({ ...formData, provider: e.target.value })}
@@ -114,7 +114,7 @@ export default function APIKeysPage() {
               </select>
             </div>
             <div className="mb-4">
-              <label className="block text-sm font-medium mb-2">API Key</label>
+              <label className="block text-sm font-medium mb-2 text-gray-900">API Key</label>
               <input
                 type="text"
                 value={formData.apiKey}
@@ -136,7 +136,7 @@ export default function APIKeysPage() {
             </div>
             <button
               type="submit"
-              className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+              className="px-4 py-2 bg-blue-500 text-gray-900 rounded hover:bg-blue-600 font-semibold"
             >
               등록
             </button>
@@ -167,7 +167,7 @@ export default function APIKeysPage() {
                 <td className="px-6 py-4 whitespace-nowrap">
                   <button
                     onClick={() => handleTest(key.provider)}
-                    className="px-3 py-1 bg-green-500 text-white rounded hover:bg-green-600 text-sm"
+                    className="px-3 py-1 bg-green-500 text-gray-900 rounded hover:bg-green-600 text-sm font-semibold"
                   >
                     테스트
                   </button>

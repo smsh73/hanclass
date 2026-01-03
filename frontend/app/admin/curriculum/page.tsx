@@ -62,7 +62,7 @@ export default function CurriculumPage() {
   return (
     <div className="p-8 max-w-4xl mx-auto">
       <div className="mb-6 flex justify-between items-center">
-        <h1 className="text-3xl font-bold">교안 업로드</h1>
+        <h1 className="text-3xl font-bold text-gray-900">교안 업로드</h1>
         <button
           onClick={() => router.push('/')}
           className="px-4 py-2 text-sm bg-gray-200 text-gray-700 rounded hover:bg-gray-300"
@@ -72,10 +72,10 @@ export default function CurriculumPage() {
       </div>
 
       <div className="bg-white rounded-lg shadow p-6 mb-6">
-        <h2 className="text-xl font-semibold mb-4">파일 업로드</h2>
+        <h2 className="text-xl font-semibold mb-4 text-gray-900">파일 업로드</h2>
         <form onSubmit={handleUpload}>
           <div className="mb-4">
-            <label className="block text-sm font-medium mb-2">
+            <label className="block text-sm font-medium mb-2 text-gray-900">
               Word (.docx) 또는 PDF (.pdf) 파일 선택
             </label>
             <input
@@ -107,7 +107,7 @@ export default function CurriculumPage() {
           <button
             type="submit"
             disabled={files.length === 0 || isUploading}
-            className="px-6 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 disabled:opacity-50"
+            className="px-6 py-2 bg-blue-500 text-gray-900 rounded hover:bg-blue-600 disabled:opacity-50 font-semibold"
           >
             {isUploading ? '업로드 중...' : '업로드 및 커리큘럼 생성'}
           </button>
@@ -121,7 +121,7 @@ export default function CurriculumPage() {
       </div>
 
       <div className="bg-white rounded-lg shadow p-6">
-        <h2 className="text-xl font-semibold mb-4">안내</h2>
+        <h2 className="text-xl font-semibold mb-4 text-gray-900">안내</h2>
         <ul className="list-disc list-inside space-y-2 text-gray-600">
           <li>Word (.docx) 또는 PDF (.pdf) 파일을 업로드할 수 있습니다.</li>
           <li>여러 파일을 동시에 업로드하면 각각 별도의 커리큘럼으로 생성됩니다.</li>
