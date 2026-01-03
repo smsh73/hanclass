@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { isAdminAuthenticated } from '@/lib/admin';
 
 function AdminCard() {
   const router = useRouter();
