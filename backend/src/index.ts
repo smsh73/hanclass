@@ -29,7 +29,7 @@ const io = new Server(httpServer, {
 });
 
 // Azure App Service는 PORT 환경 변수를 자동으로 설정 (기본값: 8080)
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 8080;
 
 // Middleware
 app.use(cors({
