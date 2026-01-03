@@ -16,6 +16,7 @@ export class VoiceRecognition {
   private lastSpeechTime: number = 0;
   private onResultCallback?: (text: string, isFinal: boolean) => void;
   private onSilenceCallback?: () => void;
+  private onErrorCallback?: (error: string, message?: string) => void;
   private silenceDuration: number = 2000; // 2 seconds
 
   constructor(options: VoiceRecognitionOptions = {}) {
@@ -70,7 +71,11 @@ export class VoiceRecognition {
         
         // 네트워크 오류는 재시도하지 않고 사용자에게 알림
         if (event.error === 'network') {
+          const errorMsg = '음성 인식 네트워크 오류가 발생했습니다. 네트워크 연결을 확인해주세요.';
           console.warn('Speech recognition network error. This may be due to network connectivity or browser limitations.');
+          if (this.onErrorCallback) {
+            this.onErrorCallback('network', errorMsg);
+          }
           // 네트워크 오류 시 자동 재시도 방지
           this.isListening = false;
           return;
@@ -85,12 +90,25 @@ export class VoiceRecognition {
           this.isListening = false;
         } else if (event.error === 'not-allowed') {
           // 마이크 권한이 없는 경우
+          const errorMsg = '마이크 권한이 필요합니다. 브라우저 설정에서 마이크 권한을 허용해주세요.';
           console.warn('Microphone permission denied. Please allow microphone access.');
+          if (this.onErrorCallback) {
+            this.onErrorCallback('not-allowed', errorMsg);
+          }
           this.isListening = false;
         } else if (event.error === 'service-not-allowed') {
           // Speech Recognition 서비스가 허용되지 않은 경우
+          const errorMsg = '음성 인식 서비스를 사용할 수 없습니다.';
           console.warn('Speech Recognition service not allowed.');
+          if (this.onErrorCallback) {
+            this.onErrorCallback('service-not-allowed', errorMsg);
+          }
           this.isListening = false;
+        } else {
+          // 기타 오류
+          if (this.onErrorCallback) {
+            this.onErrorCallback(event.error, event.message || '음성 인식 오류가 발생했습니다.');
+          }
         }
       };
 
@@ -138,6 +156,10 @@ export class VoiceRecognition {
 
   onSilence(callback: () => void) {
     this.onSilenceCallback = callback;
+  }
+
+  onError(callback: (error: string, message?: string) => void) {
+    this.onErrorCallback = callback;
   }
 
   setSilenceDuration(ms: number) {
