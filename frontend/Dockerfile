@@ -75,7 +75,12 @@ RUN --mount=from=builder,source=/app/public,target=/tmp/public \
     else \
       echo "⚠ Public directory not found or empty, using empty directory"; \
     fi
-COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+# .next 디렉토리 전체 복사 (BUILD_ID 포함, production 빌드에 필수)
+# 먼저 .next 디렉토리 생성
+RUN mkdir -p ./.next
+
+# .next 디렉토리 전체 복사 (BUILD_ID, static, server 등 모든 파일)
+COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next
 
 # startup.sh 복사 (Azure App Service가 자동 실행할 수 있으므로 반드시 필요)
 # Docker 환경에서는 server.js가 이미 존재하므로 startup.sh가 자동 감지하여 빌드 건너뛰기
@@ -101,27 +106,24 @@ RUN --mount=from=builder,source=/app/startup.sh,target=/tmp/startup.sh \
       echo "✓ Minimal startup.sh created"; \
     fi
 
-# .next 디렉토리 전체 복사 (production 빌드에 필요)
-COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next
+# node_modules와 package.json 복사
 COPY --from=builder --chown=nextjs:nodejs /app/node_modules ./node_modules
 COPY --from=builder --chown=nextjs:nodejs /app/package.json ./package.json
 # package-lock.json은 선택적 파일이므로 복사하지 않음 (없어도 정상 작동)
 
-# standalone 디렉토리가 있으면 루트로 복사 (standalone 빌드 우선 사용)
-# .next/BUILD_ID도 확인하여 production 빌드 확인
-RUN --mount=from=builder,source=/app/.next,target=/tmp/next \
-    echo "=== Checking build files ===" && \
-    ls -la /tmp/next/ 2>/dev/null | head -10 && \
-    if [ -f "/tmp/next/BUILD_ID" ]; then \
-      echo "✓ BUILD_ID found in .next"; \
+# 빌드 파일 확인 및 standalone 빌드 처리
+RUN echo "=== Checking build files ===" && \
+    if [ -f ".next/BUILD_ID" ]; then \
+      echo "✓ BUILD_ID found: $(cat .next/BUILD_ID)"; \
     else \
       echo "⚠ BUILD_ID not found in .next"; \
+      echo "=== .next directory contents ===" && \
+      ls -la .next/ 2>/dev/null | head -10; \
     fi && \
-    if [ -d "/tmp/next/standalone" ] && [ -n "$(find /tmp/next/standalone -mindepth 1 -maxdepth 1 2>/dev/null | head -1)" ]; then \
-      cp -r /tmp/next/standalone/. ./ 2>/dev/null || true && \
-      echo "✓ Standalone build copied to root"; \
+    if [ -d ".next/standalone" ] && [ -n "$(find .next/standalone -mindepth 1 -maxdepth 1 2>/dev/null | head -1)" ]; then \
+      echo "✓ Standalone build found, will be used if server.js exists"; \
     else \
-      echo "⚠ Standalone build not found, using standard build from .next"; \
+      echo "⚠ Standalone build not found, will use standard build from .next"; \
     fi
 
 USER nextjs
