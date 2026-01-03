@@ -215,14 +215,22 @@ export default function ChatInterface({ topic, level = 'beginner', onClose }: Ch
           <h3 className="font-semibold text-gray-900">주제: {topic}</h3>
           <p className="text-sm text-gray-700">레벨: {level}</p>
         </div>
-        {onClose && (
+        <div className="flex gap-2">
           <button
-            onClick={onClose}
-            className="px-3 py-1 text-gray-600 hover:text-gray-800"
+            onClick={() => router.push('/')}
+            className="px-3 py-1 text-sm bg-gray-200 text-gray-700 rounded hover:bg-gray-300"
           >
-            ✕
+            홈으로
           </button>
-        )}
+          {onClose && (
+            <button
+              onClick={onClose}
+              className="px-3 py-1 text-gray-600 hover:text-gray-800"
+            >
+              ✕
+            </button>
+          )}
+        </div>
       </div>
 
       {/* Messages */}
