@@ -105,8 +105,8 @@ EXPOSE 8080
 ENV PORT=8080
 ENV HOSTNAME="0.0.0.0"
 
-# standalone이 있으면 server.js 사용, 없으면 npm start 사용
-# Azure App Service가 startup.sh를 실행하려고 하면, startup.sh가 있으면 사용하고 없으면 직접 실행
 # Docker 컨테이너에서는 이미 빌드가 완료되어 있으므로 직접 실행
-CMD ["sh", "-c", "if [ -f ./startup.sh ]; then echo 'Using startup.sh...' && ./startup.sh; elif [ -f server.js ]; then echo 'Starting standalone server...' && node server.js; elif [ -f .next/standalone/server.js ]; then echo 'Starting standalone server from .next/standalone...' && node .next/standalone/server.js; else echo 'Starting Next.js server...' && npm run start:next; fi"]
+# standalone이 있으면 server.js 사용, 없으면 npm start 사용
+# startup.sh는 Azure App Service ZIP 배포용이지만 Docker에서도 작동하도록 수정됨
+CMD ["sh", "-c", "if [ -f server.js ]; then echo 'Starting standalone server from root...' && node server.js; elif [ -f .next/standalone/server.js ]; then echo 'Starting standalone server from .next/standalone...' && node .next/standalone/server.js; elif [ -f ./startup.sh ]; then echo 'Using startup.sh...' && ./startup.sh; else echo 'Starting Next.js server...' && npm run start:next; fi"]
 

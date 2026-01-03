@@ -1,5 +1,12 @@
 #!/bin/sh
-cd /home/site/wwwroot
+# Docker 컨테이너에서는 /app이 작업 디렉토리
+# Azure App Service ZIP 배포에서는 /home/site/wwwroot이 작업 디렉토리
+if [ -d "/home/site/wwwroot" ]; then
+  cd /home/site/wwwroot
+else
+  cd /app
+fi
+
 export NODE_ENV=production
 export PORT=${PORT:-8080}
 export HOSTNAME=0.0.0.0
@@ -46,8 +53,11 @@ npm run build || {
   exit 1
 }
 
-# Check if standalone build exists
-if [ -d ".next/standalone" ]; then
+# Docker 컨테이너에서는 이미 빌드가 완료되어 있으므로 빌드 과정 생략
+if [ -f "server.js" ]; then
+  echo "Standalone server.js found in root. Starting..."
+  exec node server.js
+elif [ -d ".next/standalone" ]; then
   echo "Standalone build found. Setting up..."
   # Copy static files to standalone directory
   if [ -d ".next/static" ]; then
@@ -58,6 +68,10 @@ if [ -d ".next/standalone" ]; then
   fi
   cd .next/standalone
   echo "Starting standalone server from $(pwd)..."
+  exec node server.js
+elif [ -f ".next/standalone/server.js" ]; then
+  echo "Standalone server.js found in .next/standalone. Starting..."
+  cd .next/standalone
   exec node server.js
 else
   echo "Standalone build not found. Using npm start..."
