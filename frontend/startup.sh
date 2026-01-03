@@ -2,16 +2,29 @@
 # Azure App Service ZIP 배포용 스크립트
 # Docker 컨테이너에서는 이미 빌드가 완료되어 있으므로 이 스크립트를 사용하지 않음
 
-# Docker 컨테이너 환경 감지: server.js가 이미 존재하면 Docker 환경
-if [ -f "server.js" ] || [ -f "/app/server.js" ]; then
+# Docker 컨테이너 환경 감지
+# Docker 환경에서는 이미 빌드가 완료되어 있고 .next 디렉토리가 존재함
+if [ -d ".next" ] && [ -d "node_modules" ] && [ ! -d "/home/site/wwwroot" ]; then
   echo "=== Docker Container Detected ==="
-  echo "Server.js already exists, skipping build process"
-  echo "Starting server directly..."
+  echo "Working directory: $(pwd)"
+  echo "Files in directory:"
+  ls -la | head -10
+  echo "Detected Docker environment (.next and node_modules exist)"
+  echo "Skipping build process, starting server directly..."
+  
+  # 우선순위: server.js > .next/standalone/server.js > npm start
   if [ -f "server.js" ]; then
+    echo "✓ Starting standalone server from root (server.js)..."
     exec node server.js
-  elif [ -f "/app/server.js" ]; then
-    cd /app
-    exec node server.js
+  elif [ -f ".next/standalone/server.js" ]; then
+    echo "✓ Starting standalone server from .next/standalone..."
+    exec node .next/standalone/server.js
+  elif [ -f ".next/server.js" ]; then
+    echo "✓ Starting server from .next..."
+    exec node .next/server.js
+  else
+    echo "⚠ Using npm start..."
+    exec npm start
   fi
   exit 0
 fi
