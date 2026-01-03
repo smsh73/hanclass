@@ -53,7 +53,10 @@ export async function testPasswordHash() {
     });
 
     if (!isValid) {
-      logger.error('STORED PASSWORD HASH IS INVALID! Resetting...');
+      logger.error('STORED PASSWORD HASH IS INVALID! Resetting...', {
+        storedHashPrefix: storedHash?.substring(0, 30),
+        newHashPrefix: newHash.substring(0, 30),
+      });
       
       // 비밀번호 해시 업데이트
       await query(
@@ -75,7 +78,16 @@ export async function testPasswordHash() {
       logger.info('Verification after reset', {
         verifyValid,
         verifyHashPrefix: verifyHash.substring(0, 30),
+        testPassword,
       });
+      
+      if (!verifyValid) {
+        logger.error('CRITICAL: Password hash reset failed verification!');
+      } else {
+        logger.info('SUCCESS: Password hash reset and verified successfully');
+      }
+    } else {
+      logger.info('Password hash is valid');
     }
 
     return isValid;

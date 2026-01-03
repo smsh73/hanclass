@@ -13,9 +13,9 @@ export async function initAdminUser() {
     );
 
     const defaultPassword = 'Admin@2026';
-    logger.debug('Hashing default password', { password: defaultPassword });
+    logger.info('Hashing default password', { password: defaultPassword });
     const passwordHash = await bcrypt.hash(defaultPassword, 10);
-    logger.debug('Password hash generated', { hashLength: passwordHash.length, hashPrefix: passwordHash.substring(0, 20) });
+    logger.info('Password hash generated', { hashLength: passwordHash.length, hashPrefix: passwordHash.substring(0, 20) });
 
     if (result.rows.length > 0) {
       // 기존 관리자 계정이 있으면 비밀번호를 항상 기본값으로 강제 업데이트
