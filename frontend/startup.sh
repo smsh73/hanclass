@@ -27,7 +27,31 @@ if [ -d ".next" ] && [ -d "node_modules" ] && [ ! -d "/home/site/wwwroot" ]; the
     if [ -d "../../public" ] && [ ! -d "public" ]; then
       cp -r ../../public ./public 2>/dev/null || true
     fi
+    echo "Current directory: $(pwd)"
+    echo "Files in standalone directory:"
+    ls -la | head -10
     exec node server.js
+  elif [ -d ".next/standalone" ]; then
+    echo "✓ Standalone directory found, entering..."
+    cd .next/standalone
+    # Copy static files if needed
+    if [ -d "../static" ] && [ ! -d ".next/static" ]; then
+      mkdir -p .next
+      cp -r ../static .next/static 2>/dev/null || true
+    fi
+    if [ -d "../../public" ] && [ ! -d "public" ]; then
+      cp -r ../../public ./public 2>/dev/null || true
+    fi
+    echo "Current directory: $(pwd)"
+    echo "Looking for server.js..."
+    if [ -f "server.js" ]; then
+      echo "✓ Found server.js, starting..."
+      exec node server.js
+    else
+      echo "⚠ server.js not found in standalone directory"
+      ls -la | head -10
+      echo "Falling back to npm start..."
+    fi
   elif [ -f ".next/server.js" ]; then
     echo "✓ Starting server from .next..."
     exec node .next/server.js
