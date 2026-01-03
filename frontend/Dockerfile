@@ -78,15 +78,7 @@ COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 COPY --from=builder --chown=nextjs:nodejs /app/.next/server ./.next/server
 COPY --from=builder --chown=nextjs:nodejs /app/node_modules ./node_modules
 COPY --from=builder --chown=nextjs:nodejs /app/package.json ./package.json
-# package-lock.json도 복사하여 권한 문제 방지 (있으면)
-RUN --mount=from=builder,source=/app/package-lock.json,target=/tmp/package-lock.json \
-    if [ -f /tmp/package-lock.json ]; then \
-      cp /tmp/package-lock.json ./package-lock.json && \
-      chown nextjs:nodejs ./package-lock.json && \
-      echo "✓ package-lock.json copied"; \
-    else \
-      echo "⚠ package-lock.json not found, skipping"; \
-    fi
+# package-lock.json은 선택적 파일이므로 복사하지 않음 (없어도 정상 작동)
 
 # standalone 디렉토리 복사 시도 (있으면 덮어쓰기)
 # 빌더에서 standalone 존재 여부 확인 후 복사
