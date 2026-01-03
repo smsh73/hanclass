@@ -77,9 +77,6 @@ CREATE INDEX IF NOT EXISTS idx_word_games_level ON word_games(level);
 CREATE INDEX IF NOT EXISTS idx_word_games_difficulty ON word_games(difficulty);
 CREATE INDEX IF NOT EXISTS idx_level_tests_user_id ON level_tests(user_id);
 
--- Create default admin user (password: admin123)
--- Password hash for 'admin123' using bcrypt
-INSERT INTO admin_users (username, password_hash) 
-VALUES ('admin', '$2a$10$rOzJqZqZqZqZqZqZqZqZqOqZqZqZqZqZqZqZqZqZqZqZqZqZqZqZq')
-ON CONFLICT (username) DO NOTHING;
+-- Admin user will be created by initAdmin.ts with password: Admin@2026
+-- Do not create admin user here to avoid password hash conflicts
 
