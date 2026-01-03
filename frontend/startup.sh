@@ -7,18 +7,23 @@ if [ -d ".next" ] && [ -d "node_modules" ] && [ ! -d "/home/site/wwwroot" ]; the
   # Docker 환경: 바로 서버 시작
   if [ -f "server.js" ]; then
     exec node server.js
-  elif [ -f ".next/standalone/server.js" ]; then
-    cd .next/standalone
-    [ -d "../static" ] && [ ! -d ".next/static" ] && mkdir -p .next && cp -r ../static .next/static 2>/dev/null || true
-    [ -d "../../public" ] && [ ! -d "public" ] && cp -r ../../public ./public 2>/dev/null || true
-    exec node server.js
   elif [ -d ".next/standalone" ] && [ -f ".next/standalone/server.js" ]; then
     cd .next/standalone
     [ -d "../static" ] && [ ! -d ".next/static" ] && mkdir -p .next && cp -r ../static .next/static 2>/dev/null || true
     [ -d "../../public" ] && [ ! -d "public" ] && cp -r ../../public ./public 2>/dev/null || true
     exec node server.js
-  else
+  elif [ -f ".next/standalone/server.js" ]; then
+    cd .next/standalone
+    [ -d "../static" ] && [ ! -d ".next/static" ] && mkdir -p .next && cp -r ../static .next/static 2>/dev/null || true
+    [ -d "../../public" ] && [ ! -d "public" ] && cp -r ../../public ./public 2>/dev/null || true
+    exec node server.js
+  elif [ -f ".next/BUILD_ID" ]; then
     exec npm start
+  else
+    echo "ERROR: No valid build found. Checking .next directory..."
+    ls -la .next/ 2>/dev/null | head -10
+    echo "ERROR: Production build not found. Exiting."
+    exit 1
   fi
 fi
 

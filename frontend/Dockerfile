@@ -108,7 +108,15 @@ COPY --from=builder --chown=nextjs:nodejs /app/package.json ./package.json
 # package-lock.json은 선택적 파일이므로 복사하지 않음 (없어도 정상 작동)
 
 # standalone 디렉토리가 있으면 루트로 복사 (standalone 빌드 우선 사용)
+# .next/BUILD_ID도 확인하여 production 빌드 확인
 RUN --mount=from=builder,source=/app/.next,target=/tmp/next \
+    echo "=== Checking build files ===" && \
+    ls -la /tmp/next/ 2>/dev/null | head -10 && \
+    if [ -f "/tmp/next/BUILD_ID" ]; then \
+      echo "✓ BUILD_ID found in .next"; \
+    else \
+      echo "⚠ BUILD_ID not found in .next"; \
+    fi && \
     if [ -d "/tmp/next/standalone" ] && [ -n "$(find /tmp/next/standalone -mindepth 1 -maxdepth 1 2>/dev/null | head -1)" ]; then \
       cp -r /tmp/next/standalone/. ./ 2>/dev/null || true && \
       echo "✓ Standalone build copied to root"; \
