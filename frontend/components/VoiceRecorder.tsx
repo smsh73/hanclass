@@ -90,8 +90,16 @@ export default function VoiceRecorder({
     }
 
     if (isEnabled && !isAISpeaking && !permissionDenied) {
-      recognitionRef.current.start();
-      setIsListening(true);
+      // 비동기로 시작 (마이크 권한 요청 포함)
+      recognitionRef.current.start().then(() => {
+        setIsListening(true);
+      }).catch((error) => {
+        console.error('Failed to start voice recognition:', error);
+        setIsListening(false);
+        if (error === 'permission-denied' || error === 'not-allowed') {
+          setPermissionDenied(true);
+        }
+      });
     } else {
       recognitionRef.current.stop();
       setIsListening(false);
