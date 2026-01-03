@@ -18,6 +18,7 @@ export default function VoiceRecorder({
 }: VoiceRecorderProps) {
   const [isListening, setIsListening] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [permissionDenied, setPermissionDenied] = useState(false);
   const recognitionRef = useRef<VoiceRecognition | null>(null);
 
   useEffect(() => {
@@ -45,7 +46,12 @@ export default function VoiceRecorder({
     });
 
     recognition.onError((errorType, errorMessage) => {
-      setError(errorMessage || '음성 인식 오류가 발생했습니다.');
+      if (errorType === 'not-allowed') {
+        setPermissionDenied(true);
+        setError(errorMessage || '마이크 권한이 필요합니다.');
+      } else {
+        setError(errorMessage || '음성 인식 오류가 발생했습니다.');
+      }
       setIsListening(false);
     });
 

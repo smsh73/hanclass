@@ -125,8 +125,46 @@ export class VoiceRecognition {
     }
   }
 
-  start() {
+  async start() {
     if (!this.recognition || this.isListening) {
+      return;
+    }
+
+    // 브라우저 환경 확인
+    if (typeof window === 'undefined') {
+      console.error('VoiceRecognition: Not in browser environment');
+      return;
+    }
+
+    // HTTPS 확인 (로컬호스트 제외)
+    if (location.protocol !== 'https:' && location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
+      const errorMsg = '음성 인식은 HTTPS 연결이 필요합니다.';
+      console.error('VoiceRecognition: HTTPS required for speech recognition');
+      if (this.onErrorCallback) {
+        this.onErrorCallback('https-required', errorMsg);
+      }
+      return;
+    }
+
+    // 마이크 권한 확인 및 요청
+    try {
+      if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        // 마이크 권한 요청
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        // 스트림을 즉시 중지 (권한만 확인)
+        stream.getTracks().forEach(track => track.stop());
+        console.log('Microphone permission granted');
+      } else {
+        console.warn('getUserMedia not supported, proceeding with SpeechRecognition API');
+      }
+    } catch (error: any) {
+      const errorMsg = error.name === 'NotAllowedError' || error.name === 'PermissionDeniedError'
+        ? '마이크 권한이 거부되었습니다. 브라우저 설정에서 마이크 권한을 허용해주세요.'
+        : '마이크 접근에 실패했습니다.';
+      console.error('Microphone permission error:', error);
+      if (this.onErrorCallback) {
+        this.onErrorCallback('permission-denied', errorMsg);
+      }
       return;
     }
 
@@ -135,8 +173,17 @@ export class VoiceRecognition {
       this.isListening = true;
       this.lastSpeechTime = Date.now();
       this.resetSilenceTimeout();
-    } catch (error) {
+      console.log('Speech recognition started');
+    } catch (error: any) {
       console.error('Failed to start recognition:', error);
+      if (error.name === 'InvalidStateError') {
+        // 이미 시작되었거나 다른 오류
+        console.warn('Recognition may already be started');
+      } else {
+        if (this.onErrorCallback) {
+          this.onErrorCallback('start-failed', '음성 인식 시작에 실패했습니다.');
+        }
+      }
     }
   }
 
