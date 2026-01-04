@@ -158,12 +158,29 @@ export class VoiceRecognition {
         console.warn('getUserMedia not supported, proceeding with SpeechRecognition API');
       }
     } catch (error: any) {
-      const errorMsg = error.name === 'NotAllowedError' || error.name === 'PermissionDeniedError'
-        ? '마이크 권한이 거부되었습니다. 브라우저 설정에서 마이크 권한을 허용해주세요.'
-        : '마이크 접근에 실패했습니다.';
+      let errorMsg: string;
+      let errorType: string;
+      
+      if (error.name === 'NotAllowedError' || error.name === 'PermissionDeniedError') {
+        errorMsg = '마이크 권한이 거부되었습니다. 브라우저 설정에서 마이크 권한을 허용해주세요.';
+        errorType = 'not-allowed';
+      } else if (error.name === 'NotFoundError') {
+        errorMsg = '마이크를 찾을 수 없습니다. 마이크가 연결되어 있는지 확인해주세요.';
+        errorType = 'no-microphone';
+      } else if (error.name === 'NotReadableError') {
+        errorMsg = '마이크에 접근할 수 없습니다. 다른 애플리케이션에서 마이크를 사용 중일 수 있습니다.';
+        errorType = 'not-readable';
+      } else if (error.name === 'OverconstrainedError') {
+        errorMsg = '마이크 설정에 문제가 있습니다. 브라우저 설정을 확인해주세요.';
+        errorType = 'overconstrained';
+      } else {
+        errorMsg = `마이크 접근에 실패했습니다: ${error.message || error.name || '알 수 없는 오류'}`;
+        errorType = 'unknown-error';
+      }
+      
       console.error('Microphone permission error:', error);
       if (this.onErrorCallback) {
-        this.onErrorCallback('permission-denied', errorMsg);
+        this.onErrorCallback(errorType, errorMsg);
       }
       return;
     }

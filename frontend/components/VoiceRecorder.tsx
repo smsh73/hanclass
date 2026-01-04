@@ -46,10 +46,14 @@ export default function VoiceRecorder({
     });
 
     recognition.onError((errorType, errorMessage) => {
-      if (errorType === 'not-allowed') {
+      if (errorType === 'not-allowed' || errorType === 'permission-denied') {
         setPermissionDenied(true);
         setError(errorMessage || '마이크 권한이 필요합니다.');
+      } else if (errorType === 'no-microphone' || errorType === 'not-readable' || errorType === 'overconstrained') {
+        setPermissionDenied(false);
+        setError(errorMessage || '마이크 접근에 실패했습니다.');
       } else {
+        setPermissionDenied(false);
         setError(errorMessage || '음성 인식 오류가 발생했습니다.');
       }
       setIsListening(false);
@@ -78,8 +82,15 @@ export default function VoiceRecorder({
       if (err.name === 'NotAllowedError' || err.name === 'PermissionDeniedError') {
         setPermissionDenied(true);
         setError('마이크 권한이 거부되었습니다. 브라우저 설정에서 마이크 권한을 허용해주세요.');
+      } else if (err.name === 'NotFoundError') {
+        setPermissionDenied(false);
+        setError('마이크를 찾을 수 없습니다. 마이크가 연결되어 있는지 확인해주세요.');
+      } else if (err.name === 'NotReadableError') {
+        setPermissionDenied(false);
+        setError('마이크에 접근할 수 없습니다. 다른 애플리케이션에서 마이크를 사용 중일 수 있습니다.');
       } else {
-        setError('마이크 접근 중 오류가 발생했습니다.');
+        setPermissionDenied(false);
+        setError(`마이크 접근 중 오류가 발생했습니다: ${err.message || err.name || '알 수 없는 오류'}`);
       }
     }
   };
