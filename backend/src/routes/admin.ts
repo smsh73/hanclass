@@ -4,6 +4,7 @@ import { AppError } from '../middleware/errorHandler';
 import { query } from '../database/connection';
 import { aiService } from '../services/aiService';
 import crypto from 'crypto';
+import { logger } from '../utils/logger';
 
 const router = express.Router();
 
@@ -101,12 +102,42 @@ router.post('/api-keys', async (req: AuthRequest, res, next) => {
 
     // Encrypt API key
     const algorithm = 'aes-256-cbc';
-    const key = Buffer.from(process.env.ENCRYPTION_KEY || 'default-key-32-characters-long!!', 'utf8');
+    // ENCRYPTION_KEY는 정확히 32바이트여야 함 (aes-256-cbc)
+    const encryptionKey = process.env.ENCRYPTION_KEY || 'default-key-32-characters-long!!';
+    
+    // 암호화 키를 정확히 32바이트로 만들기
+    let key: Buffer;
+    const keyBuffer = Buffer.from(encryptionKey, 'utf8');
+    
+    if (keyBuffer.length === 32) {
+      key = keyBuffer;
+    } else if (keyBuffer.length < 32) {
+      // 32바이트보다 짧으면 0으로 패딩
+      key = Buffer.alloc(32);
+      keyBuffer.copy(key);
+    } else {
+      // 32바이트보다 길면 처음 32바이트만 사용
+      key = keyBuffer.slice(0, 32);
+    }
+    
+    logger.info('[API KEY] Encrypting API key', {
+      provider,
+      encryptionKeyLength: encryptionKey.length,
+      keyBufferLength: keyBuffer.length,
+      finalKeyLength: key.length,
+      apiKeyLength: apiKey.length
+    });
+    
     const iv = crypto.randomBytes(16);
     const cipher = crypto.createCipheriv(algorithm, key, iv);
     let encrypted = cipher.update(apiKey, 'utf8', 'hex');
     encrypted += cipher.final('hex');
     const encryptedKey = iv.toString('hex') + ':' + encrypted;
+    
+    logger.info('[API KEY] Encryption successful', {
+      provider,
+      encryptedKeyLength: encryptedKey.length
+    });
 
     // If this is primary, unset other primary keys
     if (isPrimary) {
@@ -128,8 +159,19 @@ router.post('/api-keys', async (req: AuthRequest, res, next) => {
     await aiService.reloadConfigs();
 
     res.json({ success: true });
-  } catch (error) {
-    next(error);
+  } catch (error: any) {
+    logger.error('[API KEY] Failed to create API key', {
+      provider: req.body.provider,
+      error: error.message,
+      errorName: error.name,
+      stack: error.stack?.substring(0, 200)
+    });
+    
+    if (error.message?.includes('Invalid key length')) {
+      next(new AppError(`암호화 키 설정 오류: 키 길이가 올바르지 않습니다. (${error.message})`, 500));
+    } else {
+      next(error);
+    }
   }
 });
 
