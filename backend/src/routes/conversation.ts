@@ -124,22 +124,21 @@ router.post('/start', validateStartConversation, async (req: Request, res: Respo
     });
 
     // AI 서비스 사용 가능 여부 확인
-    try {
-      const aiStartTime = Date.now();
-      const initialMessage = await aiService.chat(
-        [
-          {
-            role: 'user',
-            content: `안녕하세요! 오늘은 "${topic}"에 대해 이야기하고 싶어요.`,
-          },
-        ],
+    const aiStartTime = Date.now();
+    const initialMessage = await aiService.chat(
+      [
         {
-          systemPrompt,
-          temperature: 0.7,
-          maxTokens: 200,
-        }
-      );
-      const aiDuration = Date.now() - aiStartTime;
+          role: 'user',
+          content: `안녕하세요! 오늘은 "${topic}"에 대해 이야기하고 싶어요.`,
+        },
+      ],
+      {
+        systemPrompt,
+        temperature: 0.7,
+        maxTokens: 200,
+      }
+    );
+    const aiDuration = Date.now() - aiStartTime;
 
     logger.info('[CONVERSATION START]', {
       requestId,
@@ -214,8 +213,8 @@ router.post('/message', validateConversationMessage, async (req: Request, res: R
     });
 
     // AI 서비스 사용 가능 여부 확인
+    const aiStartTime = Date.now();
     try {
-      const aiStartTime = Date.now();
       const response = await aiService.chat(messages, {
         systemPrompt,
         temperature: 0.7,

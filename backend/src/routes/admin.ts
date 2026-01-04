@@ -13,7 +13,7 @@ router.use(requireAdmin);
 // Verify admin token
 router.get('/verify', async (req: AuthRequest, res, next) => {
   try {
-    res.json({ success: true, user: { id: req.user?.userId, role: 'admin' } });
+    res.json({ success: true, user: { id: req.userId, role: 'admin' } });
   } catch (error) {
     next(error);
   }
