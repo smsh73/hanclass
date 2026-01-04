@@ -384,7 +384,7 @@ export default function ChatInterface({ topic, level = 'beginner', onClose }: Ch
                     text={message.content}
                     onStart={handleAISpeechStart}
                     onEnd={handleAISpeechEnd}
-                    autoPlay={false}
+                    autoPlay={true}
                   />
                 </div>
               )}

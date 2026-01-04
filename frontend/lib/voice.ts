@@ -18,6 +18,7 @@ export class VoiceRecognition {
   private onSilenceCallback?: () => void;
   private onErrorCallback?: (error: string, message?: string) => void;
   private silenceDuration: number = 2000; // 2 seconds
+  private hasNetworkError: boolean = false; // 네트워크 오류 플래그
 
   constructor(options: VoiceRecognitionOptions = {}) {
     if (typeof window === 'undefined') {
@@ -77,8 +78,15 @@ export class VoiceRecognition {
             this.onErrorCallback('network', errorMsg);
           }
           // 네트워크 오류 시 자동 재시도 방지
+          this.hasNetworkError = true;
           this.isListening = false;
+          this.clearSilenceTimeout();
           return;
+        }
+        
+        // 네트워크 오류가 아닌 경우 플래그 리셋
+        if (event.error !== 'network') {
+          this.hasNetworkError = false;
         }
         
         // 일시적인 오류는 재시도 가능
@@ -113,12 +121,20 @@ export class VoiceRecognition {
       };
 
       this.recognition.onend = () => {
+        // 네트워크 오류가 발생한 경우 재시도하지 않음
+        if (this.hasNetworkError) {
+          console.log('Speech recognition ended due to network error, not restarting');
+          this.isListening = false;
+          return;
+        }
+        
         if (this.isListening) {
-          // Restart if still listening
+          // Restart if still listening and no network error
           try {
             this.recognition?.start();
           } catch (error) {
             // Already started or other error
+            console.warn('Failed to restart recognition:', error);
           }
         }
       };
@@ -128,6 +144,12 @@ export class VoiceRecognition {
   async start() {
     if (!this.recognition || this.isListening) {
       return;
+    }
+    
+    // 네트워크 오류가 발생한 경우 재시작 전에 플래그 리셋
+    if (this.hasNetworkError) {
+      console.log('Resetting network error flag before restart');
+      this.hasNetworkError = false;
     }
 
     // 브라우저 환경 확인
@@ -210,6 +232,7 @@ export class VoiceRecognition {
     }
 
     this.isListening = false;
+    this.hasNetworkError = false; // 정지 시 네트워크 오류 플래그도 리셋
     this.recognition.stop();
     this.clearSilenceTimeout();
   }
@@ -250,6 +273,7 @@ export class VoiceRecognition {
   destroy() {
     this.stop();
     this.clearSilenceTimeout();
+    this.hasNetworkError = false; // 정리 시 플래그 리셋
   }
 }
 
