@@ -4,6 +4,7 @@ import { query } from '../database/connection';
 import { AppError } from '../middleware/errorHandler';
 import { io } from '../index';
 import { validateStartConversation, validateConversationMessage } from '../middleware/validate';
+import { logger } from '../utils/logger';
 
 const router = express.Router();
 
@@ -122,21 +123,23 @@ router.post('/start', validateStartConversation, async (req: Request, res: Respo
       systemPromptLength: systemPrompt.length
     });
 
-    const aiStartTime = Date.now();
-    const initialMessage = await aiService.chat(
-      [
+    // AI 서비스 사용 가능 여부 확인
+    try {
+      const aiStartTime = Date.now();
+      const initialMessage = await aiService.chat(
+        [
+          {
+            role: 'user',
+            content: `안녕하세요! 오늘은 "${topic}"에 대해 이야기하고 싶어요.`,
+          },
+        ],
         {
-          role: 'user',
-          content: `안녕하세요! 오늘은 "${topic}"에 대해 이야기하고 싶어요.`,
-        },
-      ],
-      {
-        systemPrompt,
-        temperature: 0.7,
-        maxTokens: 200,
-      }
-    );
-    const aiDuration = Date.now() - aiStartTime;
+          systemPrompt,
+          temperature: 0.7,
+          maxTokens: 200,
+        }
+      );
+      const aiDuration = Date.now() - aiStartTime;
 
     logger.info('[CONVERSATION START]', {
       requestId,
@@ -210,34 +213,53 @@ router.post('/message', validateConversationMessage, async (req: Request, res: R
       lastMessage: message.substring(0, 50)
     });
 
-    const aiStartTime = Date.now();
-    const response = await aiService.chat(messages, {
-      systemPrompt,
-      temperature: 0.7,
-      maxTokens: 300,
-    });
-    const aiDuration = Date.now() - aiStartTime;
+    // AI 서비스 사용 가능 여부 확인
+    try {
+      const aiStartTime = Date.now();
+      const response = await aiService.chat(messages, {
+        systemPrompt,
+        temperature: 0.7,
+        maxTokens: 300,
+      });
+      const aiDuration = Date.now() - aiStartTime;
 
-    logger.info('[CONVERSATION MESSAGE]', {
-      requestId,
-      action: 'AI service completed',
-      duration: `${aiDuration}ms`,
-      provider: response.provider,
-      responseLength: response.content.length
-    });
+      logger.info('[CONVERSATION MESSAGE]', {
+        requestId,
+        action: 'AI service completed',
+        duration: `${aiDuration}ms`,
+        provider: response.provider,
+        responseLength: response.content.length
+      });
 
-    const totalDuration = Date.now() - startTime;
-    logger.info('[CONVERSATION MESSAGE]', {
-      requestId,
-      action: 'Success',
-      totalDuration: `${totalDuration}ms`
-    });
+      const totalDuration = Date.now() - startTime;
+      logger.info('[CONVERSATION MESSAGE]', {
+        requestId,
+        action: 'Success',
+        totalDuration: `${totalDuration}ms`
+      });
 
-    res.json({
-      success: true,
-      message: response.content,
-      provider: response.provider,
-    });
+      res.json({
+        success: true,
+        message: response.content,
+        provider: response.provider,
+      });
+    } catch (aiError: any) {
+      const aiDuration = Date.now() - aiStartTime;
+      logger.error('[CONVERSATION MESSAGE]', {
+        requestId,
+        action: 'AI service error',
+        duration: `${aiDuration}ms`,
+        error: aiError.message,
+        stack: aiError.stack?.substring(0, 500)
+      });
+      
+      // AI 서비스 오류를 사용자 친화적인 메시지로 변환
+      if (aiError.message.includes('No AI providers configured') || 
+          aiError.message.includes('All AI providers failed')) {
+        throw new AppError('AI 서비스가 설정되지 않았습니다. 관리자 페이지에서 API 키를 설정해주세요.', 503);
+      }
+      throw aiError;
+    }
   } catch (error: any) {
     const duration = Date.now() - startTime;
     logger.error('[CONVERSATION MESSAGE]', {
