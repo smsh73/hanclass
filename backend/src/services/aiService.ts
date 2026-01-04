@@ -50,7 +50,23 @@ class AIService {
 
       const crypto = require('crypto');
       const algorithm = 'aes-256-cbc';
-      const key = Buffer.from(process.env.ENCRYPTION_KEY || 'default-key-32-characters-long!!', 'utf8');
+      const encryptionKey = process.env.ENCRYPTION_KEY || 'default-key-32-characters-long!!';
+      
+      // 암호화 키를 정확히 32바이트로 만들기 (암호화와 동일한 방식)
+      let key: Buffer;
+      const keyBuffer = Buffer.from(encryptionKey, 'utf8');
+      
+      if (keyBuffer.length === 32) {
+        key = keyBuffer;
+      } else if (keyBuffer.length < 32) {
+        // 32바이트보다 짧으면 0으로 패딩
+        key = Buffer.alloc(32);
+        keyBuffer.copy(key);
+      } else {
+        // 32바이트보다 길면 처음 32바이트만 사용
+        key = keyBuffer.slice(0, 32);
+      }
+      
       const parts = encryptedKey.split(':');
       const iv = Buffer.from(parts[0], 'hex');
       const encrypted = parts[1];
@@ -58,8 +74,11 @@ class AIService {
       let decrypted = decipher.update(encrypted, 'hex', 'utf8');
       decrypted += decipher.final('utf8');
       return decrypted;
-    } catch (error) {
-      logger.warn('Failed to decrypt API key, using as is', error);
+    } catch (error: any) {
+      logger.warn('Failed to decrypt API key, using as is', {
+        error: error.message,
+        errorName: error.name
+      });
       return encryptedKey; // Return encrypted key if decryption fails
     }
   }
