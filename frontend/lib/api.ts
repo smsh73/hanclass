@@ -30,7 +30,7 @@ export async function apiRequest(
   };
 
   if (token) {
-    headers['Authorization'] = `Bearer ${token.substring(0, 20)}...`;
+    headers['Authorization'] = `Bearer ${token}`;
     console.log(`[API REQUEST] ${requestId} - Token found`, { tokenLength: token.length });
   } else {
     console.log(`[API REQUEST] ${requestId} - No token`);
@@ -65,6 +65,16 @@ export async function apiRequest(
         error: errorData,
         responseText: errorText.substring(0, 200)
       });
+      
+      // 401 Unauthorized 오류 시 관리자 로그인 페이지로 리다이렉트
+      if (response.status === 401 && typeof window !== 'undefined') {
+        const isAdminPage = window.location.pathname.startsWith('/admin');
+        if (isAdminPage) {
+          localStorage.removeItem('adminToken');
+          window.location.href = '/admin/login';
+          return Promise.reject(new Error('인증이 만료되었습니다. 다시 로그인해주세요.'));
+        }
+      }
       
       throw new Error(errorData.message || errorData.error?.message || 'Request failed');
     }

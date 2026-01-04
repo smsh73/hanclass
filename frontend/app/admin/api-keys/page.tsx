@@ -42,8 +42,13 @@ export default function APIKeysPage() {
       if (data.success) {
         setApiKeys(data.keys || []);
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error('Failed to fetch API keys:', error);
+      if (error.message?.includes('인증이 만료') || error.message?.includes('Unauthorized')) {
+        // 이미 apiRequest에서 리다이렉트 처리됨
+        return;
+      }
+      alert('API 키 목록을 불러오는데 실패했습니다: ' + error.message);
     } finally {
       setIsLoading(false);
     }
@@ -59,7 +64,12 @@ export default function APIKeysPage() {
       setShowAddForm(false);
       setFormData({ provider: 'openai', apiKey: '', isPrimary: false });
       fetchAPIKeys();
+      alert('API 키가 등록되었습니다.');
     } catch (error: any) {
+      if (error.message?.includes('인증이 만료') || error.message?.includes('Unauthorized')) {
+        // 이미 apiRequest에서 리다이렉트 처리됨
+        return;
+      }
       alert('API 키 등록 실패: ' + error.message);
     }
   };
