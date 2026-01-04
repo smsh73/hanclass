@@ -15,6 +15,15 @@ export default function AdminLoginPage() {
     setError('');
     setIsLoading(true);
 
+    const requestId = `login_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+    const startTime = Date.now();
+
+    console.log(`[LOGIN] ${requestId} - Starting login`, {
+      username,
+      passwordLength: password.length,
+      apiUrl: process.env.NEXT_PUBLIC_API_URL
+    });
+
     try {
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/login`, {
         method: 'POST',
@@ -22,18 +31,63 @@ export default function AdminLoginPage() {
         body: JSON.stringify({ username, password }),
       });
 
-      const data = await response.json();
+      const duration = Date.now() - startTime;
+      console.log(`[LOGIN] ${requestId} - Response received`, {
+        status: response.status,
+        statusText: response.statusText,
+        ok: response.ok,
+        duration: `${duration}ms`
+      });
 
-      if (data.success && data.token) {
+      let data;
+      try {
+        data = await response.json();
+        console.log(`[LOGIN] ${requestId} - Response data`, {
+          success: data.success,
+          hasToken: !!data.token,
+          hasError: !!data.error,
+          errorMessage: data.error?.message
+        });
+      } catch (parseError) {
+        const text = await response.text();
+        console.error(`[LOGIN] ${requestId} - Failed to parse response`, {
+          status: response.status,
+          responseText: text.substring(0, 200)
+        });
+        setError(`서버 응답 오류 (${response.status}): ${text.substring(0, 100)}`);
+        setIsLoading(false);
+        return;
+      }
+
+      if (response.ok && data.success && data.token) {
+        console.log(`[LOGIN] ${requestId} - Login successful`, {
+          tokenLength: data.token.length,
+          tokenPrefix: data.token.substring(0, 20)
+        });
+        
         if (typeof window !== 'undefined') {
           localStorage.setItem('adminToken', data.token);
+          console.log(`[LOGIN] ${requestId} - Token saved to localStorage`);
         }
+        
         router.push('/admin');
       } else {
-        setError('로그인에 실패했습니다. 사용자명과 비밀번호를 확인해주세요.');
+        const errorMsg = data.error?.message || data.message || '로그인에 실패했습니다.';
+        console.error(`[LOGIN] ${requestId} - Login failed`, {
+          success: data.success,
+          hasToken: !!data.token,
+          error: errorMsg
+        });
+        setError(errorMsg);
       }
-    } catch (error) {
-      setError('로그인 중 오류가 발생했습니다.');
+    } catch (error: any) {
+      const duration = Date.now() - startTime;
+      console.error(`[LOGIN] ${requestId} - Exception occurred`, {
+        error: error.message,
+        stack: error.stack,
+        duration: `${duration}ms`
+      });
+      setError(`로그인 중 오류가 발생했습니다: ${error.message || '알 수 없는 오류'}`);
     } finally {
       setIsLoading(false);
     }
