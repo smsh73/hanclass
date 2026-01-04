@@ -41,6 +41,11 @@ export default function ChatInterface({ topic, level = 'beginner', onClose }: Ch
 
   const startConversation = async () => {
     setIsLoading(true);
+    const requestId = `start_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+    const startTime = Date.now();
+
+    console.log(`[CONVERSATION START] ${requestId} - Starting`, { topic, level });
+
     try {
       // 세션에서 userId 가져오기
       const sessionId = typeof window !== 'undefined' ? sessionStorage.getItem('sessionId') : null;
@@ -48,32 +53,66 @@ export default function ChatInterface({ topic, level = 'beginner', onClose }: Ch
       
       if (sessionId) {
         try {
+          console.log(`[CONVERSATION START] ${requestId} - Fetching user from session`, { sessionId });
           const userResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/session/${sessionId}`);
           const userData = await userResponse.json();
           if (userData.success && userData.user) {
             userId = userData.user.id;
+            console.log(`[CONVERSATION START] ${requestId} - User found`, { userId });
           }
         } catch (error) {
-          console.error('Failed to get user from session:', error);
+          console.error(`[CONVERSATION START] ${requestId} - Failed to get user from session:`, error);
         }
       }
+
+      const requestBody = {
+        topic,
+        level,
+        sessionId: sessionId || undefined,
+      };
+
+      console.log(`[CONVERSATION START] ${requestId} - Sending request`, {
+        url: `${process.env.NEXT_PUBLIC_API_URL}/api/conversation/start`,
+        body: requestBody
+      });
 
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/conversation/start`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          topic,
-          level,
-          sessionId: sessionId || undefined, // sessionId 전달
-        }),
+        body: JSON.stringify(requestBody),
+      });
+
+      const duration = Date.now() - startTime;
+      console.log(`[CONVERSATION START] ${requestId} - Response received`, {
+        status: response.status,
+        statusText: response.statusText,
+        ok: response.ok,
+        duration: `${duration}ms`
       });
 
       if (!response.ok) {
-        const errorData = await response.json().catch(() => ({ message: '대화 시작에 실패했습니다.' }));
-        throw new Error(errorData.message || '대화 시작에 실패했습니다.');
+        let errorData;
+        try {
+          const text = await response.text();
+          console.error(`[CONVERSATION START] ${requestId} - Error response`, {
+            status: response.status,
+            responseText: text.substring(0, 200)
+          });
+          errorData = JSON.parse(text);
+        } catch {
+          errorData = { message: '대화 시작에 실패했습니다.' };
+        }
+        throw new Error(errorData.message || errorData.error?.message || '대화 시작에 실패했습니다.');
       }
 
       const data = await response.json();
+      console.log(`[CONVERSATION START] ${requestId} - Success`, {
+        success: data.success,
+        hasMessage: !!data.message,
+        messageLength: data.message?.length,
+        provider: data.provider
+      });
+
       if (data.success) {
         const aiMessage: Message = {
           id: Date.now().toString(),
@@ -85,8 +124,13 @@ export default function ChatInterface({ topic, level = 'beginner', onClose }: Ch
       } else {
         throw new Error(data.message || '대화 시작에 실패했습니다.');
       }
-    } catch (error) {
-      console.error('Failed to start conversation:', error);
+    } catch (error: any) {
+      const duration = Date.now() - startTime;
+      console.error(`[CONVERSATION START] ${requestId} - Exception`, {
+        error: error.message,
+        stack: error.stack,
+        duration: `${duration}ms`
+      });
       const errorMessage = error instanceof Error ? error.message : '대화 시작에 실패했습니다.';
       const errorMsg: Message = {
         id: Date.now().toString(),
@@ -102,6 +146,16 @@ export default function ChatInterface({ topic, level = 'beginner', onClose }: Ch
 
   const sendMessage = async (text: string) => {
     if (!text.trim() || isAISpeaking) return;
+
+    const requestId = `msg_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+    const startTime = Date.now();
+
+    console.log(`[CONVERSATION MESSAGE] ${requestId} - Sending message`, {
+      text: text.substring(0, 50),
+      topic,
+      level,
+      messageCount: messages.length
+    });
 
     const userMessage: Message = {
       id: Date.now().toString(),
@@ -120,24 +174,56 @@ export default function ChatInterface({ topic, level = 'beginner', onClose }: Ch
         content: msg.content,
       }));
 
+      const requestBody = {
+        message: text,
+        topic,
+        level,
+        conversationHistory,
+        sessionId: sessionId || undefined,
+      };
+
+      console.log(`[CONVERSATION MESSAGE] ${requestId} - Sending request`, {
+        url: `${process.env.NEXT_PUBLIC_API_URL}/api/conversation/message`,
+        historyLength: conversationHistory.length
+      });
+
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/conversation/message`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          message: text,
-          topic,
-          level,
-          conversationHistory,
-          sessionId: sessionId || undefined, // sessionId 전달
-        }),
+        body: JSON.stringify(requestBody),
+      });
+
+      const duration = Date.now() - startTime;
+      console.log(`[CONVERSATION MESSAGE] ${requestId} - Response received`, {
+        status: response.status,
+        statusText: response.statusText,
+        ok: response.ok,
+        duration: `${duration}ms`
       });
 
       if (!response.ok) {
-        const errorData = await response.json().catch(() => ({ message: '메시지 전송에 실패했습니다.' }));
-        throw new Error(errorData.message || '메시지 전송에 실패했습니다.');
+        let errorData;
+        try {
+          const text = await response.text();
+          console.error(`[CONVERSATION MESSAGE] ${requestId} - Error response`, {
+            status: response.status,
+            responseText: text.substring(0, 200)
+          });
+          errorData = JSON.parse(text);
+        } catch {
+          errorData = { message: '메시지 전송에 실패했습니다.' };
+        }
+        throw new Error(errorData.message || errorData.error?.message || '메시지 전송에 실패했습니다.');
       }
 
       const data = await response.json();
+      console.log(`[CONVERSATION MESSAGE] ${requestId} - Success`, {
+        success: data.success,
+        hasMessage: !!data.message,
+        messageLength: data.message?.length,
+        provider: data.provider
+      });
+
       if (data.success) {
         const aiMessage: Message = {
           id: (Date.now() + 1).toString(),
@@ -149,8 +235,13 @@ export default function ChatInterface({ topic, level = 'beginner', onClose }: Ch
       } else {
         throw new Error(data.message || '메시지 전송에 실패했습니다.');
       }
-    } catch (error) {
-      console.error('Failed to send message:', error);
+    } catch (error: any) {
+      const duration = Date.now() - startTime;
+      console.error(`[CONVERSATION MESSAGE] ${requestId} - Exception`, {
+        error: error.message,
+        stack: error.stack,
+        duration: `${duration}ms`
+      });
       const errorMessage = error instanceof Error ? error.message : '메시지 전송에 실패했습니다.';
       const errorMsg: Message = {
         id: (Date.now() + 1).toString(),

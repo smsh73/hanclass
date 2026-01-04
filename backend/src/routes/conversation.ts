@@ -77,18 +77,33 @@ router.get('/topics', async (req: Request, res: Response, next: NextFunction) =>
 
 // Start conversation
 router.post('/start', validateStartConversation, async (req: Request, res: Response, next: NextFunction) => {
+  const requestId = `conv_start_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+  const startTime = Date.now();
+  const { logger } = await import('../utils/logger');
+  
   try {
+    logger.info('[CONVERSATION START]', {
+      requestId,
+      body: req.body,
+      topic: req.body.topic,
+      level: req.body.level,
+      hasSessionId: !!req.body.sessionId
+    });
+
     const { topic, level, sessionId } = req.body;
     // Validation은 validateStartConversation 미들웨어에서 처리됨
 
     // sessionId로 사용자 정보 확인 (선택사항)
     if (sessionId) {
       try {
+        logger.info('[CONVERSATION START]', { requestId, action: 'Checking user session', sessionId });
         const userResult = await query('SELECT * FROM users WHERE session_id = $1', [sessionId]);
         if (userResult.rows.length > 0) {
+          logger.info('[CONVERSATION START]', { requestId, action: 'User found', userId: userResult.rows[0].id });
           // 사용자 정보가 있으면 레벨 정보 활용 가능
         }
-      } catch (error) {
+      } catch (error: any) {
+        logger.warn('[CONVERSATION START]', { requestId, action: 'User session check failed', error: error.message });
         // 사용자 조회 실패해도 대화는 계속 진행
       }
     }
@@ -99,6 +114,15 @@ router.post('/start', validateStartConversation, async (req: Request, res: Respo
 주제: ${topic}
 학생의 답변에 대해 격려하고, 필요시 교정해주세요. 간단하고 이해하기 쉽게 설명해주세요.`;
 
+    logger.info('[CONVERSATION START]', {
+      requestId,
+      action: 'Calling AI service',
+      topic,
+      level: level || 'beginner',
+      systemPromptLength: systemPrompt.length
+    });
+
+    const aiStartTime = Date.now();
     const initialMessage = await aiService.chat(
       [
         {
@@ -112,20 +136,58 @@ router.post('/start', validateStartConversation, async (req: Request, res: Respo
         maxTokens: 200,
       }
     );
+    const aiDuration = Date.now() - aiStartTime;
+
+    logger.info('[CONVERSATION START]', {
+      requestId,
+      action: 'AI service completed',
+      duration: `${aiDuration}ms`,
+      provider: initialMessage.provider,
+      messageLength: initialMessage.content.length
+    });
+
+    const totalDuration = Date.now() - startTime;
+    logger.info('[CONVERSATION START]', {
+      requestId,
+      action: 'Success',
+      totalDuration: `${totalDuration}ms`
+    });
 
     res.json({
       success: true,
       message: initialMessage.content,
       provider: initialMessage.provider,
     });
-  } catch (error) {
+  } catch (error: any) {
+    const duration = Date.now() - startTime;
+    logger.error('[CONVERSATION START]', {
+      requestId,
+      action: 'Error',
+      duration: `${duration}ms`,
+      error: error.message,
+      stack: error.stack?.substring(0, 500),
+      topic: req.body.topic,
+      level: req.body.level
+    });
     next(error);
   }
 });
 
 // Continue conversation
 router.post('/message', validateConversationMessage, async (req: Request, res: Response, next: NextFunction) => {
+  const requestId = `conv_msg_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+  const startTime = Date.now();
+  const { logger } = await import('../utils/logger');
+  
   try {
+    logger.info('[CONVERSATION MESSAGE]', {
+      requestId,
+      messageLength: req.body.message?.length,
+      topic: req.body.topic,
+      level: req.body.level,
+      historyLength: req.body.conversationHistory?.length || 0
+    });
+
     const { message, topic, level, conversationHistory } = req.body;
     // Validation은 validateConversationMessage 미들웨어에서 처리됨
 
@@ -141,10 +203,34 @@ router.post('/message', validateConversationMessage, async (req: Request, res: R
       content: message,
     });
 
+    logger.info('[CONVERSATION MESSAGE]', {
+      requestId,
+      action: 'Calling AI service',
+      messageCount: messages.length,
+      lastMessage: message.substring(0, 50)
+    });
+
+    const aiStartTime = Date.now();
     const response = await aiService.chat(messages, {
       systemPrompt,
       temperature: 0.7,
       maxTokens: 300,
+    });
+    const aiDuration = Date.now() - aiStartTime;
+
+    logger.info('[CONVERSATION MESSAGE]', {
+      requestId,
+      action: 'AI service completed',
+      duration: `${aiDuration}ms`,
+      provider: response.provider,
+      responseLength: response.content.length
+    });
+
+    const totalDuration = Date.now() - startTime;
+    logger.info('[CONVERSATION MESSAGE]', {
+      requestId,
+      action: 'Success',
+      totalDuration: `${totalDuration}ms`
     });
 
     res.json({
@@ -152,7 +238,16 @@ router.post('/message', validateConversationMessage, async (req: Request, res: R
       message: response.content,
       provider: response.provider,
     });
-  } catch (error) {
+  } catch (error: any) {
+    const duration = Date.now() - startTime;
+    logger.error('[CONVERSATION MESSAGE]', {
+      requestId,
+      action: 'Error',
+      duration: `${duration}ms`,
+      error: error.message,
+      stack: error.stack?.substring(0, 500),
+      message: req.body.message?.substring(0, 50)
+    });
     next(error);
   }
 });
