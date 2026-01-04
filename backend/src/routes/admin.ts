@@ -139,21 +139,43 @@ router.post('/api-keys', async (req: AuthRequest, res, next) => {
       encryptedKeyLength: encryptedKey.length
     });
 
-    // If this is primary, unset other primary keys
-    if (isPrimary) {
-      await query(
-        'UPDATE api_keys SET is_primary = false WHERE provider = $1',
+      // If this is primary, unset other primary keys for the same provider
+      if (isPrimary) {
+        await query(
+          'UPDATE api_keys SET is_primary = false WHERE provider = $1',
+          [provider]
+        );
+      }
+
+      // Check if API key already exists for this provider
+      const existingResult = await query(
+        'SELECT id, is_primary FROM api_keys WHERE provider = $1',
         [provider]
       );
-    }
 
-    await query(
-      `INSERT INTO api_keys (provider, api_key, is_primary, is_active)
-       VALUES ($1, $2, $3, true)
-       ON CONFLICT (provider, is_primary) WHERE is_primary = true DO UPDATE
-       SET api_key = $2, is_primary = $3`,
-      [provider, encryptedKey, isPrimary || false]
-    );
+      if (existingResult.rows.length > 0) {
+        // Update existing API key
+        const existingKey = existingResult.rows[0];
+        await query(
+          'UPDATE api_keys SET api_key = $1, is_primary = $2, is_active = true, updated_at = CURRENT_TIMESTAMP WHERE id = $3',
+          [encryptedKey, isPrimary || false, existingKey.id]
+        );
+        logger.info('[API KEY] Updated existing API key', {
+          provider,
+          keyId: existingKey.id,
+          isPrimary: isPrimary || false
+        });
+      } else {
+        // Insert new API key
+        await query(
+          'INSERT INTO api_keys (provider, api_key, is_primary, is_active) VALUES ($1, $2, $3, true)',
+          [provider, encryptedKey, isPrimary || false]
+        );
+        logger.info('[API KEY] Created new API key', {
+          provider,
+          isPrimary: isPrimary || false
+        });
+      }
 
     // Reload AI service configs
     await aiService.reloadConfigs();
