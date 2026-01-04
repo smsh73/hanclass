@@ -11,6 +11,8 @@ interface Message {
   role: 'user' | 'assistant';
   content: string;
   timestamp: Date;
+  isError?: boolean;
+  isAIConfigError?: boolean;
 }
 
 interface ChatInterfaceProps {
@@ -131,12 +133,22 @@ export default function ChatInterface({ topic, level = 'beginner', onClose }: Ch
         stack: error.stack,
         duration: `${duration}ms`
       });
-      const errorMessage = error instanceof Error ? error.message : '대화 시작에 실패했습니다.';
+      
+      let errorMessage = error instanceof Error ? error.message : '대화 시작에 실패했습니다.';
+      const isAIConfigError = errorMessage.includes('No AI providers configured') || 
+                             errorMessage.includes('AI 서비스가 설정되지 않았습니다');
+      
+      if (isAIConfigError) {
+        errorMessage = 'AI 서비스가 설정되지 않았습니다. 관리자 페이지에서 API 키를 설정해주세요.';
+      }
+      
       const errorMsg: Message = {
         id: Date.now().toString(),
         role: 'assistant',
         content: `오류: ${errorMessage}`,
         timestamp: new Date(),
+        isError: true,
+        isAIConfigError,
       };
       setMessages([errorMsg]);
     } finally {
@@ -242,12 +254,21 @@ export default function ChatInterface({ topic, level = 'beginner', onClose }: Ch
         stack: error.stack,
         duration: `${duration}ms`
       });
-      const errorMessage = error instanceof Error ? error.message : '메시지 전송에 실패했습니다.';
+      let errorMessage = error instanceof Error ? error.message : '메시지 전송에 실패했습니다.';
+      const isAIConfigError = errorMessage.includes('No AI providers configured') || 
+                             errorMessage.includes('AI 서비스가 설정되지 않았습니다');
+      
+      if (isAIConfigError) {
+        errorMessage = 'AI 서비스가 설정되지 않았습니다. 관리자 페이지에서 API 키를 설정해주세요.';
+      }
+      
       const errorMsg: Message = {
         id: (Date.now() + 1).toString(),
         role: 'assistant',
         content: `오류: ${errorMessage}`,
         timestamp: new Date(),
+        isError: true,
+        isAIConfigError,
       };
       setMessages((prev) => [...prev, errorMsg]);
     } finally {
@@ -341,11 +362,23 @@ export default function ChatInterface({ topic, level = 'beginner', onClose }: Ch
               className={`max-w-xs lg:max-w-md px-4 py-2 rounded-lg ${
                 message.role === 'user'
                   ? 'bg-blue-500 text-white'
+                  : message.isError
+                  ? 'bg-red-100 text-red-800 border border-red-300'
                   : 'bg-gray-200 text-gray-800'
               }`}
             >
               <p className="whitespace-pre-wrap">{message.content}</p>
-              {message.role === 'assistant' && (
+              {message.isAIConfigError && (
+                <div className="mt-3 pt-3 border-t border-red-300">
+                  <button
+                    onClick={() => router.push('/admin/api-keys')}
+                    className="w-full px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 text-sm font-semibold"
+                  >
+                    관리자 페이지에서 API 키 설정하기
+                  </button>
+                </div>
+              )}
+              {message.role === 'assistant' && !message.isError && (
                 <div className="mt-2">
                   <VoicePlayer
                     text={message.content}
