@@ -110,8 +110,8 @@ RUN adduser --system --uid 1001 nextjs
 # Copy necessary files from builder
 # public 디렉토리는 선택적 (없어도 빌드 진행)
 RUN mkdir -p ./public
-# public 디렉토리 복사 시도 (없으면 빈 디렉토리 유지)
-COPY --from=builder /app/public ./public 2>/dev/null || echo "⚠ Public directory not found, using empty directory"
+# public 디렉토리 복사 (없으면 빈 디렉토리 유지)
+COPY --from=builder /app/public ./public
 
 # .next 디렉토리 전체 복사 (BUILD_ID 포함, production 빌드에 필수)
 # 먼저 .next 디렉토리 생성
@@ -122,19 +122,22 @@ COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next
 
 # startup.sh 복사 (Azure App Service가 자동 실행할 수 있으므로 반드시 필요)
 # Docker 환경에서는 server.js가 이미 존재하므로 startup.sh가 자동 감지하여 빌드 건너뛰기
-COPY --from=builder --chown=nextjs:nodejs /app/startup.sh ./startup.sh 2>/dev/null || \
-    (echo '#!/bin/sh' > ./startup.sh && \
-     echo 'if [ -f "server.js" ] || [ -f "/app/server.js" ]; then' >> ./startup.sh && \
-     echo '  echo "=== Docker Container Detected ==="' >> ./startup.sh && \
-     echo '  echo "Server.js already exists, starting directly..."' >> ./startup.sh && \
-     echo '  if [ -f "server.js" ]; then exec node server.js; fi' >> ./startup.sh && \
-     echo '  if [ -f "/app/server.js" ]; then cd /app && exec node server.js; fi' >> ./startup.sh && \
-     echo '  exit 0' >> ./startup.sh && \
-     echo 'fi' >> ./startup.sh && \
-     echo 'echo "Azure App Service ZIP deployment - build required"' >> ./startup.sh && \
-     chmod +x ./startup.sh && \
-     chown nextjs:nodejs ./startup.sh && \
-     echo "✓ Minimal startup.sh created")
+COPY --from=builder --chown=nextjs:nodejs /app/startup.sh ./startup.sh
+
+# startup.sh가 없으면 기본 스크립트 생성
+RUN if [ ! -f ./startup.sh ]; then \
+      echo '#!/bin/sh' > ./startup.sh && \
+      echo 'if [ -f "server.js" ] || [ -f "/app/server.js" ]; then' >> ./startup.sh && \
+      echo '  echo "=== Docker Container Detected ==="' >> ./startup.sh && \
+      echo '  echo "Server.js already exists, starting directly..."' >> ./startup.sh && \
+      echo '  if [ -f "server.js" ]; then exec node server.js; fi' >> ./startup.sh && \
+      echo '  if [ -f "/app/server.js" ]; then cd /app && exec node server.js; fi' >> ./startup.sh && \
+      echo '  exit 0' >> ./startup.sh && \
+      echo 'fi' >> ./startup.sh && \
+      echo 'echo "Azure App Service ZIP deployment - build required"' >> ./startup.sh && \
+      chmod +x ./startup.sh && \
+      chown nextjs:nodejs ./startup.sh; \
+    fi
 
 # node_modules와 package.json 복사
 COPY --from=builder --chown=nextjs:nodejs /app/node_modules ./node_modules
