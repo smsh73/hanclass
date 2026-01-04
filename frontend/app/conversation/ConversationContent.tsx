@@ -15,38 +15,78 @@ function ConversationInner() {
     const topicParam = searchParams.get('topic');
     const levelParam = searchParams.get('level');
     
+    console.log('[CONVERSATION] useEffect - URL params', {
+      topicParam,
+      levelParam,
+      hasSearchParams: !!searchParams
+    });
+    
+    // URL 파라미터에서 topic이 있으면 바로 대화 시작 (외부 링크 등에서 직접 접근)
     if (topicParam) {
+      console.log('[CONVERSATION] Topic from URL param, setting selectedTopic', { topicParam });
       setSelectedTopic(topicParam);
     }
+    
+    // URL 파라미터에서 level이 있으면 레벨 설정
     if (levelParam) {
+      console.log('[CONVERSATION] Level from URL param, setting level', { levelParam });
       setLevel(levelParam);
     }
 
-    fetchTopics();
+    // 주제가 URL 파라미터로 지정되지 않은 경우에만 주제 목록 가져오기
+    // URL 파라미터로 topic이 있으면 이미 selectedTopic이 설정되므로 fetchTopics 불필요
+    if (!topicParam) {
+      console.log('[CONVERSATION] No topic in URL, fetching topics');
+      fetchTopics();
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams]);
 
   const fetchTopics = async () => {
+    const requestId = `fetch_topics_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+    const startTime = Date.now();
+    
+    console.log(`[CONVERSATION] ${requestId} - Fetching topics`, { level });
+
     try {
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/api/conversation/topics?level=${level}`
       );
       
+      const duration = Date.now() - startTime;
+      console.log(`[CONVERSATION] ${requestId} - Response received`, {
+        status: response.status,
+        ok: response.ok,
+        duration: `${duration}ms`
+      });
+
       if (!response.ok) {
         throw new Error('주제를 불러오는데 실패했습니다.');
       }
 
       const data = await response.json();
+      console.log(`[CONVERSATION] ${requestId} - Topics data`, {
+        success: data.success,
+        topicCount: data.topics?.length || 0
+      });
+
       if (data.success) {
         setTopics(data.topics || []);
-        if (!selectedTopic && data.topics && data.topics.length > 0) {
-          setSelectedTopic(data.topics[0]);
-        }
+        // 자동으로 주제를 선택하지 않음 - 사용자가 명시적으로 선택해야 함
+        // 이렇게 하면 레벨 선택 화면이 항상 표시됨
+        console.log(`[CONVERSATION] ${requestId} - Topics loaded`, {
+          count: data.topics?.length || 0,
+          topics: data.topics
+        });
       } else {
         throw new Error(data.message || '주제를 불러오는데 실패했습니다.');
       }
-    } catch (error) {
-      console.error('Failed to fetch topics:', error);
+    } catch (error: any) {
+      const duration = Date.now() - startTime;
+      console.error(`[CONVERSATION] ${requestId} - Failed to fetch topics`, {
+        error: error.message,
+        duration: `${duration}ms`
+      });
       setTopics([]);
     }
   };
